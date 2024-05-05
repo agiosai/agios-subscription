@@ -31,6 +31,7 @@ export default async function PricingPage() {
   return (
     <Pricing
       user={user}
+      // @ts-ignore
       products={products ?? []}
       subscription={subscription}
     />

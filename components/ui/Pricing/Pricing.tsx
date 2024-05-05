@@ -15,6 +15,7 @@ import CheckoutButton from '@/components/ui/CheckoutButton/CheckoutButton';
 type Subscription = Tables<'subscriptions'>;
 type Product = Tables<'products'>;
 type Price = Tables<'prices'>;
+// @ts-ignore
 interface ProductWithPrices extends Product {
   prices: Price[];
   type:String;
