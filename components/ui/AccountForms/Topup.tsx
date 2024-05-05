@@ -24,7 +24,7 @@ type SubscriptionWithPriceAndProduct = Subscription & {
 };
 
 interface Props {
-  products: any[];
+  products: any;
   subscription: SubscriptionWithPriceAndProduct | null;
   user:any
 }
