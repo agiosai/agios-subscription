@@ -11,8 +11,8 @@ export default function usePaddle() {
     // console.log(process.env.NEXT_PUBLIC_PADDLE_SELLER_ID);
     initializePaddle({
       environment: process.env.NEXT_PUBLIC_PADDLE_ENV,
-      token: process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN!,
-      // seller: Number(process.env.NEXT_PUBLIC_PADDLE_SELLER_ID),
+      // token: process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN!,
+      seller: Number(process.env.NEXT_PUBLIC_PADDLE_SELLER_ID),
     } as unknown as InitializePaddleOptions).then((paddleInstance: Paddle | undefined) => {
       if (paddleInstance) {
         setPaddle(paddleInstance);
