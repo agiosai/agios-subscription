@@ -20,6 +20,9 @@ export default function CheckoutButton({priceId,subscription,user,isTopup}){
         setPriceIdLoading(undefined);
         return router.push('/signin/signup');
       }
+      if (subscription?.price_id === priceId){
+        return router.push('/account');
+      }
     setPriceIdLoading(priceId);
     paddle?.Checkout.open({
       items: [
@@ -36,7 +39,7 @@ export default function CheckoutButton({priceId,subscription,user,isTopup}){
         uuid:user?.id
       },
       settings: {
-        successUrl: getURL("account")
+        successUrl: getURL("success")
         // settings like successUrl and theme
       }
     });
