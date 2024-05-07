@@ -238,10 +238,21 @@ const topupCustomer = async (uid: string,price:string) => {
     // @ts-ignore
     .eq('id',price)
     .single();
+  let points = 0;
+  // @ts-ignore
+  if (priceData.points == 0){
+    points = -1;
+  }else if (priceData?.points == -1){
+    points = priceData.points;
+  }else {
+    // @ts-ignore
+    points = userData.points + priceData.points;
+  }
+  console.log("Niro points",points)
   const { error } = await supabaseAdmin
     .from('users')
     //@ts-ignore
-    .update({ points:  priceData? (userData.points + priceData.points):0})
+    .update({ points:  points})
     .eq('id', uid);
 }
 
@@ -286,6 +297,15 @@ const manageSubscriptionStatusChange = async (
     // @ts-ignore
     .eq('id',subscription.items[0]?.price.id)
     .single();
+
+  const { error:subUpdateErr} = await supabaseAdmin
+    .from('subscriptions')
+    //@ts-ignore
+    .update({ status:  'canceled'})
+    .eq('user_id', uid)
+  if (subUpdateErr)
+    throw new Error(`Subscription insert/update failed: ${subUpdateErr.message}`);
+
   // Upsert the latest status of the subscription object.
   const subscriptionData: TablesInsert<'subscriptions'> = {
     id: subscription.id,
@@ -326,10 +346,21 @@ const manageSubscriptionStatusChange = async (
   console.log(
     `Inserted/updated subscription [${subscription.id}] for user [${uuid}]`
   );
+  let points = 0;
+  // @ts-ignore
+  if (priceData.points == 0){
+    points = -1;
+  }else if (priceData?.points == -1){
+    points = priceData.points;
+  }else {
+    // @ts-ignore
+    points = userData.points + priceData.points;
+  }
+  console.log("Niro points",points)
   const { error } = await supabaseAdmin
     .from('users')
     //@ts-ignore
-    .update({ points:  priceData? (userData.points + priceData.points):0})
+    .update({ points:  points})
     .eq('id', uid)
   // For a new subscription copy the billing details to the customer object.
   // NOTE: This is a costly operation and should happen at the very end.

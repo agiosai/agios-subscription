@@ -59,7 +59,7 @@ export default function CustomerPortalForm({ subscription,points }: Props) {
       footer={
         <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
           <p className="pb-4 sm:pb-0">Available Points: </p>
-          <div>{points}</div>
+          <div>{points == -1 ? 'Unlimited':points}</div>
         </div>
       }
     >
