@@ -159,8 +159,9 @@ export default function Pricing({ user, products, subscription }: Props) {
           </div>
           <div className="mt-12 space-y-4 sm:mt-16 sm:space-y-0 flex flex-wrap justify-center gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0">
             {products.map((product) => {
+              console.log(product?.prices[0].interval);
               const price = product?.prices?.find(
-                (price) => price.interval === billingInterval
+                (price) => price.interval === billingInterval || price.interval === 'year'
               );
               if (!price) return null;
               if (product.type !== billingType){
@@ -196,7 +197,7 @@ export default function Pricing({ user, products, subscription }: Props) {
                         {priceString}
                       </span>
                       <span className="text-base font-medium text-zinc-100">
-                        /{billingInterval}
+                        /{price.interval}
                       </span>
                     </p>
                     {/*<Button*/}
