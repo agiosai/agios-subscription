@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { getURL } from '@/utils/helpers';
 import { router } from 'next/client';
+import axios from 'axios';
 
 // @ts-ignore
 export default function CheckoutButton({priceId,subscription,user,isTopup}){
@@ -24,25 +25,57 @@ export default function CheckoutButton({priceId,subscription,user,isTopup}){
         return router.push('/account');
       }
     setPriceIdLoading(priceId);
-    paddle?.Checkout.open({
-      items: [
-        {
-          priceId: priceId, // you can find it in the product catalog
-          quantity: 1,
-        },
-      ],
-      customer: {
-        email: user.email // email of your current logged in user
-      },
-      customData: {
-        // other custom metadata you want to pass
-        uuid:user?.id
-      },
-      settings: {
-        successUrl: getURL("success")
-        // settings like successUrl and theme
+      if (subscription?.id){
+        let data = JSON.stringify({
+          price_id: priceId,
+          uuid: user?.id,
+          subscription_id: subscription?.id
+        });
+
+        let config = {
+          method: 'post',
+          maxBodyLength: Infinity,
+          url: '/api/upgrade',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data : data
+        };
+
+        axios.request(config)
+          .then((response) => {
+            console.log(JSON.stringify(response.data));
+            if (response.data.success){
+              router.push(getURL("success"));
+            }else {
+              alert('Something went wrong');
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }else {
+
+        paddle?.Checkout.open({
+          items: [
+            {
+              priceId: priceId, // you can find it in the product catalog
+              quantity: 1,
+            },
+          ],
+          customer: {
+            email: user.email // email of your current logged in user
+          },
+          customData: {
+            // other custom metadata you want to pass
+            uuid:user?.id
+          },
+          settings: {
+            successUrl: getURL("success")
+            // settings like successUrl and theme
+          }
+        });
       }
-    });
   };
 
   return (
