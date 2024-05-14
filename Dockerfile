@@ -1,4 +1,4 @@
-FROM node:18-alpine AS deps
+FROM node:22-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
@@ -6,7 +6,7 @@ RUN corepack enable pnpm
 COPY package.json pnpm-lock.yaml ./
 RUN  pnpm install --production
 
-FROM node:18-alpine AS builder
+FROM node:22-alpine AS builder
 WORKDIR /app
 RUN corepack enable pnpm
 COPY --from=deps /app/node_modules ./node_modules
