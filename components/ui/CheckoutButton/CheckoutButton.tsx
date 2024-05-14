@@ -1,10 +1,10 @@
 "use client"
 // import usePaddle from "../hooks/usePaddle";
-import usePaddle from '@/hooks/usePaddle';
-import Button from '@/components/ui/Button';
+import usePaddle from '../../../hooks/usePaddle';
+import Button from '../../../components/ui/Button';
 import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { getURL } from '@/utils/helpers';
+import { getURL } from '../../../utils/helpers';
 import { router } from 'next/client';
 import axios from 'axios';
 
