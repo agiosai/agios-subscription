@@ -4,14 +4,12 @@ services:
     build:
       context: ./
       target: runner
-    volumes:
-      - .:/app
     command: pnpm start
     ports:
       - "3000:3000"
     environment:
-      - NODE_ENV = production
-      - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}  # Include all your variables here
+      - NODE_ENV=production
+      - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}
       - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
       - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
       - PADDLE_ENV=${PADDLE_ENV}
