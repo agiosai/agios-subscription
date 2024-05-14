@@ -8,6 +8,7 @@ RUN  pnpm install --production
 
 FROM node:18-alpine AS builder
 WORKDIR /app
+RUN corepack enable pnpm
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
