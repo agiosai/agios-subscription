@@ -1,7 +1,4 @@
-import CustomerPortalForm from '@/components/ui/AccountForms/CustomerPortalForm';
-import Topup from '@/components/ui/AccountForms/Topup';
-import NameForm from '@/components/ui/AccountForms/NameForm';
-import EmailForm from '@/components/ui/AccountForms/EmailForm';
+
 import Link from 'next/link';
 
 export default async function Success() {
