@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  web:
+    build:
+      context: ./
+      target: runner
+    volumes:
+      - .:/app
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV = production
+      - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}  # Include all your variables here
+      - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+      - PADDLE_ENV=${PADDLE_ENV}
+      - PADDLE_CLIENT_TOKEN=${PADDLE_CLIENT_TOKEN}
+      - PADDLE_SELLER_ID=${PADDLE_SELLER_ID}
+      - PADDLE_API_KEY=${PADDLE_API_KEY}
+      - PADDLE_WEBHOOK_KEY=${PADDLE_WEBHOOK_KEY}
