@@ -1,8 +1,8 @@
 FROM node:18-alpine AS deps
 RUN apk add --no-cache libc6-compat
-RUN corepack enable && corepack prepare pnpm@7.4.1 --activate
 WORKDIR /app
 
+RUN corepack enable pnpm
 COPY package.json pnpm-lock.yaml ./
 RUN  pnpm install --production
 
