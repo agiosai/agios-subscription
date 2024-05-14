@@ -1,6 +1,6 @@
 FROM node:18-alpine AS deps
 RUN apk add --no-cache libc6-compat
-RUN corepack enable && corepack prepare pnpm@7.4.1 --activate 
+RUN corepack enable && corepack prepare pnpm@7.4.1 --activate
 WORKDIR /app
 
 COPY package.json pnpm-lock.yaml ./
@@ -13,7 +13,7 @@ COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN pnpm run build
+RUN npm run build
 
 FROM node:18-alpine AS runner
 WORKDIR /app
