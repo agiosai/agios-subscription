@@ -20,6 +20,7 @@ RUN corepack enable pnpm
 WORKDIR /app
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
+RUN chown -R nodejs:nodejs /app
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
