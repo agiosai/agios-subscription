@@ -13,12 +13,14 @@ RUN corepack enable pnpm
 COPY --from=deps /app/node_modules ./node_modules
 COPY tsconfig.json ./
 COPY . .
+RUN ls
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN pnpm build
 
-FROM node:18-alpine AS runner
+FROM node:22-alpine AS runner
+RUN corepack enable pnpm
 WORKDIR /app
 
 ENV NODE_ENV production
