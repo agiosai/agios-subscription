@@ -1,15 +1,12 @@
 'use client';
 
-import Button from '@/components/ui/Button';
-import Card from '@/components/ui/Card';
-import { updateName } from '@/utils/auth-helpers/server';
-import { handleRequest } from '@/utils/auth-helpers/client';
+
+import Card from '../../../components/ui/Card';
+
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { Stripe } from 'stripe';
-import { Tables } from '@/types_db';
+import { Tables } from '../../../types_db';
 import cn from 'classnames';
-import CheckoutButton from '@/components/ui/CheckoutButton/CheckoutButton';
+import CheckoutButton from '../../../components/ui/CheckoutButton/CheckoutButton';
 
 type Subscription = Tables<'subscriptions'>;
 type Price = Tables<'prices'>;
