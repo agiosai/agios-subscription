@@ -5,7 +5,7 @@ WORKDIR /app
 RUN corepack enable pnpm
 COPY package.json pnpm-lock.yaml ./
 COPY tsconfig.json ./
-RUN  pnpm install --production
+RUN  pnpm install --production --save-dev autoprefixer
 
 FROM node:22-alpine AS builder
 WORKDIR /app
