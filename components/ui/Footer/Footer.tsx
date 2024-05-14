@@ -97,14 +97,14 @@ export default function Footer() {
           </span>
         </div>
         <div className="flex items-center">
-          <span className="text-white">Crafted by</span>
-          <a href="https://vercel.com" aria-label="Vercel.com Link">
-            <img
-              src="/vercel.svg"
-              alt="Vercel.com Logo"
-              className="inline-block h-6 ml-4 text-white"
-            />
-          </a>
+          {/*<span className="text-white">Crafted by</span>*/}
+          {/*<a href="https://vercel.com" aria-label="Vercel.com Link">*/}
+          {/*  <img*/}
+          {/*    src="/vercel.svg"*/}
+          {/*    alt="Vercel.com Logo"*/}
+          {/*    className="inline-block h-6 ml-4 text-white"*/}
+          {/*  />*/}
+          {/*</a>*/}
         </div>
       </div>
     </footer>
