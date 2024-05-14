@@ -3,7 +3,6 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 RUN corepack enable pnpm
 COPY package.json pnpm-lock.yaml ./
-RUN chown -R nodejs:nodejs /app
 RUN pnpm install --frozen-lockfile
 
 FROM node:22-alpine AS builder
