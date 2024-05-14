@@ -2,7 +2,7 @@
 
 import { useRouter, usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { createStripePortal } from 'utils/stripe/server';
+import { createStripePortal } from '../../../utils/stripe/server';
 import Link from 'next/link';
 import Card from '../../ui/Card';
 import { Tables } from '../../../types_db';
