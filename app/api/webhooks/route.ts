@@ -96,17 +96,18 @@ export async function POST(req: Request) {
           const transaction = bodyObj.data;
           if (!transaction.billing_period){
             await topupCustomer(transaction.custom_data.uuid,transaction.items[0].price.id);
+          }else {
+            await manageSubscriptionStatusChange(
+              transaction.subscription_id as string,
+              transaction.customer_id as string,
+              transaction.custom_data.uuid,
+              true
+            );
           }
           break;
 
         case 'subscription.activated':
-          const subscription = bodyObj.data;
-          await manageSubscriptionStatusChange(
-            subscription.id as string,
-            subscription.customer_id as string,
-            subscription.custom_data.uuid,
-            true
-          );
+
           break;
         default:
           throw new Error('Unhandled relevant event!');

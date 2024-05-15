@@ -57,3 +57,10 @@ p a {
 .height-screen-helper {
   min-height: calc(100vh - 80px);
 }
+
+#pricing-table td{
+  height: 50px;
+}
+#pricing-table th{
+  height: 50px;
+}

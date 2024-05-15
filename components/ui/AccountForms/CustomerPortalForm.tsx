@@ -56,10 +56,16 @@ export default function CustomerPortalForm({ subscription,points }: Props) {
           : 'You are not currently subscribed to any plan.'
       }
       footer={
-        <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
-          <p className="pb-4 sm:pb-0">Available Points: </p>
-          <div>{points == -1 ? 'Unlimited':points}</div>
-        </div>
+        <>
+          <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
+            <p className="pb-4 sm:pb-0">Available Points: </p>
+            <div>{points == -1 ? 'Unlimited' : points}</div>
+          </div>
+          <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
+            <p className="pb-4 sm:pb-0">Download Products: </p>
+            <div><Link href="/">Click here to download</Link></div>
+          </div>
+        </>
       }
     >
       <div className="mt-8 mb-4 text-xl font-semibold">

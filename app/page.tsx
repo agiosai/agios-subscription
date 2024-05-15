@@ -16,13 +16,20 @@ export default async function PricingPage() {
     .eq('user_id',user?.id)
     .maybeSingle();
 
-  const { data: products,error } = await supabase
+  const { data: products } = await supabase
     .from('products')
     .select('*, prices(*)')
     .eq('active', true)
     .eq('prices.active', true)
     // .order('metadata->index')
     .order('unit_amount', { referencedTable: 'prices' });
+
+  const {data: feature_headers,error} = await supabase
+    .from('featureheaders')
+    .select("*");
+  const {data: features} = await supabase
+    .from('features')
+    .select("*");
   if (error) {
     console.log(error);
   }
@@ -34,6 +41,10 @@ export default async function PricingPage() {
       // @ts-ignore
       products={products ?? []}
       subscription={subscription}
+      // @ts-ignore
+      feature_headers={feature_headers}
+      // @ts-ignore
+      features={features}
     />
   );
 }
