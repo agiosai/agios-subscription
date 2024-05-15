@@ -201,7 +201,7 @@ export default function Pricing({ user, products, subscription, features,feature
             <table id="pricing-table" style={{ borderCollapse: 'collapse', width: '100%' }}>
               <thead>
               <tr>
-                <th rowSpan="2" style={{ border: '1px solid white', textAlign: 'center' }}>Tier</th>
+                <th rowSpan={2} style={{ border: '1px solid white', textAlign: 'center' }}>Tier</th>
                 <th colSpan={basicPackCount} style={{ border: '1px solid white', textAlign: 'center' }}>Basic</th>
                 <th colSpan={proPackCount} style={{ border: '1px solid white', textAlign: 'center' }}>Pro</th>
               </tr>

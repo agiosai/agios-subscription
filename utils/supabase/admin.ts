@@ -39,7 +39,8 @@ const upsertProductRecord = async (product: any) => {
     description: product.description ?? null,
     image: product.image_url ?? null,
     metadata: product.custom_data,
-    type:product.custom_data.type
+    type:product.custom_data.type,
+    features:[]
   };
 
   const { error: upsertError } = await supabaseAdmin
