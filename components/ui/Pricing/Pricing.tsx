@@ -201,9 +201,9 @@ export default function Pricing({ user, products, subscription, features,feature
             <table id="pricing-table" style={{ borderCollapse: 'collapse', width: '100%' }}>
               <thead>
               <tr>
-                <th rowSpan={2} style={{ border: '1px solid white', textAlign: 'center' }}>Tier</th>
-                <th colSpan={basicPackCount} style={{ border: '1px solid white', textAlign: 'center' }}>Basic</th>
-                <th colSpan={proPackCount} style={{ border: '1px solid white', textAlign: 'center' }}>Pro</th>
+                <th rowSpan={2}></th>
+                <th colSpan={basicPackCount} style={{ border: '1px solid white', textAlign: 'center' }}><h2>Basic</h2></th>
+                <th colSpan={proPackCount} style={{ border: '1px solid white', textAlign: 'center' }}><h2>Pro</h2></th>
               </tr>
               {/*<tr>*/}
               {/*  <th style={{ border: '1px solid white', textAlign: 'center' }}>1</th>*/}
@@ -214,7 +214,8 @@ export default function Pricing({ user, products, subscription, features,feature
               </thead>
               <tbody>
               <tr>
-                <td style={{ border: '1px solid white', textAlign: 'center' }}>{billingInterval === 'year'? 'Yearly' : 'Monthly'} Pricing</td>
+                <td style={{ border: '1px solid white', textAlign: 'center' }}><p className="mt-8 mb-8 ml-4 mr-4">{billingInterval === 'year' ? 'Yearly' : 'Monthly'} Pricing</p>
+                </td>
                 {products.map((product) => {
                   console.log(product?.prices[0].interval);
                   const price = product?.prices?.find(
@@ -230,11 +231,17 @@ export default function Pricing({ user, products, subscription, features,feature
                     minimumFractionDigits: 0
                   }).format((price?.unit_amount || 0));
                   return (
-                    <td style={{ border: '1px solid white', textAlign: 'center' }}>{priceString}
-                      <span className="text-base font-medium text-zinc-100">
-                        /{price.interval}
-                      </span></td>
-                  )
+                    <td style={{ border: '1px solid white', textAlign: 'center' }}>
+                      <p className="mt-8 mb-8 ml-4 mr-4">
+                      <span className="text-2xl font-extrabold white">
+                        {priceString}
+                      </span>
+                        <span className="text-base font-medium text-zinc-100">
+                        /{price.interval=== 'month' ? 'mo' : 'yr'}
+                      </span>
+                      </p>
+                      </td>
+                )
                   }
                 )
                 }
@@ -253,10 +260,15 @@ export default function Pricing({ user, products, subscription, features,feature
                     minimumFractionDigits: 0
                   }).format((price?.unit_amount || 0));
                   return (
-                    <td style={{ border: '1px solid white', textAlign: 'center' }}>{priceString}
-                      <span className="text-base font-medium text-zinc-100">
-                        /{price.interval}
-                      </span></td>
+                    <td style={{ border: '1px solid white', textAlign: 'center' }}>
+                      <p className="mt-8 mb-8 ml-4 mr-4">
+                      <span className="text-2xl font-extrabold white">
+                        {priceString}
+                      </span>
+                        <span className="text-base font-medium text-zinc-100">
+                        /{price.interval=== 'month' ? 'mo' : 'yr'}
+                      </span>
+                      </p></td>
                   )
                   }
                 )
@@ -416,7 +428,14 @@ export default function Pricing({ user, products, subscription, features,feature
                       minimumFractionDigits: 0
                     }).format((price?.unit_amount || 0));
                     return (
-                      <td><CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} /></td>
+                      <td>
+                          <h3 className="text-base font-medium white ml-4 mr-4 text-center items-center mt-4">
+                            {product.name}
+                          </h3>
+                        <p className="mt-8 mb-8 ml-4 mr-4">
+                          <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} />
+                        </p>
+                      </td>
                     )
                   }
                 )
@@ -436,7 +455,14 @@ export default function Pricing({ user, products, subscription, features,feature
                     minimumFractionDigits: 0
                   }).format((price?.unit_amount || 0));
                   return (
-                    <td><CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} /></td>
+                    <td>
+                        <h3 className="text-base font-medium white ml-4 mr-4 text-center items-center mt-4">
+                          {product.name}
+                        </h3>
+                      <p className="mt-8 mb-8 ml-4 mr-4">
+                        <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} />
+                      </p>
+                    </td>
                   )
                 })
                 }
