@@ -8,6 +8,7 @@ import cn from 'classnames';
 import { useRouter, usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import CheckoutButton from '../../../components/ui/CheckoutButton/CheckoutButton';
+import Button from '../Button';
 
 type Subscription = Tables<'subscriptions'>;
 type Product = Tables<'products'>;
@@ -197,280 +198,386 @@ export default function Pricing({ user, products, subscription, features,feature
             </div>
           </div>
           <div
-            className="mt-12 space-y-4 sm:mt-16 sm:space-y-0 flex flex-wrap justify-center gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0">
-            <table id="pricing-table" style={{ borderCollapse: 'collapse', width: '100%' }}>
-              <thead>
-              <tr>
-                <th rowSpan={2}></th>
-                <th colSpan={basicPackCount} style={{ border: '1px solid white', textAlign: 'center' }}><h2>Basic</h2></th>
-                <th colSpan={proPackCount} style={{ border: '1px solid white', textAlign: 'center' }}><h2>Pro</h2></th>
-              </tr>
-              {/*<tr>*/}
-              {/*  <th style={{ border: '1px solid white', textAlign: 'center' }}>1</th>*/}
-              {/*  <th style={{ border: '1px solid white', textAlign: 'center' }}>2</th>*/}
-              {/*  <th style={{ border: '1px solid white', textAlign: 'center' }}>1</th>*/}
-              {/*  <th style={{ border: '1px solid white', textAlign: 'center' }}>2</th>*/}
-              {/*</tr>*/}
-              </thead>
-              <tbody>
-              <tr>
-                <td style={{ border: '1px solid white', textAlign: 'center' }}><p className="mt-8 mb-8 ml-4 mr-4">{billingInterval === 'year' ? 'Yearly' : 'Monthly'} Pricing</p>
-                </td>
-                {products.map((product) => {
-                  console.log(product?.prices[0].interval);
-                  const price = product?.prices?.find(
-                    (price) => price.interval === billingInterval
-                  );
-                  if (!price) return null;
-                  if (product.type !== "basic") {
-                    return null;
-                  }
-                  const priceString = new Intl.NumberFormat('en-US', {
-                    style: 'currency',
-                    currency: price.currency!,
-                    minimumFractionDigits: 0
-                  }).format((price?.unit_amount || 0));
-                  return (
-                    <td style={{ border: '1px solid white', textAlign: 'center' }}>
-                      <p className="mt-8 mb-8 ml-4 mr-4">
-                      <span className="text-2xl font-extrabold white">
-                        {priceString}
-                      </span>
-                        <span className="text-base font-medium text-zinc-100">
-                        /{price.interval=== 'month' ? 'mo' : 'yr'}
-                      </span>
-                      </p>
-                      </td>
-                )
-                  }
-                )
-                }
-                {products.map((product) => {
-                  console.log(product?.prices[0].interval);
-                  const price = product?.prices?.find(
-                    (price) => price.interval === billingInterval
-                  );
-                  if (!price) return null;
-                  if (product.type !== "pro") {
-                    return null;
-                  }
-                  const priceString = new Intl.NumberFormat('en-US', {
-                    style: 'currency',
-                    currency: price.currency!,
-                    minimumFractionDigits: 0
-                  }).format((price?.unit_amount || 0));
-                  return (
-                    <td style={{ border: '1px solid white', textAlign: 'center' }}>
-                      <p className="mt-8 mb-8 ml-4 mr-4">
-                      <span className="text-2xl font-extrabold white">
-                        {priceString}
-                      </span>
-                        <span className="text-base font-medium text-zinc-100">
-                        /{price.interval=== 'month' ? 'mo' : 'yr'}
-                      </span>
-                      </p></td>
-                  )
-                  }
-                )
-                }
-                {/*<td style={{ border: '1px solid white', textAlign: 'center' }}>$25/mo/yr</td>*/}
-                {/*<td style={{ border: '1px solid white', textAlign: 'center' }}>$50/mo/yr</td>*/}
-                {/*<td style={{ border: '1px solid white', textAlign: 'center' }}>$50/mo/yr</td>*/}
-                {/*<td style={{ border: '1px solid white', textAlign: 'center' }}>$100/mo/yr</td>*/}
-              </tr>
-              <tr>
-                <td style={{ border: '1px solid white', textAlign: 'center' }}>Credit</td>
-                {products.map((product) => {
-                    console.log(product?.prices[0].interval);
-                    const price = product?.prices?.find(
-                      (price) => price.interval === billingInterval
-                    );
-                    if (!price) return null;
-                    if (product.type !== "basic") {
-                      return null;
-                    }
-                    const priceString = new Intl.NumberFormat('en-US', {
-                      style: 'currency',
-                      currency: price.currency!,
-                      minimumFractionDigits: 0
-                    }).format((price?.unit_amount || 0));
-                    return (
-                      <td style={{ border: '1px solid white', textAlign: 'center' }}>{(price.points==0)?'Unlimited':price.points}</td>
-                    )
-                  }
-                )
-                }
-                {products.map((product) => {
-                    console.log(product?.prices[0].interval);
-                    const price = product?.prices?.find(
-                      (price) => price.interval === billingInterval
-                    );
-                    if (!price) return null;
-                    if (product.type !== "pro") {
-                      return null;
-                    }
-                    const priceString = new Intl.NumberFormat('en-US', {
-                      style: 'currency',
-                      currency: price.currency!,
-                      minimumFractionDigits: 0
-                    }).format((price?.unit_amount || 0));
-                    return (
-                      <td style={{ border: '1px solid white', textAlign: 'center' }}>{(price.points==0)?'Unlimited':price.points}</td>
-                    )
-                  }
-                )
-                }
-              </tr>
-              {
-                feature_headers.map((feature_header) => {
-                  return (
-                    <>
-                      <tr>
-                        <td style={{ border: '1px solid white', textAlign: 'center',backgroundColor:"white",color:"black" }} colSpan={basicPackCount+proPackCount+1}>{feature_header?.title}</td>
-                      </tr>
-                      {
-                          features.map((feature)=>{
-                            return (
-                              <>
-                                {
-                                  feature_header.id === feature.header && (
-                                    <tr>
-                                      <td style={{ border: '1px solid white', textAlign: 'center' }}>{feature?.title}</td>
-                                      {products.map((product) => {
-                                          console.log(product?.prices[0].interval);
-                                          const price = product?.prices?.find(
-                                            (price) => price.interval === billingInterval
-                                          );
-                                          if (!price) return null;
-                                          if (product.type !== "basic") {
-                                            return null;
-                                          }
-                                          const priceString = new Intl.NumberFormat('en-US', {
-                                            style: 'currency',
-                                            currency: price.currency!,
-                                            minimumFractionDigits: 0
-                                          }).format((price?.unit_amount || 0));
-                                        return (
-                                          <td style={{
-                                          border: '1px solid white',
-                                            textAlign: 'center'
-                                        }}>
-                                            {
-                                              // @ts-ignore
-                                              product?.features?.includes(feature.id) ?
-                                                <>●</>
-                                                : <>○</>
-                                            }
-                                          </td>
-                                        )
-                                        }
-                                      )
-                                      }
-                                      {products.map((product) => {
-                                          console.log(product?.prices[0].interval);
-                                          const price = product?.prices?.find(
-                                            (price) => price.interval === billingInterval
-                                          );
-                                          if (!price) return null;
-                                          if (product.type !== "pro") {
-                                            return null;
-                                          }
-                                          const priceString = new Intl.NumberFormat('en-US', {
-                                            style: 'currency',
-                                            currency: price.currency!,
-                                            minimumFractionDigits: 0
-                                          }).format((price?.unit_amount || 0));
-                                        return (
-                                          <td style={{
-                                            border: '1px solid white',
-                                            textAlign: 'center'
-                                          }}>
-                                            {
-                                              // @ts-ignore
-                                              product?.features?.includes(feature.id) ?
-                                                <>●</>
-                                                : <>○</>
-                                            }
-                                          </td>
-                                        )
-                                        }
-                                      )
-                                      }
-                                      {/*<td style={{ border: '1px solid white', textAlign: 'center' }}>●</td>*/}
-                                      {/*<td style={{ border: '1px solid white', textAlign: 'center' }}>●</td>*/}
-                                      {/*<td style={{ border: '1px solid white', textAlign: 'center' }}>○</td>*/}
-                                      {/*<td style={{ border: '1px solid white', textAlign: 'center' }}>●</td>*/}
-                                    </tr>
-                                  )
-                                }
-                              </>
-                            )
-                          })
-                      }
-                    </>
-                  )
-                })
-              }
-              <tr>
-                <td></td>
-                {products.map((product) => {
-                    console.log(product?.prices[0].interval);
-                    const price = product?.prices?.find(
-                      (price) => price.interval === billingInterval
-                    );
-                    if (!price) return null;
-                    if (product.type !== "basic") {
-                      return null;
-                    }
-                    const priceString = new Intl.NumberFormat('en-US', {
-                      style: 'currency',
-                      currency: price.currency!,
-                      minimumFractionDigits: 0
-                    }).format((price?.unit_amount || 0));
-                    return (
-                      <td>
-                          <h3 className="text-base font-medium white ml-4 mr-4 text-center items-center mt-4">
-                            {product.name}
-                          </h3>
-                        <p className="mt-8 mb-8 ml-4 mr-4">
-                          <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} />
-                        </p>
-                      </td>
-                    )
-                  }
-                )
-                }
-                {products.map((product) => {
-                  console.log(product?.prices[0].interval);
-                  const price = product?.prices?.find(
-                    (price) => price.interval === billingInterval
-                  );
-                  if (!price) return null;
-                  if (product.type !== "pro") {
-                    return null;
-                  }
-                  const priceString = new Intl.NumberFormat('en-US', {
-                    style: 'currency',
-                    currency: price.currency!,
-                    minimumFractionDigits: 0
-                  }).format((price?.unit_amount || 0));
-                  return (
-                    <td>
-                        <h3 className="text-base font-medium white ml-4 mr-4 text-center items-center mt-4">
-                          {product.name}
-                        </h3>
-                      <p className="mt-8 mb-8 ml-4 mr-4">
-                        <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} />
-                      </p>
-                    </td>
-                  )
-                })
-                }
-              </tr>
+            >
 
-              {/* Repeat the pattern for other features */}
-              </tbody>
-            </table>
+            <div className="bg-gray-950 text-gray-50 py-12 md:py-24">
+              <div className="container mx-auto px-4 md:px-6">
+                <div className="overflow-x-auto">
+                  <table className="w-full table-auto border-collapse">
+                    <thead>
+                    <tr className="bg-gray-900">
+                      <th className="px-6 py-4 text-left">Plan</th>
+
+                      <th colSpan={basicPackCount} className="px-6 py-4 text-center">
+                        <h2>Basic</h2>
+                      </th>
+                      <th colSpan={proPackCount} className="px-6 py-4 text-center"><h2>Pro</h2>
+                      </th>
+                      {/*<th className="px-6 py-4 text-center">Starter</th>*/}
+                      {/*<th className="px-6 py-4 text-center">Pro</th>*/}
+                      {/*<th className="px-6 py-4 text-center">Enterprise</th>*/}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr className="border-b border-gray-800">
+                      <td className="px-6 py-4 font-bold">Pricing</td>
+                      {products.map((product) => {
+                          console.log(product?.prices[0].interval);
+                          const price = product?.prices?.find(
+                            (price) => price.interval === billingInterval
+                          );
+                          if (!price) return null;
+                          if (product.type !== 'basic') {
+                            return null;
+                          }
+                          const priceString = new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: price.currency!,
+                            minimumFractionDigits: 0
+                          }).format((price?.unit_amount || 0));
+                          return (
+                            <td className="px-6 py-4 text-center">
+                              <div className="text-2xl font-bold">
+                                {/*<span className="text-2xl font-normal mr-1">$</span>*/}
+                                {priceString}{'\n                                '}
+                                <span
+                                  className="text-2xl font-normal">/{price.interval === 'month' ? 'mo' : 'yr'}</span>
+                              </div>
+                            </td>
+                          );
+                        }
+                      )
+                      }
+                      {products.map((product) => {
+                          console.log(product?.prices[0].interval);
+                          const price = product?.prices?.find(
+                            (price) => price.interval === billingInterval
+                          );
+                          if (!price) return null;
+                          if (product.type !== 'pro') {
+                            return null;
+                          }
+                          const priceString = new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: price.currency!,
+                            minimumFractionDigits: 0
+                          }).format((price?.unit_amount || 0));
+                          return (
+
+                            <td className="px-6 py-4 text-center">
+                              <div className="text-2xl font-bold">
+                                {/*<span className="text-2xl font-normal mr-1">$</span>*/}
+                                {priceString}{'\n                                '}
+                                <span className="text-2xl font-normal">/{price.interval === 'month' ? 'mo' : 'yr'}</span>
+                              </div>
+                            </td>
+                          );
+                        }
+                      )
+                      }
+                      {/*<td className="px-6 py-4 text-center">*/}
+                      {/*  <div className="text-4xl font-bold">*/}
+                      {/*    <span className="text-2xl font-normal mr-1">$</span>*/}
+                      {/*    29{'\n                                '}*/}
+                      {/*    <span className="text-2xl font-normal">/mo</span>*/}
+                      {/*  </div>*/}
+                      {/*</td>*/}
+                      {/*<td className="px-6 py-4 text-center">*/}
+                      {/*  <div className="text-4xl font-bold">*/}
+                      {/*    <span className="text-2xl font-normal mr-1">$</span>*/}
+                      {/*    99{"\n                                "}*/}
+                      {/*    <span className="text-2xl font-normal">/mo</span>*/}
+                      {/*  </div>*/}
+                      {/*</td>*/}
+                    </tr>
+                    <tr className="border-b border-gray-800">
+                      <td className="px-6 py-4 font-bold">Credits</td>
+                      {products.map((product) => {
+                          console.log(product?.prices[0].interval);
+                          const price = product?.prices?.find(
+                            (price) => price.interval === billingInterval
+                          );
+                          if (!price) return null;
+                          if (product.type !== 'basic') {
+                            return null;
+                          }
+                          const priceString = new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: price.currency!,
+                            minimumFractionDigits: 0
+                          }).format((price?.unit_amount || 0));
+                          return (
+                            <td className="px-6 py-4 text-center">{(price.points == 0) ? 'Unlimited' : price.points}</td>
+                          );
+                        }
+                      )
+                      }
+                      {products.map((product) => {
+                          console.log(product?.prices[0].interval);
+                          const price = product?.prices?.find(
+                            (price) => price.interval === billingInterval
+                          );
+                          if (!price) return null;
+                          if (product.type !== 'pro') {
+                            return null;
+                          }
+                          const priceString = new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: price.currency!,
+                            minimumFractionDigits: 0
+                          }).format((price?.unit_amount || 0));
+                          return (
+                            <td className="px-6 py-4 text-center">{(price.points == 0) ? 'Unlimited' : price.points}</td>
+                          );
+                        }
+                      )
+                      }
+                      {/*<td className="px-6 py-4 text-center">1</td>*/}
+                      {/*<td className="px-6 py-4 text-center">5</td>*/}
+                      {/*<td className="px-6 py-4 text-center">Unlimited</td>*/}
+                    </tr>
+                    {/*<tr className="border-b border-gray-800">*/}
+                    {/*  <td className="px-6 py-4 font-bold">Storage</td>*/}
+                    {/*  <td className="px-6 py-4 text-center">5 GB</td>*/}
+                    {/*  <td className="px-6 py-4 text-center">50 GB</td>*/}
+                    {/*  <td className="px-6 py-4 text-center">1 TB</td>*/}
+                    {/*</tr>*/}
+                    {
+                      feature_headers.map((feature_header) => {
+                        return (
+                          <>
+                            <tr className="bg-gray-900">
+                              <td className="px-6 py-4 font-bold"
+                                  colSpan={basicPackCount + proPackCount + 1}>{feature_header?.title}</td>
+                            </tr>
+                            {
+                              features.map((feature) => {
+                                return (
+                                  <>
+                                    {
+                                      feature_header.id === feature.header && (
+                                        <tr>
+                                          <td className="px-6 py-4">{feature?.title}</td>
+                                          {products.map((product) => {
+                                              console.log(product?.prices[0].interval);
+                                              const price = product?.prices?.find(
+                                                (price) => price.interval === billingInterval
+                                              );
+                                              if (!price) return null;
+                                              if (product.type !== 'basic') {
+                                                return null;
+                                              }
+                                              const priceString = new Intl.NumberFormat('en-US', {
+                                                style: 'currency',
+                                                currency: price.currency!,
+                                                minimumFractionDigits: 0
+                                              }).format((price?.unit_amount || 0));
+                                              return (
+                                                // <td className="px-6 py-4 text-center">
+                                                //   <CheckIcon className="w-5 h-5 text-green-500" />
+                                                // </td>
+                                                <td className="px-6 py-4 text-center">
+                                                  {
+                                                    // @ts-ignore
+                                                    product?.features?.includes(feature.id) ?
+                                                      <><CheckIcon className="w-5 h-5 text-green-500" /></>
+                                                      : <><XIcon className="w-5 h-5 text-red-500" /></>
+                                                  }
+                                                </td>
+                                              );
+                                            }
+                                          )
+                                          }
+                                          {products.map((product) => {
+                                              console.log(product?.prices[0].interval);
+                                              const price = product?.prices?.find(
+                                                (price) => price.interval === billingInterval
+                                              );
+                                              if (!price) return null;
+                                              if (product.type !== 'pro') {
+                                                return null;
+                                              }
+                                              const priceString = new Intl.NumberFormat('en-US', {
+                                                style: 'currency',
+                                                currency: price.currency!,
+                                                minimumFractionDigits: 0
+                                              }).format((price?.unit_amount || 0));
+                                              return (
+                                                <td className="px-6 py-4 text-center">
+                                                  {
+                                                    // @ts-ignore
+                                                    product?.features?.includes(feature.id) ?
+                                                      <><CheckIcon className="w-5 h-5 text-green-500" /></>
+                                                      : <><XIcon className="w-5 h-5 text-red-500" /></>
+                                                  }
+                                                </td>
+                                              );
+                                            }
+                                          )
+                                          }
+                                          {/*<td style={{ border: '1px solid white', textAlign: 'center' }}>●</td>*/}
+                                          {/*<td style={{ border: '1px solid white', textAlign: 'center' }}>●</td>*/}
+                                          {/*<td style={{ border: '1px solid white', textAlign: 'center' }}>○</td>*/}
+                                          {/*<td style={{ border: '1px solid white', textAlign: 'center' }}>●</td>*/}
+                                        </tr>
+                                      )
+                                    }
+                                  </>
+                                );
+                              })
+                            }
+                          </>
+                        );
+                      })
+                    }
+                    {/*<tr className="bg-gray-900">*/}
+                    {/*  <td className="px-6 py-4 font-bold">Features</td>*/}
+                    {/*  <td className="px-6 py-4" />*/}
+                    {/*  <td className="px-6 py-4" />*/}
+                    {/*  <td className="px-6 py-4" />*/}
+                    {/*</tr>*/}
+                    {/*<tr className="border-b border-gray-800">*/}
+                    {/*  <td className="px-6 py-4">Basic analytics</td>*/}
+                    {/*  <td className="px-6 py-4 text-center">*/}
+                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
+                    {/*  </td>*/}
+                    {/*  <td className="px-6 py-4 text-center">*/}
+                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
+                    {/*  </td>*/}
+                    {/*  <td className="px-6 py-4 text-center">*/}
+                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
+                    {/*  </td>*/}
+                    {/*</tr>*/}
+                    {/*<tr className="border-b border-gray-800">*/}
+                    {/*  <td className="px-6 py-4">Advanced analytics</td>*/}
+                    {/*  <td className="px-6 py-4 text-center">*/}
+                    {/*    <XIcon className="w-5 h-5 text-red-500" />*/}
+                    {/*  </td>*/}
+                    {/*  <td className="px-6 py-4 text-center">*/}
+                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
+                    {/*  </td>*/}
+                    {/*  <td className="px-6 py-4 text-center">*/}
+                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
+                    {/*  </td>*/}
+                    {/*</tr>*/}
+                    {/*<tr className="border-b border-gray-800">*/}
+                    {/*  <td className="px-6 py-4">Custom analytics</td>*/}
+                    {/*  <td className="px-6 py-4 text-center">*/}
+                    {/*    <XIcon className="w-5 h-5 text-red-500" />*/}
+                    {/*  </td>*/}
+                    {/*  <td className="px-6 py-4 text-center">*/}
+                    {/*    <XIcon className="w-5 h-5 text-red-500" />*/}
+                    {/*  </td>*/}
+                    {/*  <td className="px-6 py-4 text-center">*/}
+                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
+                    {/*  </td>*/}
+                    {/*</tr>*/}
+                    {/*<tr className="border-b border-gray-800">*/}
+                    {/*  <td className="px-6 py-4">Email support</td>*/}
+                    {/*  <td className="px-6 py-4 text-center">*/}
+                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
+                    {/*  </td>*/}
+                    {/*  <td className="px-6 py-4 text-center">*/}
+                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
+                    {/*  </td>*/}
+                    {/*  <td className="px-6 py-4 text-center">*/}
+                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
+                    {/*  </td>*/}
+                    {/*</tr>*/}
+                    {/*<tr className="border-b border-gray-800">*/}
+                    {/*  <td className="px-6 py-4">Priority email support</td>*/}
+                    {/*  <td className="px-6 py-4 text-center">*/}
+                    {/*    <XIcon className="w-5 h-5 text-red-500" />*/}
+                    {/*  </td>*/}
+                    {/*  <td className="px-6 py-4 text-center">*/}
+                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
+                    {/*  </td>*/}
+                    {/*  <td className="px-6 py-4 text-center">*/}
+                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
+                    {/*  </td>*/}
+                    {/*</tr>*/}
+                    {/*<tr className="border-b border-gray-800">*/}
+                    {/*  <td className="px-6 py-4">Dedicated account manager</td>*/}
+                    {/*  <td className="px-6 py-4 text-center">*/}
+                    {/*    <XIcon className="w-5 h-5 text-red-500" />*/}
+                    {/*  </td>*/}
+                    {/*  <td className="px-6 py-4 text-center">*/}
+                    {/*    <XIcon className="w-5 h-5 text-red-500" />*/}
+                    {/*  </td>*/}
+                    {/*  <td className="px-6 py-4 text-center">*/}
+                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
+                    {/*  </td>*/}
+                    {/*</tr>*/}
+
+                    <tr>
+                      <td></td>
+                      {products.map((product) => {
+                          console.log(product?.prices[0].interval);
+                          const price = product?.prices?.find(
+                            (price) => price.interval === billingInterval
+                          );
+                          if (!price) return null;
+                          if (product.type !== 'basic') {
+                            return null;
+                          }
+                          const priceString = new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: price.currency!,
+                            minimumFractionDigits: 0
+                          }).format((price?.unit_amount || 0));
+                          return (
+                            <td>
+                              <h3 className="text-base font-medium white ml-4 mr-4 text-center items-center mt-4">
+                                {product.name}
+                              </h3>
+                              <p className="mt-8 mb-8 ml-4 mr-4">
+                                <CheckoutButton priceId={price.id} subscription={subscription} user={user}
+                                                isTopup={false} />
+                              </p>
+                            </td>
+                          );
+                        }
+                      )
+                      }
+                      {products.map((product) => {
+                        console.log(product?.prices[0].interval);
+                        const price = product?.prices?.find(
+                          (price) => price.interval === billingInterval
+                        );
+                        if (!price) return null;
+                        if (product.type !== 'pro') {
+                          return null;
+                        }
+                        const priceString = new Intl.NumberFormat('en-US', {
+                          style: 'currency',
+                          currency: price.currency!,
+                          minimumFractionDigits: 0
+                        }).format((price?.unit_amount || 0));
+                        return (
+                          <td>
+                            <h3 className="text-base font-medium white ml-4 mr-4 text-center items-center mt-4">
+                              {product.name}
+                            </h3>
+                            <p className="mt-8 mb-8 ml-4 mr-4">
+                              <CheckoutButton priceId={price.id} subscription={subscription} user={user}
+                                              isTopup={false} />
+                            </p>
+                          </td>
+                        );
+                      })
+                      }
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+                {/*<div className="mt-8 flex justify-center space-x-4">*/}
+                {/*  <Button className="w-full md:w-auto">Get Started with Starter</Button>*/}
+                {/*  <Button className="w-full md:w-auto">Get Started with Pro</Button>*/}
+                {/*  <Button className="w-full md:w-auto">Get Started with Enterprise</Button>*/}
+                {/*  <Button className="w-full md:w-auto">Get Started with Enterprise</Button>*/}
+                {/*</div>*/}
+              </div>
+            </div>
 
             {/*{products.map((product) => {*/}
             {/*  console.log(product?.prices[0].interval);*/}
@@ -534,4 +641,46 @@ export default function Pricing({ user, products, subscription, features,feature
       </section>
     );
   }
+}
+
+// @ts-ignore
+function CheckIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+  )
+}
+
+
+// @ts-ignore
+function XIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
+    </svg>
+  )
 }
