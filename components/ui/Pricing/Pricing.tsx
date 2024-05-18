@@ -196,380 +196,469 @@ export default function Pricing({ user, products, subscription, features,feature
                 </button>
               )}
             </div>
+            <div className="relative self-center mt-6 bg-zinc-900 rounded-lg p-0.5 flex sm:mt-8 border border-zinc-800">
+              {intervals.includes('month') && (
+                <button
+                  onClick={() => {
+                    setBillingType('basic')
+                  }}
+                  type="button"
+                  className={`${
+                    billingType === 'basic'
+                      ? 'relative w-1/2 bg-zinc-700 border-zinc-800 shadow-sm text-white'
+                      : 'ml-0.5 relative w-1/2 border border-transparent text-zinc-400'
+                  } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
+                >
+                  Basic
+                </button>
+              )}
+              {intervals.includes('year') && (
+                <button
+                  onClick={() => {
+                    setBillingType('pro')
+                  }}
+                  type="button"
+                  className={`${
+                    billingType === 'pro'
+                      ? 'relative w-1/2 bg-zinc-700 border-zinc-800 shadow-sm text-white'
+                      : 'ml-0.5 relative w-1/2 border border-transparent text-zinc-400'
+                  } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
+                >
+                  Pro
+                </button>
+              )}
+            </div>
           </div>
-          <div
-            >
+          <div>
 
             <div className="bg-gray-950 text-gray-50 py-12 md:py-24">
               <div className="container mx-auto px-4 md:px-6">
-                <div className="overflow-x-auto">
-                  <table className="w-full table-auto border-collapse">
-                    <thead>
-                    <tr className="bg-gray-900">
-                      <th className="px-6 py-4 text-left">Plan</th>
-
-                      <th colSpan={basicPackCount} className="px-6 py-4 text-center">
-                        <h2>Basic</h2>
-                      </th>
-                      <th colSpan={proPackCount} className="px-6 py-4 text-center"><h2>Pro</h2>
-                      </th>
-                      {/*<th className="px-6 py-4 text-center">Starter</th>*/}
-                      {/*<th className="px-6 py-4 text-center">Pro</th>*/}
-                      {/*<th className="px-6 py-4 text-center">Enterprise</th>*/}
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr className="border-b border-gray-800">
-                      <td className="px-6 py-4 font-bold">Pricing</td>
-                      {products.map((product) => {
-                          console.log(product?.prices[0].interval);
-                          const price = product?.prices?.find(
-                            (price) => price.interval === billingInterval
-                          );
-                          if (!price) return null;
-                          if (product.type !== 'basic') {
-                            return null;
-                          }
-                          const priceString = new Intl.NumberFormat('en-US', {
-                            style: 'currency',
-                            currency: price.currency!,
-                            minimumFractionDigits: 0
-                          }).format((price?.unit_amount || 0));
-                          return (
-                            <td className="px-6 py-4 text-center">
-                              <div className="text-2xl font-bold">
-                                {/*<span className="text-2xl font-normal mr-1">$</span>*/}
-                                {priceString}{'\n                                '}
-                                <span
-                                  className="text-2xl font-normal">/{price.interval === 'month' ? 'mo' : 'yr'}</span>
-                              </div>
-                            </td>
-                          );
-                        }
-                      )
-                      }
-                      {products.map((product) => {
-                          console.log(product?.prices[0].interval);
-                          const price = product?.prices?.find(
-                            (price) => price.interval === billingInterval
-                          );
-                          if (!price) return null;
-                          if (product.type !== 'pro') {
-                            return null;
-                          }
-                          const priceString = new Intl.NumberFormat('en-US', {
-                            style: 'currency',
-                            currency: price.currency!,
-                            minimumFractionDigits: 0
-                          }).format((price?.unit_amount || 0));
-                          return (
-
-                            <td className="px-6 py-4 text-center">
-                              <div className="text-2xl font-bold">
-                                {/*<span className="text-2xl font-normal mr-1">$</span>*/}
-                                {priceString}{'\n                                '}
-                                <span className="text-2xl font-normal">/{price.interval === 'month' ? 'mo' : 'yr'}</span>
-                              </div>
-                            </td>
-                          );
-                        }
-                      )
-                      }
-                      {/*<td className="px-6 py-4 text-center">*/}
-                      {/*  <div className="text-4xl font-bold">*/}
-                      {/*    <span className="text-2xl font-normal mr-1">$</span>*/}
-                      {/*    29{'\n                                '}*/}
-                      {/*    <span className="text-2xl font-normal">/mo</span>*/}
-                      {/*  </div>*/}
-                      {/*</td>*/}
-                      {/*<td className="px-6 py-4 text-center">*/}
-                      {/*  <div className="text-4xl font-bold">*/}
-                      {/*    <span className="text-2xl font-normal mr-1">$</span>*/}
-                      {/*    99{"\n                                "}*/}
-                      {/*    <span className="text-2xl font-normal">/mo</span>*/}
-                      {/*  </div>*/}
-                      {/*</td>*/}
-                    </tr>
-                    <tr className="border-b border-gray-800">
-                      <td className="px-6 py-4 font-bold">Credits</td>
-                      {products.map((product) => {
-                          console.log(product?.prices[0].interval);
-                          const price = product?.prices?.find(
-                            (price) => price.interval === billingInterval
-                          );
-                          if (!price) return null;
-                          if (product.type !== 'basic') {
-                            return null;
-                          }
-                          const priceString = new Intl.NumberFormat('en-US', {
-                            style: 'currency',
-                            currency: price.currency!,
-                            minimumFractionDigits: 0
-                          }).format((price?.unit_amount || 0));
-                          return (
-                            <td className="px-6 py-4 text-center">{(price.points == 0) ? 'Unlimited' : price.points}</td>
-                          );
-                        }
-                      )
-                      }
-                      {products.map((product) => {
-                          console.log(product?.prices[0].interval);
-                          const price = product?.prices?.find(
-                            (price) => price.interval === billingInterval
-                          );
-                          if (!price) return null;
-                          if (product.type !== 'pro') {
-                            return null;
-                          }
-                          const priceString = new Intl.NumberFormat('en-US', {
-                            style: 'currency',
-                            currency: price.currency!,
-                            minimumFractionDigits: 0
-                          }).format((price?.unit_amount || 0));
-                          return (
-                            <td className="px-6 py-4 text-center">{(price.points == 0) ? 'Unlimited' : price.points}</td>
-                          );
-                        }
-                      )
-                      }
-                      {/*<td className="px-6 py-4 text-center">1</td>*/}
-                      {/*<td className="px-6 py-4 text-center">5</td>*/}
-                      {/*<td className="px-6 py-4 text-center">Unlimited</td>*/}
-                    </tr>
-                    {/*<tr className="border-b border-gray-800">*/}
-                    {/*  <td className="px-6 py-4 font-bold">Storage</td>*/}
-                    {/*  <td className="px-6 py-4 text-center">5 GB</td>*/}
-                    {/*  <td className="px-6 py-4 text-center">50 GB</td>*/}
-                    {/*  <td className="px-6 py-4 text-center">1 TB</td>*/}
-                    {/*</tr>*/}
-                    {
-                      feature_headers.map((feature_header) => {
-                        return (
-                          <>
-                            <tr className="bg-gray-900">
-                              <td className="px-6 py-4 font-bold"
-                                  colSpan={basicPackCount + proPackCount + 1}>{feature_header?.title}</td>
-                            </tr>
-                            {
-                              features.map((feature) => {
-                                return (
-                                  <>
-                                    {
-                                      feature_header.id === feature.header && (
-                                        <tr>
-                                          <td className="px-6 py-4">{feature?.title}</td>
-                                          {products.map((product) => {
-                                              console.log(product?.prices[0].interval);
-                                              const price = product?.prices?.find(
-                                                (price) => price.interval === billingInterval
-                                              );
-                                              if (!price) return null;
-                                              if (product.type !== 'basic') {
-                                                return null;
-                                              }
-                                              const priceString = new Intl.NumberFormat('en-US', {
-                                                style: 'currency',
-                                                currency: price.currency!,
-                                                minimumFractionDigits: 0
-                                              }).format((price?.unit_amount || 0));
-                                              return (
-                                                // <td className="px-6 py-4 text-center">
-                                                //   <CheckIcon className="w-5 h-5 text-green-500" />
-                                                // </td>
-                                                <td className="px-6 py-4 text-center">
-                                                  {
-                                                    // @ts-ignore
-                                                    product?.features?.includes(feature.id) ?
-                                                      <><CheckIcon className="w-5 h-5 text-green-500" /></>
-                                                      : <><XIcon className="w-5 h-5 text-red-500" /></>
-                                                  }
-                                                </td>
-                                              );
-                                            }
-                                          )
-                                          }
-                                          {products.map((product) => {
-                                              console.log(product?.prices[0].interval);
-                                              const price = product?.prices?.find(
-                                                (price) => price.interval === billingInterval
-                                              );
-                                              if (!price) return null;
-                                              if (product.type !== 'pro') {
-                                                return null;
-                                              }
-                                              const priceString = new Intl.NumberFormat('en-US', {
-                                                style: 'currency',
-                                                currency: price.currency!,
-                                                minimumFractionDigits: 0
-                                              }).format((price?.unit_amount || 0));
-                                              return (
-                                                <td className="px-6 py-4 text-center">
-                                                  {
-                                                    // @ts-ignore
-                                                    product?.features?.includes(feature.id) ?
-                                                      <><CheckIcon className="w-5 h-5 text-green-500" /></>
-                                                      : <><XIcon className="w-5 h-5 text-red-500" /></>
-                                                  }
-                                                </td>
-                                              );
-                                            }
-                                          )
-                                          }
-                                          {/*<td style={{ border: '1px solid white', textAlign: 'center' }}>●</td>*/}
-                                          {/*<td style={{ border: '1px solid white', textAlign: 'center' }}>●</td>*/}
-                                          {/*<td style={{ border: '1px solid white', textAlign: 'center' }}>○</td>*/}
-                                          {/*<td style={{ border: '1px solid white', textAlign: 'center' }}>●</td>*/}
-                                        </tr>
-                                      )
-                                    }
-                                  </>
-                                );
-                              })
-                            }
-                          </>
-                        );
-                      })
-                    }
-                    {/*<tr className="bg-gray-900">*/}
-                    {/*  <td className="px-6 py-4 font-bold">Features</td>*/}
-                    {/*  <td className="px-6 py-4" />*/}
-                    {/*  <td className="px-6 py-4" />*/}
-                    {/*  <td className="px-6 py-4" />*/}
-                    {/*</tr>*/}
-                    {/*<tr className="border-b border-gray-800">*/}
-                    {/*  <td className="px-6 py-4">Basic analytics</td>*/}
-                    {/*  <td className="px-6 py-4 text-center">*/}
-                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
-                    {/*  </td>*/}
-                    {/*  <td className="px-6 py-4 text-center">*/}
-                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
-                    {/*  </td>*/}
-                    {/*  <td className="px-6 py-4 text-center">*/}
-                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
-                    {/*  </td>*/}
-                    {/*</tr>*/}
-                    {/*<tr className="border-b border-gray-800">*/}
-                    {/*  <td className="px-6 py-4">Advanced analytics</td>*/}
-                    {/*  <td className="px-6 py-4 text-center">*/}
-                    {/*    <XIcon className="w-5 h-5 text-red-500" />*/}
-                    {/*  </td>*/}
-                    {/*  <td className="px-6 py-4 text-center">*/}
-                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
-                    {/*  </td>*/}
-                    {/*  <td className="px-6 py-4 text-center">*/}
-                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
-                    {/*  </td>*/}
-                    {/*</tr>*/}
-                    {/*<tr className="border-b border-gray-800">*/}
-                    {/*  <td className="px-6 py-4">Custom analytics</td>*/}
-                    {/*  <td className="px-6 py-4 text-center">*/}
-                    {/*    <XIcon className="w-5 h-5 text-red-500" />*/}
-                    {/*  </td>*/}
-                    {/*  <td className="px-6 py-4 text-center">*/}
-                    {/*    <XIcon className="w-5 h-5 text-red-500" />*/}
-                    {/*  </td>*/}
-                    {/*  <td className="px-6 py-4 text-center">*/}
-                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
-                    {/*  </td>*/}
-                    {/*</tr>*/}
-                    {/*<tr className="border-b border-gray-800">*/}
-                    {/*  <td className="px-6 py-4">Email support</td>*/}
-                    {/*  <td className="px-6 py-4 text-center">*/}
-                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
-                    {/*  </td>*/}
-                    {/*  <td className="px-6 py-4 text-center">*/}
-                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
-                    {/*  </td>*/}
-                    {/*  <td className="px-6 py-4 text-center">*/}
-                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
-                    {/*  </td>*/}
-                    {/*</tr>*/}
-                    {/*<tr className="border-b border-gray-800">*/}
-                    {/*  <td className="px-6 py-4">Priority email support</td>*/}
-                    {/*  <td className="px-6 py-4 text-center">*/}
-                    {/*    <XIcon className="w-5 h-5 text-red-500" />*/}
-                    {/*  </td>*/}
-                    {/*  <td className="px-6 py-4 text-center">*/}
-                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
-                    {/*  </td>*/}
-                    {/*  <td className="px-6 py-4 text-center">*/}
-                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
-                    {/*  </td>*/}
-                    {/*</tr>*/}
-                    {/*<tr className="border-b border-gray-800">*/}
-                    {/*  <td className="px-6 py-4">Dedicated account manager</td>*/}
-                    {/*  <td className="px-6 py-4 text-center">*/}
-                    {/*    <XIcon className="w-5 h-5 text-red-500" />*/}
-                    {/*  </td>*/}
-                    {/*  <td className="px-6 py-4 text-center">*/}
-                    {/*    <XIcon className="w-5 h-5 text-red-500" />*/}
-                    {/*  </td>*/}
-                    {/*  <td className="px-6 py-4 text-center">*/}
-                    {/*    <CheckIcon className="w-5 h-5 text-green-500" />*/}
-                    {/*  </td>*/}
-                    {/*</tr>*/}
-
-                    <tr>
-                      <td></td>
-                      {products.map((product) => {
-                          console.log(product?.prices[0].interval);
-                          const price = product?.prices?.find(
-                            (price) => price.interval === billingInterval
-                          );
-                          if (!price) return null;
-                          if (product.type !== 'basic') {
-                            return null;
-                          }
-                          const priceString = new Intl.NumberFormat('en-US', {
-                            style: 'currency',
-                            currency: price.currency!,
-                            minimumFractionDigits: 0
-                          }).format((price?.unit_amount || 0));
-                          return (
-                            <td>
-                              <h3 className="text-base font-medium white ml-4 mr-4 text-center items-center mt-4">
-                                {product.name}
-                              </h3>
-                              <p className="mt-8 mb-8 ml-4 mr-4">
-                                <CheckoutButton priceId={price.id} subscription={subscription} user={user}
-                                                isTopup={false} />
-                              </p>
-                            </td>
-                          );
-                        }
-                      )
-                      }
-                      {products.map((product) => {
-                        console.log(product?.prices[0].interval);
-                        const price = product?.prices?.find(
-                          (price) => price.interval === billingInterval
-                        );
-                        if (!price) return null;
-                        if (product.type !== 'pro') {
-                          return null;
-                        }
-                        const priceString = new Intl.NumberFormat('en-US', {
-                          style: 'currency',
-                          currency: price.currency!,
-                          minimumFractionDigits: 0
-                        }).format((price?.unit_amount || 0));
-                        return (
-                          <td>
-                            <h3 className="text-base font-medium white ml-4 mr-4 text-center items-center mt-4">
-                              {product.name}
-                            </h3>
-                            <p className="mt-8 mb-8 ml-4 mr-4">
-                              <CheckoutButton priceId={price.id} subscription={subscription} user={user}
-                                              isTopup={false} />
-                            </p>
-                          </td>
-                        );
-                      })
-                      }
-                    </tr>
-                    </tbody>
-                  </table>
+                <div className="mt-12 space-y-4 sm:mt-16 sm:space-y-0 flex flex-wrap justify-center gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0">
+                {products.map((product) => {
+                  console.log(product?.prices[0].interval);
+                  const price = product?.prices?.find(
+                    (price) => price.interval === billingInterval
+                  );
+                  if (!price) return null;
+                  if (product.type !== billingType) {
+                    return null;
+                  }
+                  const priceString = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: price.currency!,
+                    minimumFractionDigits: 0
+                  }).format((price?.unit_amount || 0));
+                  return (
+                    <div
+                      key={product.id}
+                      className={cn(
+                        'flex flex-col rounded-lg shadow-sm divide-y divide-zinc-600 bg-zinc-900',
+                        {
+                          'border border-pink-500': subscription
+                            ? price.id === subscription?.price_id
+                            : product.name === 'Freelancer'
+                        },
+                        'flex-1', // This makes the flex item grow to fill the space
+                        'basis-1/3', // Assuming you want each card to take up roughly a third of the container's width
+                        'max-w-xs' // Sets a maximum width to the cards to prevent them from getting too large
+                      )}
+                    >
+                      <div className="p-6 items-center text-center">
+                        <h2 className="text-2xl font-semibold leading-6 text-white">
+                          {product.name}
+                        </h2>
+                        <p className="mt-4 text-zinc-300">{product.description}</p>
+                        <p className="mt-8">
+                      <span className="text-5xl font-extrabold white">
+                        {priceString}
+                      </span>
+                          <span className="text-base font-medium text-zinc-100">
+                        /{price.interval}
+                      </span>
+                        </p>
+                        {/*<Button*/}
+                        {/*  variant="slim"*/}
+                        {/*  type="button"*/}
+                        {/*  loading={priceIdLoading === price.id}*/}
+                        {/*  onClick={() => handleStripeCheckout(price)}*/}
+                        {/*  className="block w-full py-2 mt-8 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900"*/}
+                        {/*>*/}
+                        {/*  {subscription ? 'Manage' : 'Subscribe'}*/}
+                        {/*</Button>*/}
+                        <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} />
+                      </div>
+                    </div>
+                  );
+                })}
                 </div>
+                {/*<div className="overflow-x-auto">*/}
+                {/*  <table className="w-full table-auto border-collapse">*/}
+                {/*    <thead>*/}
+                {/*    <tr className="bg-gray-900">*/}
+                {/*      <th className="px-6 py-4 text-left">Plan</th>*/}
+
+                {/*      <th colSpan={basicPackCount} className="px-6 py-4 text-center">*/}
+                {/*        <h2>Basic</h2>*/}
+                {/*      </th>*/}
+                {/*      <th colSpan={proPackCount} className="px-6 py-4 text-center"><h2>Pro</h2>*/}
+                {/*      </th>*/}
+                {/*      /!*<th className="px-6 py-4 text-center">Starter</th>*!/*/}
+                {/*      /!*<th className="px-6 py-4 text-center">Pro</th>*!/*/}
+                {/*      /!*<th className="px-6 py-4 text-center">Enterprise</th>*!/*/}
+                {/*    </tr>*/}
+                {/*    </thead>*/}
+                {/*    <tbody>*/}
+                {/*    <tr className="border-b border-gray-800">*/}
+                {/*      <td className="px-6 py-4 font-bold">Pricing</td>*/}
+                {/*      {products.map((product) => {*/}
+                {/*          console.log(product?.prices[0].interval);*/}
+                {/*          const price = product?.prices?.find(*/}
+                {/*            (price) => price.interval === billingInterval*/}
+                {/*          );*/}
+                {/*          if (!price) return null;*/}
+                {/*          if (product.type !== 'basic') {*/}
+                {/*            return null;*/}
+                {/*          }*/}
+                {/*          const priceString = new Intl.NumberFormat('en-US', {*/}
+                {/*            style: 'currency',*/}
+                {/*            currency: price.currency!,*/}
+                {/*            minimumFractionDigits: 0*/}
+                {/*          }).format((price?.unit_amount || 0));*/}
+                {/*          return (*/}
+                {/*            <td className="px-6 py-4 text-center">*/}
+                {/*              <div className="text-2xl font-bold">*/}
+                {/*                /!*<span className="text-2xl font-normal mr-1">$</span>*!/*/}
+                {/*                {priceString}{'\n                                '}*/}
+                {/*                <span*/}
+                {/*                  className="text-2xl font-normal">/{price.interval === 'month' ? 'mo' : 'yr'}</span>*/}
+                {/*              </div>*/}
+                {/*            </td>*/}
+                {/*          );*/}
+                {/*        }*/}
+                {/*      )*/}
+                {/*      }*/}
+                {/*      {products.map((product) => {*/}
+                {/*          console.log(product?.prices[0].interval);*/}
+                {/*          const price = product?.prices?.find(*/}
+                {/*            (price) => price.interval === billingInterval*/}
+                {/*          );*/}
+                {/*          if (!price) return null;*/}
+                {/*          if (product.type !== 'pro') {*/}
+                {/*            return null;*/}
+                {/*          }*/}
+                {/*          const priceString = new Intl.NumberFormat('en-US', {*/}
+                {/*            style: 'currency',*/}
+                {/*            currency: price.currency!,*/}
+                {/*            minimumFractionDigits: 0*/}
+                {/*          }).format((price?.unit_amount || 0));*/}
+                {/*          return (*/}
+
+                {/*            <td className="px-6 py-4 text-center">*/}
+                {/*              <div className="text-2xl font-bold">*/}
+                {/*                /!*<span className="text-2xl font-normal mr-1">$</span>*!/*/}
+                {/*                {priceString}{'\n                                '}*/}
+                {/*                <span className="text-2xl font-normal">/{price.interval === 'month' ? 'mo' : 'yr'}</span>*/}
+                {/*              </div>*/}
+                {/*            </td>*/}
+                {/*          );*/}
+                {/*        }*/}
+                {/*      )*/}
+                {/*      }*/}
+                {/*      /!*<td className="px-6 py-4 text-center">*!/*/}
+                {/*      /!*  <div className="text-4xl font-bold">*!/*/}
+                {/*      /!*    <span className="text-2xl font-normal mr-1">$</span>*!/*/}
+                {/*      /!*    29{'\n                                '}*!/*/}
+                {/*      /!*    <span className="text-2xl font-normal">/mo</span>*!/*/}
+                {/*      /!*  </div>*!/*/}
+                {/*      /!*</td>*!/*/}
+                {/*      /!*<td className="px-6 py-4 text-center">*!/*/}
+                {/*      /!*  <div className="text-4xl font-bold">*!/*/}
+                {/*      /!*    <span className="text-2xl font-normal mr-1">$</span>*!/*/}
+                {/*      /!*    99{"\n                                "}*!/*/}
+                {/*      /!*    <span className="text-2xl font-normal">/mo</span>*!/*/}
+                {/*      /!*  </div>*!/*/}
+                {/*      /!*</td>*!/*/}
+                {/*    </tr>*/}
+                {/*    <tr className="border-b border-gray-800">*/}
+                {/*      <td className="px-6 py-4 font-bold">Credits</td>*/}
+                {/*      {products.map((product) => {*/}
+                {/*          console.log(product?.prices[0].interval);*/}
+                {/*          const price = product?.prices?.find(*/}
+                {/*            (price) => price.interval === billingInterval*/}
+                {/*          );*/}
+                {/*          if (!price) return null;*/}
+                {/*          if (product.type !== 'basic') {*/}
+                {/*            return null;*/}
+                {/*          }*/}
+                {/*          const priceString = new Intl.NumberFormat('en-US', {*/}
+                {/*            style: 'currency',*/}
+                {/*            currency: price.currency!,*/}
+                {/*            minimumFractionDigits: 0*/}
+                {/*          }).format((price?.unit_amount || 0));*/}
+                {/*          return (*/}
+                {/*            <td className="px-6 py-4 text-center">{(price.points == 0) ? 'Unlimited' : price.points}</td>*/}
+                {/*          );*/}
+                {/*        }*/}
+                {/*      )*/}
+                {/*      }*/}
+                {/*      {products.map((product) => {*/}
+                {/*          console.log(product?.prices[0].interval);*/}
+                {/*          const price = product?.prices?.find(*/}
+                {/*            (price) => price.interval === billingInterval*/}
+                {/*          );*/}
+                {/*          if (!price) return null;*/}
+                {/*          if (product.type !== 'pro') {*/}
+                {/*            return null;*/}
+                {/*          }*/}
+                {/*          const priceString = new Intl.NumberFormat('en-US', {*/}
+                {/*            style: 'currency',*/}
+                {/*            currency: price.currency!,*/}
+                {/*            minimumFractionDigits: 0*/}
+                {/*          }).format((price?.unit_amount || 0));*/}
+                {/*          return (*/}
+                {/*            <td className="px-6 py-4 text-center">{(price.points == 0) ? 'Unlimited' : price.points}</td>*/}
+                {/*          );*/}
+                {/*        }*/}
+                {/*      )*/}
+                {/*      }*/}
+                {/*      /!*<td className="px-6 py-4 text-center">1</td>*!/*/}
+                {/*      /!*<td className="px-6 py-4 text-center">5</td>*!/*/}
+                {/*      /!*<td className="px-6 py-4 text-center">Unlimited</td>*!/*/}
+                {/*    </tr>*/}
+                {/*    /!*<tr className="border-b border-gray-800">*!/*/}
+                {/*    /!*  <td className="px-6 py-4 font-bold">Storage</td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">5 GB</td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">50 GB</td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">1 TB</td>*!/*/}
+                {/*    /!*</tr>*!/*/}
+                {/*    {*/}
+                {/*      feature_headers.map((feature_header) => {*/}
+                {/*        return (*/}
+                {/*          <>*/}
+                {/*            <tr className="bg-gray-900">*/}
+                {/*              <td className="px-6 py-4 font-bold"*/}
+                {/*                  colSpan={basicPackCount + proPackCount + 1}>{feature_header?.title}</td>*/}
+                {/*            </tr>*/}
+                {/*            {*/}
+                {/*              features.map((feature) => {*/}
+                {/*                return (*/}
+                {/*                  <>*/}
+                {/*                    {*/}
+                {/*                      feature_header.id === feature.header && (*/}
+                {/*                        <tr>*/}
+                {/*                          <td className="px-6 py-4">{feature?.title}</td>*/}
+                {/*                          {products.map((product) => {*/}
+                {/*                              console.log(product?.prices[0].interval);*/}
+                {/*                              const price = product?.prices?.find(*/}
+                {/*                                (price) => price.interval === billingInterval*/}
+                {/*                              );*/}
+                {/*                              if (!price) return null;*/}
+                {/*                              if (product.type !== 'basic') {*/}
+                {/*                                return null;*/}
+                {/*                              }*/}
+                {/*                              const priceString = new Intl.NumberFormat('en-US', {*/}
+                {/*                                style: 'currency',*/}
+                {/*                                currency: price.currency!,*/}
+                {/*                                minimumFractionDigits: 0*/}
+                {/*                              }).format((price?.unit_amount || 0));*/}
+                {/*                              return (*/}
+                {/*                                // <td className="px-6 py-4 text-center">*/}
+                {/*                                //   <CheckIcon className="w-5 h-5 text-green-500" />*/}
+                {/*                                // </td>*/}
+                {/*                                <td className="px-6 py-4 text-center">*/}
+                {/*                                  {*/}
+                {/*                                    // @ts-ignore*/}
+                {/*                                    product?.features?.includes(feature.id) ?*/}
+                {/*                                      <><CheckIcon className="w-5 h-5 text-green-500" /></>*/}
+                {/*                                      : <><XIcon className="w-5 h-5 text-red-500" /></>*/}
+                {/*                                  }*/}
+                {/*                                </td>*/}
+                {/*                              );*/}
+                {/*                            }*/}
+                {/*                          )*/}
+                {/*                          }*/}
+                {/*                          {products.map((product) => {*/}
+                {/*                              console.log(product?.prices[0].interval);*/}
+                {/*                              const price = product?.prices?.find(*/}
+                {/*                                (price) => price.interval === billingInterval*/}
+                {/*                              );*/}
+                {/*                              if (!price) return null;*/}
+                {/*                              if (product.type !== 'pro') {*/}
+                {/*                                return null;*/}
+                {/*                              }*/}
+                {/*                              const priceString = new Intl.NumberFormat('en-US', {*/}
+                {/*                                style: 'currency',*/}
+                {/*                                currency: price.currency!,*/}
+                {/*                                minimumFractionDigits: 0*/}
+                {/*                              }).format((price?.unit_amount || 0));*/}
+                {/*                              return (*/}
+                {/*                                <td className="px-6 py-4 text-center">*/}
+                {/*                                  {*/}
+                {/*                                    // @ts-ignore*/}
+                {/*                                    product?.features?.includes(feature.id) ?*/}
+                {/*                                      <><CheckIcon className="w-5 h-5 text-green-500" /></>*/}
+                {/*                                      : <><XIcon className="w-5 h-5 text-red-500" /></>*/}
+                {/*                                  }*/}
+                {/*                                </td>*/}
+                {/*                              );*/}
+                {/*                            }*/}
+                {/*                          )*/}
+                {/*                          }*/}
+                {/*                          /!*<td style={{ border: '1px solid white', textAlign: 'center' }}>●</td>*!/*/}
+                {/*                          /!*<td style={{ border: '1px solid white', textAlign: 'center' }}>●</td>*!/*/}
+                {/*                          /!*<td style={{ border: '1px solid white', textAlign: 'center' }}>○</td>*!/*/}
+                {/*                          /!*<td style={{ border: '1px solid white', textAlign: 'center' }}>●</td>*!/*/}
+                {/*                        </tr>*/}
+                {/*                      )*/}
+                {/*                    }*/}
+                {/*                  </>*/}
+                {/*                );*/}
+                {/*              })*/}
+                {/*            }*/}
+                {/*          </>*/}
+                {/*        );*/}
+                {/*      })*/}
+                {/*    }*/}
+                {/*    /!*<tr className="bg-gray-900">*!/*/}
+                {/*    /!*  <td className="px-6 py-4 font-bold">Features</td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4" />*!/*/}
+                {/*    /!*  <td className="px-6 py-4" />*!/*/}
+                {/*    /!*  <td className="px-6 py-4" />*!/*/}
+                {/*    /!*</tr>*!/*/}
+                {/*    /!*<tr className="border-b border-gray-800">*!/*/}
+                {/*    /!*  <td className="px-6 py-4">Basic analytics</td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">*!/*/}
+                {/*    /!*    <CheckIcon className="w-5 h-5 text-green-500" />*!/*/}
+                {/*    /!*  </td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">*!/*/}
+                {/*    /!*    <CheckIcon className="w-5 h-5 text-green-500" />*!/*/}
+                {/*    /!*  </td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">*!/*/}
+                {/*    /!*    <CheckIcon className="w-5 h-5 text-green-500" />*!/*/}
+                {/*    /!*  </td>*!/*/}
+                {/*    /!*</tr>*!/*/}
+                {/*    /!*<tr className="border-b border-gray-800">*!/*/}
+                {/*    /!*  <td className="px-6 py-4">Advanced analytics</td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">*!/*/}
+                {/*    /!*    <XIcon className="w-5 h-5 text-red-500" />*!/*/}
+                {/*    /!*  </td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">*!/*/}
+                {/*    /!*    <CheckIcon className="w-5 h-5 text-green-500" />*!/*/}
+                {/*    /!*  </td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">*!/*/}
+                {/*    /!*    <CheckIcon className="w-5 h-5 text-green-500" />*!/*/}
+                {/*    /!*  </td>*!/*/}
+                {/*    /!*</tr>*!/*/}
+                {/*    /!*<tr className="border-b border-gray-800">*!/*/}
+                {/*    /!*  <td className="px-6 py-4">Custom analytics</td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">*!/*/}
+                {/*    /!*    <XIcon className="w-5 h-5 text-red-500" />*!/*/}
+                {/*    /!*  </td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">*!/*/}
+                {/*    /!*    <XIcon className="w-5 h-5 text-red-500" />*!/*/}
+                {/*    /!*  </td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">*!/*/}
+                {/*    /!*    <CheckIcon className="w-5 h-5 text-green-500" />*!/*/}
+                {/*    /!*  </td>*!/*/}
+                {/*    /!*</tr>*!/*/}
+                {/*    /!*<tr className="border-b border-gray-800">*!/*/}
+                {/*    /!*  <td className="px-6 py-4">Email support</td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">*!/*/}
+                {/*    /!*    <CheckIcon className="w-5 h-5 text-green-500" />*!/*/}
+                {/*    /!*  </td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">*!/*/}
+                {/*    /!*    <CheckIcon className="w-5 h-5 text-green-500" />*!/*/}
+                {/*    /!*  </td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">*!/*/}
+                {/*    /!*    <CheckIcon className="w-5 h-5 text-green-500" />*!/*/}
+                {/*    /!*  </td>*!/*/}
+                {/*    /!*</tr>*!/*/}
+                {/*    /!*<tr className="border-b border-gray-800">*!/*/}
+                {/*    /!*  <td className="px-6 py-4">Priority email support</td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">*!/*/}
+                {/*    /!*    <XIcon className="w-5 h-5 text-red-500" />*!/*/}
+                {/*    /!*  </td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">*!/*/}
+                {/*    /!*    <CheckIcon className="w-5 h-5 text-green-500" />*!/*/}
+                {/*    /!*  </td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">*!/*/}
+                {/*    /!*    <CheckIcon className="w-5 h-5 text-green-500" />*!/*/}
+                {/*    /!*  </td>*!/*/}
+                {/*    /!*</tr>*!/*/}
+                {/*    /!*<tr className="border-b border-gray-800">*!/*/}
+                {/*    /!*  <td className="px-6 py-4">Dedicated account manager</td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">*!/*/}
+                {/*    /!*    <XIcon className="w-5 h-5 text-red-500" />*!/*/}
+                {/*    /!*  </td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">*!/*/}
+                {/*    /!*    <XIcon className="w-5 h-5 text-red-500" />*!/*/}
+                {/*    /!*  </td>*!/*/}
+                {/*    /!*  <td className="px-6 py-4 text-center">*!/*/}
+                {/*    /!*    <CheckIcon className="w-5 h-5 text-green-500" />*!/*/}
+                {/*    /!*  </td>*!/*/}
+                {/*    /!*</tr>*!/*/}
+
+                {/*    <tr>*/}
+                {/*      <td></td>*/}
+                {/*      {products.map((product) => {*/}
+                {/*          console.log(product?.prices[0].interval);*/}
+                {/*          const price = product?.prices?.find(*/}
+                {/*            (price) => price.interval === billingInterval*/}
+                {/*          );*/}
+                {/*          if (!price) return null;*/}
+                {/*          if (product.type !== 'basic') {*/}
+                {/*            return null;*/}
+                {/*          }*/}
+                {/*          const priceString = new Intl.NumberFormat('en-US', {*/}
+                {/*            style: 'currency',*/}
+                {/*            currency: price.currency!,*/}
+                {/*            minimumFractionDigits: 0*/}
+                {/*          }).format((price?.unit_amount || 0));*/}
+                {/*          return (*/}
+                {/*            <td>*/}
+                {/*              <h3 className="text-base font-medium white ml-4 mr-4 text-center items-center mt-4">*/}
+                {/*                {product.name}*/}
+                {/*              </h3>*/}
+                {/*              <p className="mt-8 mb-8 ml-4 mr-4">*/}
+                {/*                <CheckoutButton priceId={price.id} subscription={subscription} user={user}*/}
+                {/*                                isTopup={false} />*/}
+                {/*              </p>*/}
+                {/*            </td>*/}
+                {/*          );*/}
+                {/*        }*/}
+                {/*      )*/}
+                {/*      }*/}
+                {/*      {products.map((product) => {*/}
+                {/*        console.log(product?.prices[0].interval);*/}
+                {/*        const price = product?.prices?.find(*/}
+                {/*          (price) => price.interval === billingInterval*/}
+                {/*        );*/}
+                {/*        if (!price) return null;*/}
+                {/*        if (product.type !== 'pro') {*/}
+                {/*          return null;*/}
+                {/*        }*/}
+                {/*        const priceString = new Intl.NumberFormat('en-US', {*/}
+                {/*          style: 'currency',*/}
+                {/*          currency: price.currency!,*/}
+                {/*          minimumFractionDigits: 0*/}
+                {/*        }).format((price?.unit_amount || 0));*/}
+                {/*        return (*/}
+                {/*          <td>*/}
+                {/*            <h3 className="text-base font-medium white ml-4 mr-4 text-center items-center mt-4">*/}
+                {/*              {product.name}*/}
+                {/*            </h3>*/}
+                {/*            <p className="mt-8 mb-8 ml-4 mr-4">*/}
+                {/*              <CheckoutButton priceId={price.id} subscription={subscription} user={user}*/}
+                {/*                              isTopup={false} />*/}
+                {/*            </p>*/}
+                {/*          </td>*/}
+                {/*        );*/}
+                {/*      })*/}
+                {/*      }*/}
+                {/*    </tr>*/}
+                {/*    </tbody>*/}
+                {/*  </table>*/}
+                {/*</div>*/}
                 {/*<div className="mt-8 flex justify-center space-x-4">*/}
                 {/*  <Button className="w-full md:w-auto">Get Started with Starter</Button>*/}
                 {/*  <Button className="w-full md:w-auto">Get Started with Pro</Button>*/}
@@ -579,62 +668,6 @@ export default function Pricing({ user, products, subscription, features,feature
               </div>
             </div>
 
-            {/*{products.map((product) => {*/}
-            {/*  console.log(product?.prices[0].interval);*/}
-            {/*  const price = product?.prices?.find(*/}
-            {/*    (price) => price.interval === billingInterval || price.interval === 'year'*/}
-            {/*  );*/}
-            {/*  if (!price) return null;*/}
-            {/*  if (product.type !== billingType) {*/}
-            {/*    return null;*/}
-            {/*  }*/}
-            {/*  const priceString = new Intl.NumberFormat('en-US', {*/}
-            {/*    style: 'currency',*/}
-            {/*    currency: price.currency!,*/}
-            {/*    minimumFractionDigits: 0*/}
-            {/*  }).format((price?.unit_amount || 0));*/}
-            {/*  return (*/}
-            {/*    <div*/}
-            {/*      key={product.id}*/}
-            {/*      className={cn(*/}
-            {/*        'flex flex-col rounded-lg shadow-sm divide-y divide-zinc-600 bg-zinc-900',*/}
-            {/*        {*/}
-            {/*          'border border-pink-500': subscription*/}
-            {/*            ? price.id === subscription?.price_id*/}
-            {/*            : product.name === 'Freelancer'*/}
-            {/*        },*/}
-            {/*        'flex-1', // This makes the flex item grow to fill the space*/}
-            {/*        'basis-1/3', // Assuming you want each card to take up roughly a third of the container's width*/}
-            {/*        'max-w-xs' // Sets a maximum width to the cards to prevent them from getting too large*/}
-            {/*      )}*/}
-            {/*    >*/}
-            {/*      <div className="p-6">*/}
-            {/*        <h2 className="text-2xl font-semibold leading-6 text-white">*/}
-            {/*          {product.name}*/}
-            {/*        </h2>*/}
-            {/*        <p className="mt-4 text-zinc-300">{product.description}</p>*/}
-            {/*        <p className="mt-8">*/}
-            {/*          <span className="text-5xl font-extrabold white">*/}
-            {/*            {priceString}*/}
-            {/*          </span>*/}
-            {/*          <span className="text-base font-medium text-zinc-100">*/}
-            {/*            /{price.interval}*/}
-            {/*          </span>*/}
-            {/*        </p>*/}
-            {/*        /!*<Button*!/*/}
-            {/*        /!*  variant="slim"*!/*/}
-            {/*        /!*  type="button"*!/*/}
-            {/*        /!*  loading={priceIdLoading === price.id}*!/*/}
-            {/*        /!*  onClick={() => handleStripeCheckout(price)}*!/*/}
-            {/*        /!*  className="block w-full py-2 mt-8 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900"*!/*/}
-            {/*        /!*>*!/*/}
-            {/*        /!*  {subscription ? 'Manage' : 'Subscribe'}*!/*/}
-            {/*        /!*</Button>*!/*/}
-            {/*        <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} />*/}
-            {/*      </div>*/}
-            {/*    </div>*/}
-            {/*  );*/}
-            {/*})}*/}
           </div>
           <LogoCloud />
         </div>

@@ -90,7 +90,7 @@ export default function CheckoutButton({priceId,subscription,user,isTopup}){
     loading={priceIdLoading === priceId}
     onClick={openCheckout}
     style={{paddingLeft:'0',paddingRight:'0'}}
-    className="block w-full py-2 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900"
+    className="block w-full py-2 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900 mt-4"
   >
     {
       isTopup ? "Topup" : <>{subscription?.price_id === priceId ? 'Manage' : 'Subscribe'}</>
