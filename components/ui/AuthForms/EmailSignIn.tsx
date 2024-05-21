@@ -56,7 +56,7 @@ export default function EmailSignIn({
             loading={isSubmitting}
             disabled={disableButton}
           >
-            Sign in
+            Sign In
           </Button>
         </div>
       </form>

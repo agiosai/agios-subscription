@@ -298,6 +298,13 @@ const manageSubscriptionStatusChange = async (
     .eq('id',subscription.items[0]?.price.id)
     .single();
 
+  const {data: productData, error:noProductDataError} = await supabaseAdmin
+    .from('products')
+    .select('*')
+    // @ts-ignore
+    .eq('id',priceData.product_id)
+    .single();
+
   const { error:subUpdateErr} = await supabaseAdmin
     .from('subscriptions')
     //@ts-ignore
@@ -360,7 +367,7 @@ const manageSubscriptionStatusChange = async (
   const { error } = await supabaseAdmin
     .from('users')
     //@ts-ignore
-    .update({ points:  points})
+    .update({ points:  points,type:productData.type})
     .eq('id', uid)
   // For a new subscription copy the billing details to the customer object.
   // NOTE: This is a costly operation and should happen at the very end.

@@ -28,22 +28,22 @@ export default function Footer() {
                 Home
               </Link>
             </li>
-            <li className="py-3 md:py-0 md:pb-4">
-              <Link
-                href="/"
-                className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
-              >
-                About
-              </Link>
-            </li>
-            <li className="py-3 md:py-0 md:pb-4">
-              <Link
-                href="/"
-                className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
-              >
-                Careers
-              </Link>
-            </li>
+            {/*<li className="py-3 md:py-0 md:pb-4">*/}
+            {/*  <Link*/}
+            {/*    href="/"*/}
+            {/*    className="text-white transition duration-150 ease-in-out hover:text-zinc-200"*/}
+            {/*  >*/}
+            {/*    About*/}
+            {/*  </Link>*/}
+            {/*</li>*/}
+            {/*<li className="py-3 md:py-0 md:pb-4">*/}
+            {/*  <Link*/}
+            {/*    href="/"*/}
+            {/*    className="text-white transition duration-150 ease-in-out hover:text-zinc-200"*/}
+            {/*  >*/}
+            {/*    Careers*/}
+            {/*  </Link>*/}
+            {/*</li>*/}
             <li className="py-3 md:py-0 md:pb-4">
               <Link
                 href="/"
@@ -56,11 +56,11 @@ export default function Footer() {
         </div>
         <div className="col-span-1 lg:col-span-2">
           <ul className="flex flex-col flex-initial md:flex-1">
-            <li className="py-3 md:py-0 md:pb-4">
-              <p className="font-bold text-white transition duration-150 ease-in-out hover:text-zinc-200">
-                LEGAL
-              </p>
-            </li>
+            {/*<li className="py-3 md:py-0 md:pb-4">*/}
+            {/*  <p className="font-bold text-white transition duration-150 ease-in-out hover:text-zinc-200">*/}
+            {/*    LEGAL*/}
+            {/*  </p>*/}
+            {/*</li>*/}
             <li className="py-3 md:py-0 md:pb-4">
               <Link
                 href="/"
@@ -79,21 +79,21 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <div className="flex items-start col-span-1 text-white lg:col-span-6 lg:justify-end">
-          <div className="flex items-center h-10 space-x-6">
-            <a
-              aria-label="Github Repository"
-              href="https://github.com/vercel/nextjs-subscription-payments"
-            >
-              <GitHub />
-            </a>
-          </div>
-        </div>
+        {/*<div className="flex items-start col-span-1 text-white lg:col-span-6 lg:justify-end">*/}
+        {/*  <div className="flex items-center h-10 space-x-6">*/}
+        {/*    <a*/}
+        {/*      aria-label="Github Repository"*/}
+        {/*      href="https://github.com/vercel/nextjs-subscription-payments"*/}
+        {/*    >*/}
+        {/*      <GitHub />*/}
+        {/*    </a>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
       </div>
       <div className="flex flex-col items-center justify-between py-12 space-y-4 md:flex-row bg-zinc-900">
         <div>
           <span>
-            &copy; {new Date().getFullYear()} ACME, Inc. All rights reserved.
+            &copy; {new Date().getFullYear()} AGI OS
           </span>
         </div>
         <div className="flex items-center">

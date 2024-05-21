@@ -231,9 +231,9 @@ export default function Pricing({ user, products, subscription, features,feature
           </div>
           <div>
 
-            <div className="bg-gray-950 text-gray-50 py-12 md:py-24">
+            <div className="">
               <div className="container mx-auto px-4 md:px-6">
-                <div className="mt-12 space-y-4 sm:mt-16 sm:space-y-0 flex flex-wrap justify-center gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0">
+                <div className="mt-8 space-y-4 sm:mt-16 sm:space-y-0 flex flex-wrap justify-center gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0">
                 {products.map((product) => {
                   console.log(product?.prices[0].interval);
                   const price = product?.prices?.find(

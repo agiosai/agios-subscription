@@ -7,10 +7,11 @@ import Topup from '../../components/ui/AccountForms/Topup';
 
 export default async function Account() {
   const supabase = createClient();
-
   const {
     data: { user }
   } = await supabase.auth.getUser();
+  console.log("userNiro");
+  console.log(user?.user_metadata.full_name);
 
   const { data: userDetails } = await supabase
     .from('users')
@@ -57,12 +58,12 @@ export default async function Account() {
       </div>
       <div className="p-4">
         <CustomerPortalForm subscription={subscription} points={userDetails? userDetails.points:null}/>
-        {
-          subscription?
-            <Topup products={products} subscription={subscription} user={user}/>
-          :<></>
-        }
-        <NameForm userName={userDetails?.full_name ?? ''} />
+        {/*{*/}
+        {/*  subscription?*/}
+        {/*    <Topup products={products} subscription={subscription} user={user}/>*/}
+        {/*  :<></>*/}
+        {/*}*/}
+        <NameForm userName={user?.user_metadata.full_name ?? ''} />
         <EmailForm userEmail={user.email} />
       </div>
     </section>
