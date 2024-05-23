@@ -1,6 +1,10 @@
 import Pricing from '../components/ui/Pricing/Pricing';
 import { createClient } from '../utils/supabase/server';
 
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
+
 export default async function PricingPage() {
   const supabase = createClient();
 

@@ -4,6 +4,7 @@ import NameForm from '../../components/ui/AccountForms/NameForm';
 import { createClient } from '../../utils/supabase/server';
 import { redirect } from 'next/navigation';
 import Topup from '../../components/ui/AccountForms/Topup';
+import Download from '@/components/ui/AccountForms/Download';
 
 export default async function Account() {
   const supabase = createClient();
@@ -63,6 +64,7 @@ export default async function Account() {
         {/*    <Topup products={products} subscription={subscription} user={user}/>*/}
         {/*  :<></>*/}
         {/*}*/}
+        <Download/>
         <NameForm userName={user?.user_metadata.full_name ?? ''} />
         <EmailForm userEmail={user.email} />
       </div>

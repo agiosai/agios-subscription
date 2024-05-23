@@ -100,6 +100,31 @@ const getToastRedirect = (
   return redirectPath;
 };
 
+// utils/detectOS.js
+export const detectOS = (userAgent: string) => {
+  const platform = userAgent || (typeof navigator !== 'undefined' ? navigator.userAgent : '');
+  if (/windows phone/i.test(platform)) {
+    return 'Windows Phone';
+  }
+  if (/windows/i.test(platform)) {
+    return 'Windows';
+  }
+  if (/macintosh/i.test(platform)) {
+    return 'MacOS';
+  }
+  if (/ipad|iphone|ipod/i.test(platform)) {
+    return 'iOS';
+  }
+  if (/android/i.test(platform)) {
+    return 'Android';
+  }
+  if (/linux/i.test(platform)) {
+    return 'Linux';
+  }
+  return 'Unknown';
+};
+
+
 export const getStatusRedirect = (
   path: string,
   statusName: string,

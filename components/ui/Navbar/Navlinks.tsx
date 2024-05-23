@@ -16,25 +16,31 @@ export default function Navlinks({ user }: NavlinksProps) {
   const router = getRedirectMethod() === 'client' ? useRouter() : null;
 
   return (
-    <div className="relative flex flex-row justify-between py-4 align-center md:py-6">
-      <div className="flex items-center flex-1">
+    <div className="relative flex flex-row items-center justify-between py-4 md:py-6">
+      <div className="flex items-center">
         <Link href="/" className={s.logo} aria-label="Logo">
           <Logo />
         </Link>
-        <nav className="ml-6 space-x-2 lg:block">
-          <Link href="/" className={s.link}>
-            Pricing
-          </Link>
-          {user && (
-            <Link href="/account" className={s.link}>
-              Account
-            </Link>
-          )}
-        </nav>
       </div>
+      <nav className="absolute left-1/2 transform -translate-x-1/2 flex space-x-2">
+        <Link href="https://www.agios.live" className={s.link}>
+          Home
+        </Link>
+        <Link href="/" className={s.link}>
+          Pricing
+        </Link>
+        <Link href="https://blog.agios.live" className={s.link}>
+          Blog
+        </Link>
+      </nav>
       <div className="flex justify-end space-x-8">
+        {user && (
+          <Link href="/account" className={s.link}>
+            My Account &nbsp;|
+          </Link>
+        )}
         {user ? (
-          <form onSubmit={(e) => handleRequest(e, SignOut, router)}>
+          <form style={{marginLeft:'auto'}} onSubmit={(e) => handleRequest(e, SignOut, router)}>
             <input type="hidden" name="pathName" value={usePathname()} />
             <button type="submit" className={s.link}>
               Sign Out
@@ -47,5 +53,7 @@ export default function Navlinks({ user }: NavlinksProps) {
         )}
       </div>
     </div>
+
+
   );
 }
