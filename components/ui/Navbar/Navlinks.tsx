@@ -16,20 +16,20 @@ export default function Navlinks({ user }: NavlinksProps) {
   const router = getRedirectMethod() === 'client' ? useRouter() : null;
 
   return (
-    <div className="relative flex flex-row items-center justify-between py-4 md:py-6">
+    <div className="relative flex flex-row items-center justify-between py-4 md:py-6" style={{fontSize:"15px"}}>
       <div className="flex items-center">
         <Link href="/" className={s.logo} aria-label="Logo">
           <Logo />
         </Link>
       </div>
       <nav className="absolute left-1/2 transform -translate-x-1/2 flex space-x-2">
-        <Link href="https://www.agios.live" className={s.link}>
+        <Link href="https://www.agios.live" className={s.link} style={{paddingRight: '15px'}}>
           Home
         </Link>
-        <Link href="/" className={s.link}>
+        <Link href="/" className={s.link} style={{paddingRight: '15px'}}>
           Pricing
         </Link>
-        <Link href="https://blog.agios.live" className={s.link}>
+        <Link href="https://blog.agios.live" className={s.link} style={{paddingRight: '15px'}}>
           Blog
         </Link>
       </nav>

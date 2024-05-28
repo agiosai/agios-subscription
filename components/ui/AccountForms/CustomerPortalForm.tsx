@@ -6,6 +6,7 @@ import { createStripePortal } from '../../../utils/stripe/server';
 import Link from 'next/link';
 import Card from '../../ui/Card';
 import { Tables } from '../../../types_db';
+import { addDays, format, parseISO } from 'date-fns';
 
 type Subscription = Tables<'subscriptions'>;
 type Price = Tables<'prices'>;
@@ -47,6 +48,26 @@ export default function CustomerPortalForm({ subscription,points }: Props) {
     return str[0].toUpperCase() + str.slice(1);
   }
 
+  function formatBillingPeriod(start, end) {
+    const startDate = parseISO(start);
+    const endDate = parseISO(end);
+
+    const startMonth = format(startDate, 'MMMM');
+    const startDay = format(startDate, 'd');
+    const endMonth = format(endDate, 'MMMM');
+    const endDay = format(endDate, 'd');
+    const year = format(startDate, 'yyyy');
+
+    const nextBillingDate = addDays(endDate, 1);
+    const nextBillingDateFormatted = format(nextBillingDate, 'MMMM d, yyyy');
+
+    return {
+      billingPeriod: `Billing Period: ${startMonth} ${startDay} - ${endMonth} ${endDay}, ${year}`,
+      nextBillingDate: `Next Billing Date: ${nextBillingDateFormatted}`
+    };
+  }
+  const { billingPeriod, nextBillingDate } = formatBillingPeriod(subscription?subscription.current_period_start:"", subscription?subscription.current_period_end:"");
+
   return (
     <Card
       title={subscription?"Your Plan: "+capitalizeFirstLetter(subscription?.prices?.products?.type):""}
@@ -58,12 +79,12 @@ export default function CustomerPortalForm({ subscription,points }: Props) {
       footer={
         <>
           <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
-            <p className="pb-4 sm:pb-0">Available Points: </p>
-            <div>{points == -1 ? 'Unlimited' : points}</div>
+            <p className="pb-4 sm:pb-0">{billingPeriod}</p>
+            <div>Available  Points: {points == -1 ? 'Unlimited' : points}</div>
           </div>
           <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
-            <p className="pb-4 sm:pb-0">Download Products: </p>
-            <div><Link href="/">Click here to download</Link></div>
+            <p className="pb-4 sm:pb-0">{nextBillingDate} </p>
+            <div><Link href="/">Manage Your Subscription</Link></div>
           </div>
         </>
       }
