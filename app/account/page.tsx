@@ -17,6 +17,8 @@ export default async function Account() {
   const { data: userDetails } = await supabase
     .from('users')
     .select('*')
+    // @ts-ignore
+    .eq('id', user?.id)
     .single();
   console.log("USER");
   console.log(userDetails);
