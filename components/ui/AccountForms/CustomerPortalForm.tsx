@@ -48,7 +48,7 @@ export default function CustomerPortalForm({ subscription,points }: Props) {
     return str[0].toUpperCase() + str.slice(1);
   }
 
-  function formatBillingPeriod(start, end) {
+  function formatBillingPeriod(start: string, end: string) {
     const startDate = parseISO(start);
     const endDate = parseISO(end);
 
