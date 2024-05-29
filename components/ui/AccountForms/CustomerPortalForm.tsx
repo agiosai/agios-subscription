@@ -66,7 +66,7 @@ export default function CustomerPortalForm({ subscription,points }: Props) {
       nextBillingDate: `Next Billing Date: ${nextBillingDateFormatted}`
     };
   }
-  const { billingPeriod, nextBillingDate } = formatBillingPeriod(subscription?subscription.current_period_start:"", subscription?subscription.current_period_end:"");
+  const { billingPeriod, nextBillingDate } = subscription ? formatBillingPeriod(subscription?subscription.current_period_start:"", subscription?subscription.current_period_end:""):{billingPeriod:"",nextBillingDate:""};
 
   return (
     <Card
