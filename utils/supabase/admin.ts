@@ -260,7 +260,8 @@ const manageSubscriptionStatusChange = async (
   subscriptionId: string,
   customerId: string,
   uid: string,
-  createAction = false
+  createAction = false,
+  status: string = 'Active'
 ) => {
   const upsertedStripeCustomer = await upsertCustomerToSupabase(
     uid,
@@ -367,7 +368,7 @@ const manageSubscriptionStatusChange = async (
   const { error } = await supabaseAdmin
     .from('users')
     //@ts-ignore
-    .update({ points:  points,type:productData.type,subscription:'Active'})
+    .update({ points:  points,type:productData.type,subscription:status})
     .eq('id', uid)
   // For a new subscription copy the billing details to the customer object.
   // NOTE: This is a costly operation and should happen at the very end.

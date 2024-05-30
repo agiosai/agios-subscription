@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Card from '../../ui/Card';
 import { Tables } from '../../../types_db';
 import { addDays, format, parseISO } from 'date-fns';
+import Modal from '@/components/ui/Modal/Modal';
 
 type Subscription = Tables<'subscriptions'>;
 type Price = Tables<'prices'>;
@@ -23,12 +24,15 @@ type SubscriptionWithPriceAndProduct = Subscription & {
 interface Props {
   subscription: SubscriptionWithPriceAndProduct | null;
   points: number | null;
+  paddlesubscription:any
 }
 
-export default function CustomerPortalForm({ subscription,points }: Props) {
+export default function CustomerPortalForm({ subscription,points,paddlesubscription }: Props) {
   const router = useRouter();
   const currentPath = usePathname();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
 
   const subscriptionPrice =
     subscription &&
@@ -47,6 +51,14 @@ export default function CustomerPortalForm({ subscription,points }: Props) {
   function capitalizeFirstLetter(str: any) {
     return str[0].toUpperCase() + str.slice(1);
   }
+
+  const handleModalClose = () => {
+    setShowModal(false);
+  };
+  const handleModalOpen = () => {
+    setShowModal(true);
+  };
+
 
   function formatBillingPeriod(start: string, end: string) {
     const startDate = parseISO(start);
@@ -84,8 +96,11 @@ export default function CustomerPortalForm({ subscription,points }: Props) {
           </div>
           <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
             <p className="pb-4 sm:pb-0">{nextBillingDate} </p>
-            <div><Link href="/">Manage Your Subscription</Link></div>
+            <div><a href="javascript:void(0)" onClick={handleModalOpen} >Manage Your Subscription</a></div>
           </div>
+          {
+            showModal && <Modal handleModalClose={handleModalClose} cancelLink={paddlesubscription?.managementUrls?.cancel} UpdateLink={paddlesubscription?.managementUrls?.updatePaymentMethod}/>
+          }
         </>
       }
     >

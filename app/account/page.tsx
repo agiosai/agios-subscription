@@ -5,6 +5,21 @@ import { createClient } from '../../utils/supabase/server';
 import { redirect } from 'next/navigation';
 import Topup from '../../components/ui/AccountForms/Topup';
 import Download from '@/components/ui/AccountForms/Download';
+import { Environment, Paddle } from '@paddle/paddle-node-sdk';
+import process from 'process';
+import Modal from '@/components/ui/Modal/Modal';
+
+let paddleEnv = {
+  environment: Environment.production
+}
+
+if (process.env.PADDLE_ENV === 'sandbox'){
+  paddleEnv = {
+    environment: Environment.sandbox
+  }
+}
+// @ts-ignore
+const paddle = new Paddle(process.env.PADDLE_API_KEY,paddleEnv);
 
 export default async function Account() {
   const supabase = createClient();
@@ -28,6 +43,8 @@ export default async function Account() {
     .select('*, prices(*, products(*))')
     .in('status', ['trialing', 'active'])
     .maybeSingle();
+// @ts-ignore
+  const paddlesubscription = await paddle.subscriptions.get(subscription?.id);
 
   // @ts-ignore
   const { data: products,productError } = await supabase
@@ -60,7 +77,8 @@ export default async function Account() {
         </div>
       </div>
       <div className="p-4">
-        <CustomerPortalForm subscription={subscription} points={userDetails? userDetails.points:null}/>
+        {/*{JSON.stringify(paddlesubscription)}*/}
+        <CustomerPortalForm subscription={subscription} points={userDetails? userDetails.points:null} paddlesubscription={JSON.parse(JSON.stringify(paddlesubscription))}/>
         {/*{*/}
         {/*  subscription?*/}
         {/*    <Topup products={products} subscription={subscription} user={user}/>*/}

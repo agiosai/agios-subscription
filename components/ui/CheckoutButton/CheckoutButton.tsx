@@ -7,6 +7,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { getURL } from '../../../utils/helpers';
 import { router } from 'next/client';
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 // @ts-ignore
 export default function CheckoutButton({priceId,subscription,user,isTopup}){
@@ -25,35 +26,52 @@ export default function CheckoutButton({priceId,subscription,user,isTopup}){
         return router.push('/account');
       }
     setPriceIdLoading(priceId);
-      if (subscription?.id){
-        let data = JSON.stringify({
-          price_id: priceId,
-          uuid: user?.id,
-          subscription_id: subscription?.id
+      if (subscription?.id && subscription?.status === 'active'){
+        Swal.fire({
+          title: 'Please confirm!',
+          text: 'Do you want to proceed?',
+          icon: "warning",
+          confirmButtonText: 'Ok',
+          showCancelButton: true,
+          cancelButtonText: 'Cancel'
+        }).then(function(isConfirm) {
+          console.log(isConfirm);
+          console.log(subscription);
+          if (isConfirm.isConfirmed) {
+
+            let data = JSON.stringify({
+              price_id: priceId,
+              uuid: user?.id,
+              subscription_id: subscription?.id
+            });
+
+            let config = {
+              method: 'post',
+              maxBodyLength: Infinity,
+              url: '/api/upgrade',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              data : data
+            };
+
+            axios.request(config)
+              .then((response) => {
+                console.log(JSON.stringify(response.data));
+                if (response.data.success){
+                  router.push(getURL("success"));
+                }else {
+                  alert('Something went wrong');
+                }
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          }else {
+
+            setPriceIdLoading('0');
+          }
         });
-
-        let config = {
-          method: 'post',
-          maxBodyLength: Infinity,
-          url: '/api/upgrade',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          data : data
-        };
-
-        axios.request(config)
-          .then((response) => {
-            console.log(JSON.stringify(response.data));
-            if (response.data.success){
-              router.push(getURL("success"));
-            }else {
-              alert('Something went wrong');
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-          });
       }else {
 
         paddle?.Checkout.open({

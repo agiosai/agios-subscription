@@ -109,6 +109,18 @@ export async function POST(req: Request) {
         case 'subscription.activated':
 
           break;
+        case 'subscription.updated':
+          const subscription = bodyObj.data;
+          if(subscription?.scheduled_change?.action == 'cancel'){
+            await manageSubscriptionStatusChange(
+              transaction.subscription_id as string,
+              transaction.customer_id as string,
+              transaction.custom_data.uuid,
+              true,
+              'Cancelled'
+            );
+          }
+          break;
         default:
           throw new Error('Unhandled relevant event!');
       }
