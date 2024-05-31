@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { FacebookIcon } from 'lucide-react';
 import { faFacebookF, faInstagram, faTiktok, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import SingleLogo from '@/components/icons/SingleLogo';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Footer() {
@@ -17,7 +18,7 @@ export default function Footer() {
           <div className="flex items-center mt-10">
             <Link href="/" className="flex items-center font-bold">
         <span className="mr-2 border rounded-full border-zinc-700">
-          <Logo/>
+          <SingleLogo/>
         </span>
             </Link>
           </div>
@@ -49,7 +50,7 @@ export default function Footer() {
             </Link>
           </div>
           <div className="flex items-center justify-end space-x-6">
-            <Link href="/privacy-policy" className="text-white transition duration-150 ease-in-out hover:text-zinc-200">
+            <Link href="https://blog.agios.live/privacy-policy/" className="text-white transition duration-150 ease-in-out hover:text-zinc-200">
               Privacy Policy
             </Link>
             <Link href="/terms-of-use" className="text-white transition duration-150 ease-in-out hover:text-zinc-200">
@@ -59,7 +60,7 @@ export default function Footer() {
         </div>
         <div className="pb-10 flex flex-col items-end justify-end mt-1 space-y-4 md:flex-row bg-zinc-900">
           <div className="text-white">
-            &copy; {new Date().getFullYear()} AGI OS
+            &copy; {new Date().getFullYear()} CHINGU AI PTE. LTD. All rights reserved.
           </div>
         </div>
       </div>

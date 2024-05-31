@@ -16,6 +16,7 @@ import OauthSignIn from '../../../components/ui/AuthForms/OauthSignIn';
 import ForgotPassword from '../../../components/ui/AuthForms/ForgotPassword';
 import UpdatePassword from '../../../components/ui/AuthForms/UpdatePassword';
 import SignUp from '../../../components/ui/AuthForms/Signup';
+import SingleLogo from '@/components/icons/SingleLogo';
 
 export default async function SignIn({
   params,
@@ -58,7 +59,7 @@ export default async function SignIn({
     <div className="flex justify-center height-screen-helper">
       <div className="flex flex-col justify-between max-w-lg p-3 m-auto w-80 ">
         <div className="flex justify-center pb-12 ">
-          <Logo width="64px" height="64px" />
+          <SingleLogo width="64px" height="64px" />
         </div>
         <Card
           title={

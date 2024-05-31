@@ -49,19 +49,25 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
-      <body className="bg-black loading">
-        <Navbar />
-        <main
-          id="skip"
-          className="min-h-[calc(100dvh-4rem)] md:min-h[calc(100dvh-5rem)]"
-        >
-          {children}
-        </main>
-        <Footer />
-        <Suspense>
-          <Toaster />
-        </Suspense>
-      </body>
+    <head>
+
+
+      <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet"/>
+
+    </head>
+    <body className="bg-black loading">
+    <Navbar />
+    <main
+      id="skip"
+      className="min-h-[calc(100dvh-4rem)] md:min-h[calc(100dvh-5rem)]"
+    >
+      {children}
+    </main>
+    <Footer />
+    <Suspense>
+      <Toaster />
+    </Suspense>
+    </body>
     </html>
   );
 }

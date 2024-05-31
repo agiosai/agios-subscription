@@ -1,3 +1,5 @@
+/*@import '@sweetalert2/themes/dark/dark.scss';*/
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

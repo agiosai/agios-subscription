@@ -10,9 +10,12 @@ import axios from 'axios';
 import Swal from 'sweetalert2'
 
 // @ts-ignore
-export default function CheckoutButton({priceId,subscription,user,isTopup}){
+export default function CheckoutButton({priceId,subscription,user,isTopup,upackage,amount,cycle}){
   const paddle = usePaddle();
   const [priceIdLoading, setPriceIdLoading] = useState<string>();
+  const [selectedPackage, setSelectedPackage] = useState<string>();
+  const [selectedAmount, setSelectedAmount] = useState<string>();
+  const [selectedCycle, setSelectedCycle] = useState<string>();
   const currentPath = usePathname();
 
   const router = useRouter();
@@ -26,12 +29,16 @@ export default function CheckoutButton({priceId,subscription,user,isTopup}){
         return router.push('/account');
       }
     setPriceIdLoading(priceId);
+      console.log(upackage);
+      setSelectedPackage(upackage);
+      setSelectedAmount(amount);
+      setSelectedCycle(cycle);
       if (subscription?.id && subscription?.status === 'active'){
         Swal.fire({
-          title: 'Please confirm!',
-          text: 'Do you want to proceed?',
-          icon: "warning",
-          confirmButtonText: 'Ok',
+          // title: 'Please confirm!',
+          html: '<h2 class="text-1xl font-semibold leading-6 text-white">You have selected the '+upackage+' plan. This plan will cost '+amount+' per '+cycle+'. Confirm to proceed.</h2>',
+          // icon: "warning",
+          confirmButtonText: 'Confirm',
           showCancelButton: true,
           cancelButtonText: 'Cancel'
         }).then(function(isConfirm) {

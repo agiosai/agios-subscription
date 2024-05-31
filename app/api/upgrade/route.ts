@@ -30,6 +30,8 @@ export async function POST(req: Request) {
   };
   try {
     const response = await axios.request(config);
+    console.log('Paddle upgrade response:');
+    console.log(response.data.data);
     if (response.data.data.status === 'active'){
       await manageSubscriptionStatusChange(
         response.data.data.id,

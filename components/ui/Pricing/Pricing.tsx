@@ -157,10 +157,10 @@ export default function Pricing({ user, products, subscription, features,feature
         <div className="max-w-6xl px-4 py-8 mx-auto sm:py-24 sm:px-6 lg:px-8">
           <div className="sm:flex sm:flex-col sm:align-center">
             <h1 className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
-              Let's get you started with AGI OS
+              Launch Your AGI OS Experience
             </h1>
             <p className="max-w-2xl m-auto mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl">
-              Simple, all-inclusive dynamic pricing.
+              Straightforward pricing, extraordinary capabilities.
             </p>
             <div className="relative self-center mt-6 bg-zinc-900 rounded-lg p-0.5 flex sm:mt-8 border border-zinc-800">
               {intervals.includes('month') && (
@@ -285,7 +285,7 @@ export default function Pricing({ user, products, subscription, features,feature
                         {/*>*/}
                         {/*  {subscription ? 'Manage' : 'Subscribe'}*/}
                         {/*</Button>*/}
-                        <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} />
+                        <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name} amount={priceString} cycle={price.interval}/>
                       </div>
                     </div>
                   );
