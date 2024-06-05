@@ -1,11 +1,12 @@
 'use client';
 
-import Button from '../../../components/ui/Button';
+
 import Card from '../../../components/ui/Card';
 import { updateName } from '../../../utils/auth-helpers/server';
 import { handleRequest } from '../../../utils/auth-helpers/client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import Button from '../Button';
 
 export default function NameForm({ userName }: { userName: string }) {
   const router = useRouter();
@@ -29,7 +30,7 @@ export default function NameForm({ userName }: { userName: string }) {
       description="Please enter your full name, or a display name you are comfortable with."
       footer={
         <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
-          <p className="pb-4 sm:pb-0">64 characters maximum</p>
+          {/*<p className="pb-4 sm:pb-0">64 characters maximum</p>*/}
           <Button
             variant="slim"
             type="submit"

@@ -8,7 +8,6 @@ import cn from 'classnames';
 import { useRouter, usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import CheckoutButton from '../../../components/ui/CheckoutButton/CheckoutButton';
-import Button from '../Button';
 
 type Subscription = Tables<'subscriptions'>;
 type Product = Tables<'products'>;

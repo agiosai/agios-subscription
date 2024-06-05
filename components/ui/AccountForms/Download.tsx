@@ -1,6 +1,5 @@
 'use client';
 
-import Button from '../../../components/ui/Button';
 import Card from '../../../components/ui/Card';
 import { updateName } from '../../../utils/auth-helpers/server';
 import { handleRequest } from '../../../utils/auth-helpers/client';
@@ -9,6 +8,7 @@ import { useEffect, useState } from 'react';
 import cn from 'classnames';
 import Image from 'next/image';
 import { detectOS } from '@/utils/helpers';
+import Button from '@/components/ui/Button';
 
 export default function Download() {
   const router = useRouter();
@@ -27,15 +27,15 @@ export default function Download() {
       description=""
       footer={
         <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
-          <p className="pb-4 sm:pb-0">{os} Detected</p>
-          <Button
-            variant="slim"
-            type="submit"
-            form="nameForm"
-            loading={isSubmitting}
-          >
-            Download Here
-          </Button>
+          {/*<p className="pb-4 sm:pb-0">{os} Detected</p>*/}
+          {/*<Button*/}
+          {/*  variant="slim"*/}
+          {/*  type="submit"*/}
+          {/*  form="nameForm"*/}
+          {/*  loading={isSubmitting}*/}
+          {/*>*/}
+          {/*  Download Here*/}
+          {/*</Button>*/}
         </div>
       }
     >
@@ -48,7 +48,7 @@ export default function Download() {
             'max-w-xs' // Sets a maximum width to the cards to prevent them from getting too large
           )}>
             <div className="p-3">
-              <p className="mt-4 text-zinc-300"><Image src="/microsoft-svgrepo-com.png" width={0} height={0} sizes="100vw" alt="Windows Logo"
+              <p className="mt-4 text-zinc-300"><Image src="/windows.png" width={0} height={0} sizes="100vw" alt="Windows Logo"
                                                        style={{ width: '100%', height: '100%' }} /></p>
               <p className="mt-4">
                       <span className=" font-bold white">
@@ -63,7 +63,7 @@ export default function Download() {
             'max-w-xs' // Sets a maximum width to the cards to prevent them from getting too large
           )}>
             <div className="p-3">
-              <p className="mt-4 text-zinc-300"><Image src="/apple-svgrepo-com.png" width={0} height={0} sizes="100vw" alt="Windows Logo"
+              <p className="mt-4 text-zinc-300"><Image src="/macos.png" width={0} height={0} sizes="100vw" alt="Windows Logo"
                                                        style={{ width: '100%', height: '100%' }} /></p>
               <p className="mt-4">
                       <span className="font-bold white">
@@ -78,7 +78,7 @@ export default function Download() {
             'max-w-xs' // Sets a maximum width to the cards to prevent them from getting too large
           )}>
             <div className="p-3">
-              <p className="mt-4 text-zinc-300"><Image src="/linux-svgrepo-com.png" width={0} height={0} sizes="100vw" alt="Windows Logo"
+              <p className="mt-4 text-zinc-300"><Image src="/linux.png" width={0} height={0} sizes="100vw" alt="Windows Logo"
                                                        style={{ width: '100%', height: '100%' }} /></p>
               <p className="mt-4">
                       <span className="font-bold white">

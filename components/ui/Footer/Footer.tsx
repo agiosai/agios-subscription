@@ -53,8 +53,8 @@ export default function Footer() {
             <Link href="https://blog.agios.live/privacy-policy/" className="text-white transition duration-150 ease-in-out hover:text-zinc-200">
               Privacy Policy
             </Link>
-            <Link href="/terms-of-use" className="text-white transition duration-150 ease-in-out hover:text-zinc-200">
-              Terms of Use
+            <Link href="https://blog.agios.live/terms-of-service/" className="text-white transition duration-150 ease-in-out hover:text-zinc-200">
+              Terms of Service
             </Link>
           </div>
         </div>

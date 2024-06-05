@@ -7,7 +7,8 @@ import Link from 'next/link';
 import Card from '../../ui/Card';
 import { Tables } from '../../../types_db';
 import { addDays, format, parseISO } from 'date-fns';
-import Modal from '@/components/ui/Modal/Modal';
+import UpdatePayment from '@/components/ui/UpdatePayment/UpdatePayment';
+import { useDisclosure } from '@nextui-org/modal';
 
 type Subscription = Tables<'subscriptions'>;
 type Price = Tables<'prices'>;
@@ -34,6 +35,7 @@ export default function CustomerPortalForm({ subscription,points,paddlesubscript
   const [showModal, setShowModal] = useState(false);
 
 
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const subscriptionPrice =
     subscription &&
     new Intl.NumberFormat('en-US', {
@@ -94,13 +96,15 @@ export default function CustomerPortalForm({ subscription,points,paddlesubscript
             <p className="pb-4 sm:pb-0">{billingPeriod}</p>
             <div>Available  Points: {points == -1 ? 'Unlimited' : points}</div>
           </div>
-          <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
-            <p className="pb-4 sm:pb-0">{nextBillingDate} </p>
-            <div><a href="javascript:void(0)" onClick={handleModalOpen} >Manage Your Subscription</a></div>
-          </div>
           {
-            showModal && <Modal handleModalClose={handleModalClose} cancelLink={paddlesubscription?.managementUrls?.cancel} UpdateLink={paddlesubscription?.managementUrls?.updatePaymentMethod}/>
+            subscription &&
+            <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
+              <p className="pb-4 sm:pb-0">{nextBillingDate} </p>
+              <div><a href="javascript:void(0)" onClick={onOpen}>Update Your Payment Method</a></div>
+            </div>
           }
+            <UpdatePayment handleModalClose={handleModalClose} cancelLink={paddlesubscription?.managementUrls?.cancel}
+                           UpdateLink={paddlesubscription?.managementUrls?.updatePaymentMethod} onOpen={onOpen} isOpen={isOpen} onOpenChange={onOpenChange} />
         </>
       }
     >

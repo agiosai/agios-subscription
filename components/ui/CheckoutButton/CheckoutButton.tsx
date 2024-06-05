@@ -1,13 +1,13 @@
 "use client"
 // import usePaddle from "../hooks/usePaddle";
 import usePaddle from '../../../hooks/usePaddle';
-import Button from '../../../components/ui/Button';
 import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { getURL } from '../../../utils/helpers';
 import { router } from 'next/client';
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import Button from '@/components/ui/Button';
 
 // @ts-ignore
 export default function CheckoutButton({priceId,subscription,user,isTopup,upackage,amount,cycle}){
@@ -66,7 +66,7 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
               .then((response) => {
                 console.log(JSON.stringify(response.data));
                 if (response.data.success){
-                  router.push(getURL("success"));
+                  router.push(getURL("switchsuccess"));
                 }else {
                   alert('Something went wrong');
                 }
@@ -95,6 +95,8 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
             // other custom metadata you want to pass
             uuid:user?.id
           },
+          // @ts-ignore
+          allowLogout:false,
           settings: {
             successUrl: getURL("success")
             // settings like successUrl and theme

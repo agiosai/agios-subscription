@@ -7,7 +7,7 @@ import Topup from '../../components/ui/AccountForms/Topup';
 import Download from '@/components/ui/AccountForms/Download';
 import { Environment, Paddle } from '@paddle/paddle-node-sdk';
 import process from 'process';
-import Modal from '@/components/ui/Modal/Modal';
+import UpdatePayment from '@/components/ui/UpdatePayment/UpdatePayment';
 
 let paddleEnv = {
   environment: Environment.production
@@ -44,7 +44,7 @@ export default async function Account() {
     .in('status', ['trialing', 'active'])
     .maybeSingle();
 // @ts-ignore
-  const paddlesubscription = await paddle.subscriptions.get(subscription?.id);
+  const paddlesubscription = subscription? await paddle.subscriptions.get(subscription?.id):null;
 
   // @ts-ignore
   const { data: products,productError } = await supabase
@@ -72,19 +72,19 @@ export default async function Account() {
             Account
           </h1>
           <p className="max-w-2xl m-auto mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl">
-            We partnered with Paddle for a simplified billing.
+            Personalize your AGI OS and manage your account with ease.
           </p>
         </div>
       </div>
       <div className="p-4">
         {/*{JSON.stringify(paddlesubscription)}*/}
         <CustomerPortalForm subscription={subscription} points={userDetails? userDetails.points:null} paddlesubscription={JSON.parse(JSON.stringify(paddlesubscription))}/>
-        {/*{*/}
-        {/*  subscription?*/}
-        {/*    <Topup products={products} subscription={subscription} user={user}/>*/}
-        {/*  :<></>*/}
-        {/*}*/}
-        <Download/>
+        {
+          subscription?
+            <Download/>
+          :<></>
+        }
+
         <NameForm userName={user?.user_metadata.full_name ?? ''} />
         <EmailForm userEmail={user.email} />
       </div>

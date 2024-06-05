@@ -1,6 +1,5 @@
 'use client';
 
-import Button from '../../ui/Button';
 import Card from '../../ui/Card';
 import { updateEmail } from '../../../utils/auth-helpers/server';
 import { handleRequest } from '../../../utils/auth-helpers/client';
@@ -30,7 +29,7 @@ export default function EmailForm({
   return (
     <Card
       title="Your Email"
-      description="Please enter the email address you want to use to login."
+      description=""
     >
       <div className="mt-8 mb-4 text-xl font-semibold">
         <span>{userEmail}</span>

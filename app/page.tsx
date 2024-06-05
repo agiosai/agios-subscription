@@ -3,6 +3,8 @@ import { createClient } from '../utils/supabase/server';
 
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import { NextUIProvider } from '@nextui-org/react';
+import {ThemeProvider as NextThemesProvider} from "next-themes";
 config.autoAddCss = false;
 
 export default async function PricingPage() {
@@ -40,6 +42,8 @@ export default async function PricingPage() {
   console.log(products);
   // @ts-ignore
   return (
+    <NextUIProvider>
+      <NextThemesProvider attribute="class" defaultTheme="dark">
     <Pricing
       user={user}
       // @ts-ignore
@@ -49,6 +53,8 @@ export default async function PricingPage() {
       feature_headers={feature_headers}
       // @ts-ignore
       features={features}
-    />
+      />
+      </NextThemesProvider>
+    </NextUIProvider>
   );
 }

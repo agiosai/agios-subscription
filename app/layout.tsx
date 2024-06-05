@@ -7,8 +7,8 @@ import { getURL } from '../utils/helpers';
 import 'styles/main.css';
 
 const meta = {
-  title: 'Next.js Subscription Starter',
-  description: 'Brought to you by Vercel, Stripe, and Supabase.',
+  title: 'AGI OS',
+  description: 'Next Gen Autonomous AGI for Businesses.',
   cardImage: '/og.png',
   robots: 'follow, index',
   favicon: '/favicon.ico',
@@ -59,7 +59,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
     <Navbar />
     <main
       id="skip"
-      className="min-h-[calc(100dvh-4rem)] md:min-h[calc(100dvh-5rem)]"
+      className="min-h-[calc(100dvh-4rem)] md:min-h[calc(100dvh-5rem)] dark text-foreground bg-background"
     >
       {children}
     </main>
