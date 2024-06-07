@@ -1,6 +1,4 @@
 'use client';
-
-
 import LogoCloud from '../../../components/ui/LogoCloud';
 import type { Tables } from '../../../types_db';
 import { User } from '@supabase/supabase-js';
@@ -65,6 +63,7 @@ export default function Pricing({ user, products, subscription, features,feature
   const currentPath = usePathname();
   console.log("features",features);
   console.log("feature_headers",feature_headers);
+  console.log("products",products);
   const countPackages = (interval:string)=>{
     let pro = 0;
     let basic = 0;

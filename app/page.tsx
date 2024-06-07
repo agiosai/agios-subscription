@@ -42,7 +42,7 @@ export default async function PricingPage() {
   console.log(products);
   // @ts-ignore
   return (
-    <NextUIProvider>
+    // <NextUIProvider>
       <NextThemesProvider attribute="class" defaultTheme="dark">
     <Pricing
       user={user}
@@ -55,6 +55,6 @@ export default async function PricingPage() {
       features={features}
       />
       </NextThemesProvider>
-    </NextUIProvider>
+    // </NextUIProvider>
   );
 }
