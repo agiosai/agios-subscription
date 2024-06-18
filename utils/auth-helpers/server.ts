@@ -186,6 +186,10 @@ export async function signUp(formData: FormData) {
       emailRedirectTo: callbackURL
     }
   });
+  console.log("Sign UP");
+  console.log(data);
+  console.log(error);
+
 
   if (error) {
     redirectPath = getErrorRedirect(
