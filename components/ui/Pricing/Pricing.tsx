@@ -4,8 +4,24 @@ import type { Tables } from '../../../types_db';
 import { User } from '@supabase/supabase-js';
 import cn from 'classnames';
 import { useRouter, usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CheckoutButton from '../../../components/ui/CheckoutButton/CheckoutButton';
+import {
+  Table,
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+  Chip,
+  Tooltip,
+  getKeyValue,
+  Spacer, Button
+} from '@nextui-org/react';
+import Image from 'next/image';
+import { Container } from 'postcss';
+import { Grid } from 'lucide-react';
+import { Card, CardBody } from '@nextui-org/card';
 
 type Subscription = Tables<'subscriptions'>;
 type Product = Tables<'products'>;
@@ -64,6 +80,104 @@ export default function Pricing({ user, products, subscription, features,feature
   console.log("features",features);
   console.log("feature_headers",feature_headers);
   console.log("products",products);
+  const columns = [
+    {name: "", uid: "type"},
+    {name: "Basic", uid: "basic"},
+    {name: "Pro", uid: "pro"},
+  ];
+  const data = [
+    {
+      feature: 'Core AI Capabilities',
+      description: '• Problem Solving\n• Dynamic Content Generation\n• Strategic Insights\n• Coding Assistance\n• Research',
+      basic: true,
+      pro: true,
+    },
+    {
+      feature: 'Interactive Conversation Mode',
+      description: 'An engaging dialogue system facilitates fluid, human-like conversations, making interactions with AGI OS as natural as speaking to a personal assistant.',
+      basic: true,
+      pro: true,
+    },
+    {
+      feature: 'Camera Assistance',
+      description: 'AGI OS’ visual recognition utilizes your PC’s camera for various tasks like scanning documents, recognizing objects, or even participating in video conferences with enhanced AI-driven insights.',
+      basic: true,
+      pro: true,
+    },
+    {
+      feature: 'Autoweb Integration',
+      description: 'Seamlessly interacts with third-party AI tools for expanded functionalities like video editing, music generation, and more.',
+      basic: true,
+      pro: true,
+    },
+    {
+      feature: 'Secretarial Services',
+      description: 'Automate booking, purchases, and reservations effortlessly.',
+      basic: true,
+      pro: true,
+    },
+    {
+      feature: 'PC Control',
+      description: 'Controls and utilizes installed applications like Notepad and Office tools directly through voice commands or typed input. A cohesive experience that blends AGI OS capabilities with your desktop environment for streamlined operations.',
+      basic: true,
+      pro: true,
+    },
+    {
+      feature: 'Permanent Private Memory',
+      description: 'Fractal SPR (Sparse Priming Representation) is a groundbreaking memory organization technique that empowers AGI OS to remember past interactions, learn from user preferences, and personalize the user experience continuously.',
+      basic: true,
+      pro: true,
+    },
+    {
+      feature: 'On-Screen Assistance',
+      description: 'Provides real-time assistance with anything displayed on your screen, from explaining software functions to helping navigate complex interfaces.',
+      basic: false,
+      pro: true,
+    },
+    {
+      feature: 'Advanced Research Capabilities',
+      description: 'Conducts thorough research quickly and accurately, pulling from extensive databases and using sophisticated data analysis techniques.',
+      basic: false,
+      pro: true,
+    },
+    {
+      feature: 'Autopilot Work Mode',
+      description: 'AGI OS can operate autonomously to perform tasks such as content creation, scheduling, posting, operations, and data analysis, optimizing productivity without constant user input.',
+      basic: false,
+      pro: true,
+    },
+  ];
+
+  const faqs = [
+    {
+      question: "What is AGI OS?",
+      answer: "AGI OS is an advanced Artificial General Intelligence software designed to enhance efficiency and automate a vast range of tasks. Our technology supports professionals across various sectors, helping increase efficiency and productivity. AGI OS integrates seamlessly with your existing systems to act as your personal digital assistant."
+    },
+    {
+      question: "What operating systems is AGI OS compatible with?",
+      answer: "AGI OS is currently compatible with Windows 10 and Windows 11, with plans to expand to Mac and Linux operating systems in the future."
+    },
+    {
+      question: "Does AGI OS require a specific browser to operate?",
+      answer: "Yes, AGI OS is currently compatible only with Google Chrome. To ensure full functionality, please install and use Google Chrome as your browser when working with AGI OS."
+    },
+    {
+      question: "How does AGI OS work?",
+      answer: "AGI OS utilizes state-of-the-art AI technology to perform computer-based tasks autonomously. Simply communicate your instructions with AGI OS using its conversational text or voice interface, and it executes these using the most relevant web services or applications. AGI OS learns from your preferences through memory retention and adjusts its functions to better align with your specific needs. This technology represents a significant advancement in AI, moving beyond mere information retrieval and content generation to full-scale task automation and delegation."
+    },
+    {
+      question: "Is AGI OS currently in beta version?",
+      answer: "Yes, the current version of AGI OS software is a beta release. This early version is available for users to test and provide feedback on its functionalities and performance. During this beta phase, we are actively refining features and addressing any issues to improve the software before its final release. Your feedback and insights are valuable to us and can significantly contribute to the development process."
+    },
+    {
+      question: "Do I need to keep the black command window open while using AGI OS?",
+      answer: "Yes, it's essential to keep the black command window open while AGI OS is running. This window displays real-time updates on the software’s operations, such as task processing and credit updates, which are crucial for monitoring the program’s status. It also provides important alerts that may require your attention, such as when AGI OS needs to be restarted. This is particularly important when using the beta version of AGI OS, as it ensures that you are informed of any essential actions needed to maintain smooth operation."
+    },
+    {
+      question: "What makes AGI OS different from other AI assistants?",
+      answer: "AGI OS goes beyond basic AI assistants by offering advanced research capabilities, seamless computer integration, and autopilot functionality. It’s like having a personal AI workforce at your fingertips, without the need for typing."
+    }
+  ];
   const countPackages = (interval:string)=>{
     let pro = 0;
     let basic = 0;
@@ -155,11 +269,48 @@ export default function Pricing({ user, products, subscription, features,feature
         <div className="max-w-6xl px-4 py-8 mx-auto sm:py-24 sm:px-6 lg:px-8">
           <div className="sm:flex sm:flex-col sm:align-center">
             <h1 className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
-              Launch Your AGI OS Experience
+              Meet Your New Hire: An Autonomous Workforce
             </h1>
+            <h2 className="text-3xl font-extrabold text-white sm:text-center sm:text-4xl">Tailored Plans for Every Ambition</h2>
             <p className="max-w-2xl m-auto mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl">
-              Straightforward pricing, extraordinary capabilities.
+              Designed to integrate seamlessly with your existing systems, AGI OS serves as a dynamic personal digital assistant. Ideal for professionals across all sectors, this tool allows you to automate a broad spectrum of tasks, enhancing efficiency and accelerating business growth.
+              AGI OS integrates seamlessly with your existing systems to act as your personal digital assistant. Our product is designed to enhance efficiency and productivity, supporting professionals across various sectors. Automate a vast range of tasks and accelerate your business growth with AGI OS.
+              Mac Compatibility: Coming Soon
+
             </p>
+            <div className="container mx-auto px-4 md:px-6">
+              <Table
+                aria-label="Feature Comparison Table"
+              >
+                <TableHeader>
+                  <TableColumn>Feature</TableColumn>
+                  <TableColumn width="33%" align={"center"} style={{textAlign:"center"}}>Basic</TableColumn>
+                  <TableColumn width="33%" align={"center"} style={{textAlign:"center"}}>Pro</TableColumn>
+                </TableHeader>
+                <TableBody>
+                  {data.map((item, index) => (
+                    <TableRow key={index}>
+                      <TableCell>
+                        <div>{item.feature}</div>
+                        <div>{item.description.split('\n').map((line, i) => (
+                          <span key={i}>{line}<br/></span>
+                        ))}</div>
+                      </TableCell>
+                      <TableCell style={{textAlign:"center"}}>
+                        {item.basic ? <Image src="/true.png" width={0} height={0} sizes="100vw" alt="Windows Logo"
+                                             style={{ width: '55px', height: '100%',marginLeft:'auto',marginRight:'auto' }} /> : <Image src="/false.png" width={0} height={0} sizes="100vw" alt="Windows Logo"
+                                                                                                   style={{ width: '55px', height: '100%',marginLeft:'auto',marginRight:'auto' }} />}
+                      </TableCell>
+                      <TableCell style={{textAlign:"center"}}>
+                        {item.pro ? <Image src="/true.png" width={0} height={0} sizes="100vw" alt="Windows Logo"
+                                           style={{ width: '55px', height: '100%',marginLeft:'auto',marginRight:'auto' }} /> : <Image src="/false.png" width={0} height={0} sizes="100vw" alt="Windows Logo"
+                                                                                                 style={{ width: '55px', height: '100%',marginLeft:'auto',marginRight:'auto' }} />}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
             <div className="relative self-center mt-6 bg-zinc-900 rounded-lg p-0.5 flex sm:mt-8 border border-zinc-800">
               {intervals.includes('month') && (
                 <button
@@ -231,64 +382,237 @@ export default function Pricing({ user, products, subscription, features,feature
 
             <div className="">
               <div className="container mx-auto px-4 md:px-6">
-                <div className="mt-8 space-y-4 sm:mt-16 sm:space-y-0 flex flex-wrap justify-center gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0">
-                {products.map((product) => {
-                  console.log(product?.prices[0].interval);
-                  const price = product?.prices?.find(
-                    (price) => price.interval === billingInterval
-                  );
-                  if (!price) return null;
-                  if (product.type !== billingType) {
-                    return null;
-                  }
-                  const priceString = new Intl.NumberFormat('en-US', {
-                    style: 'currency',
-                    currency: price.currency!,
-                    minimumFractionDigits: 0
-                  }).format((price?.unit_amount || 0));
-                  return (
-                    <div
-                      key={product.id}
-                      className={cn(
-                        'flex flex-col rounded-lg shadow-sm divide-y divide-zinc-600 bg-zinc-900',
-                        {
-                          'border border-pink-500': subscription
-                            ? price.id === subscription?.price_id
-                            : product.name === 'Freelancer'
-                        },
-                        'flex-1', // This makes the flex item grow to fill the space
-                        'basis-1/3', // Assuming you want each card to take up roughly a third of the container's width
-                        'max-w-xs' // Sets a maximum width to the cards to prevent them from getting too large
-                      )}
-                    >
-                      <div className="p-6 items-center text-center">
-                        <h2 className="text-2xl font-semibold leading-6 text-white">
-                          {product.name}
-                        </h2>
-                        <p className="mt-4 text-zinc-300">{product.description}</p>
-                        <p className="mt-8">
+                {/*<div className="mt-8 space-y-4 sm:mt-16 sm:space-y-0 flex flex-wrap justify-center gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0">*/}
+                {/*{products.map((product) => {*/}
+                {/*  console.log(product?.prices[0].interval);*/}
+                {/*  const price = product?.prices?.find(*/}
+                {/*    (price) => price.interval === billingInterval*/}
+                {/*  );*/}
+                {/*  if (!price) return null;*/}
+                {/*  if (product.type !== billingType) {*/}
+                {/*    return null;*/}
+                {/*  }*/}
+                {/*  const priceString = new Intl.NumberFormat('en-US', {*/}
+                {/*    style: 'currency',*/}
+                {/*    currency: price.currency!,*/}
+                {/*    minimumFractionDigits: 0*/}
+                {/*  }).format((price?.unit_amount || 0));*/}
+                {/*  return (*/}
+                {/*    <div*/}
+                {/*      key={product.id}*/}
+                {/*      className={cn(*/}
+                {/*        'flex flex-col rounded-lg shadow-sm divide-y divide-zinc-600 bg-zinc-900',*/}
+                {/*        {*/}
+                {/*          'border border-pink-500': subscription*/}
+                {/*            ? price.id === subscription?.price_id*/}
+                {/*            : product.name === 'Freelancer'*/}
+                {/*        },*/}
+                {/*        'flex-1', // This makes the flex item grow to fill the space*/}
+                {/*        'basis-1/3', // Assuming you want each card to take up roughly a third of the container's width*/}
+                {/*        'max-w-xs' // Sets a maximum width to the cards to prevent them from getting too large*/}
+                {/*      )}*/}
+                {/*    >*/}
+                {/*      <div className="p-6 items-center text-center">*/}
+                {/*        <h2 className="text-2xl font-semibold leading-6 text-white">*/}
+                {/*          {product.name}*/}
+                {/*        </h2>*/}
+                {/*        <p className="mt-4 text-zinc-300">{product.description}</p>*/}
+                {/*        <p className="mt-8">*/}
+                {/*      <span className="text-5xl font-extrabold white">*/}
+                {/*        {priceString}*/}
+                {/*      </span>*/}
+                {/*          <span className="text-base font-medium text-zinc-100">*/}
+                {/*        /{price.interval}*/}
+                {/*      </span>*/}
+                {/*        </p>*/}
+                {/*        /!*<Button*!/*/}
+                {/*        /!*  variant="slim"*!/*/}
+                {/*        /!*  type="button"*!/*/}
+                {/*        /!*  loading={priceIdLoading === price.id}*!/*/}
+                {/*        /!*  onClick={() => handleStripeCheckout(price)}*!/*/}
+                {/*        /!*  className="block w-full py-2 mt-8 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900"*!/*/}
+                {/*        /!*>*!/*/}
+                {/*        /!*  {subscription ? 'Manage' : 'Subscribe'}*!/*/}
+                {/*        /!*</Button>*!/*/}
+                {/*        <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name} amount={priceString} cycle={price.interval}/>*/}
+                {/*      </div>*/}
+                {/*    </div>*/}
+                {/*  );*/}
+                {/*})}*/}
+                {/*</div>*/}
+
+                <div
+                  className="mt-8 space-y-4 sm:mt-16 sm:space-y-0 flex flex-wrap justify-center gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0">
+                  <Table
+                    aria-label="Feature Comparison Table"
+                  >
+                    <TableHeader>
+                      <TableColumn width="50%" align={'center'} style={{ textAlign: 'center' }}>Basic</TableColumn>
+                      <TableColumn width="50%" align={'center'} style={{ textAlign: 'center' }}>Pro</TableColumn>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell style={{ alignContent: 'baseline' }}>
+                          {products.map((product) => {
+                            console.log(product?.prices[0].interval);
+                            const price = product?.prices?.find(
+                              (price) => price.interval === billingInterval
+                            );
+                            if (!price) return null;
+                            if (product.type !== 'basic') {
+                              return null;
+                            }
+                            const priceString = new Intl.NumberFormat('en-US', {
+                              style: 'currency',
+                              currency: price.currency!,
+                              minimumFractionDigits: 0
+                            }).format((price?.unit_amount || 0));
+                            return (
+                              <div
+                                key={product.id}
+                                style={{ marginTop: '10px' }}
+                                className={cn(
+                                  'flex flex-col rounded-lg shadow-sm divide-y divide-zinc-600 bg-zinc-900',
+                                  {
+                                    'border border-pink-500': subscription
+                                      ? price.id === subscription?.price_id
+                                      : product.name === 'Freelancer'
+                                  },
+                                  'flex-1', // This makes the flex item grow to fill the space
+                                  'basis-1/3' // Assuming you want each card to take up roughly a third of the container's width
+                                )}
+                              >
+                                <div className="p-6 items-center text-center">
+                                  <h2 className="text-2xl font-semibold leading-6 text-white">
+                                    {product.name}
+                                  </h2>
+                                  <p className="mt-4 text-zinc-300">{product.description}</p>
+                                  <p className="mt-8">
                       <span className="text-5xl font-extrabold white">
                         {priceString}
                       </span>
-                          <span className="text-base font-medium text-zinc-100">
+                                    <span className="text-base font-medium text-zinc-100">
                         /{price.interval}
                       </span>
-                        </p>
-                        {/*<Button*/}
-                        {/*  variant="slim"*/}
-                        {/*  type="button"*/}
-                        {/*  loading={priceIdLoading === price.id}*/}
-                        {/*  onClick={() => handleStripeCheckout(price)}*/}
-                        {/*  className="block w-full py-2 mt-8 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900"*/}
-                        {/*>*/}
-                        {/*  {subscription ? 'Manage' : 'Subscribe'}*/}
-                        {/*</Button>*/}
-                        <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name} amount={priceString} cycle={price.interval}/>
-                      </div>
-                    </div>
-                  );
-                })}
+                                  </p>
+                                  {/*<Button*/}
+                                  {/*  variant="slim"*/}
+                                  {/*  type="button"*/}
+                                  {/*  loading={priceIdLoading === price.id}*/}
+                                  {/*  onClick={() => handleStripeCheckout(price)}*/}
+                                  {/*  className="block w-full py-2 mt-8 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900"*/}
+                                  {/*>*/}
+                                  {/*  {subscription ? 'Manage' : 'Subscribe'}*/}
+                                  {/*</Button>*/}
+                                  <CheckoutButton priceId={price.id} subscription={subscription} user={user}
+                                                  isTopup={false} upackage={product.name} amount={priceString}
+                                                  cycle={price.interval} />
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </TableCell>
+                        <TableCell style={{ alignContent: 'baseline' }}>
+                          {products.map((product) => {
+                            console.log(product?.prices[0].interval);
+                            const price = product?.prices?.find(
+                              (price) => price.interval === billingInterval
+                            );
+                            if (!price) return null;
+                            if (product.type !== 'pro') {
+                              return null;
+                            }
+                            const priceString = new Intl.NumberFormat('en-US', {
+                              style: 'currency',
+                              currency: price.currency!,
+                              minimumFractionDigits: 0
+                            }).format((price?.unit_amount || 0));
+                            return (
+                              <div
+                                key={product.id}
+                                style={{ marginTop: '10px' }}
+                                className={cn(
+                                  'flex flex-col rounded-lg shadow-sm divide-y divide-zinc-600 bg-zinc-900',
+                                  {
+                                    'border border-pink-500': subscription
+                                      ? price.id === subscription?.price_id
+                                      : product.name === 'Freelancer'
+                                  },
+                                  'flex-1', // This makes the flex item grow to fill the space
+                                  'basis-1/3' // Assuming you want each card to take up roughly a third of the container's width
+                                )}
+                              >
+                                <div className="p-6 items-center text-center">
+                                  <h2 className="text-2xl font-semibold leading-6 text-white">
+                                    {product.name}
+                                  </h2>
+                                  <p className="mt-4 text-zinc-300">{product.description}</p>
+                                  <p className="mt-8">
+                      <span className="text-5xl font-extrabold white">
+                        {priceString}
+                      </span>
+                                    <span className="text-base font-medium text-zinc-100">
+                        /{price.interval}
+                      </span>
+                                  </p>
+                                  {/*<Button*/}
+                                  {/*  variant="slim"*/}
+                                  {/*  type="button"*/}
+                                  {/*  loading={priceIdLoading === price.id}*/}
+                                  {/*  onClick={() => handleStripeCheckout(price)}*/}
+                                  {/*  className="block w-full py-2 mt-8 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900"*/}
+                                  {/*>*/}
+                                  {/*  {subscription ? 'Manage' : 'Subscribe'}*/}
+                                  {/*</Button>*/}
+                                  <CheckoutButton priceId={price.id} subscription={subscription} user={user}
+                                                  isTopup={false} upackage={product.name} amount={priceString}
+                                                  cycle={price.interval} />
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
                 </div>
+                <br />
+                <h2 className="text-2xl font-extrabold text-white sm:text-center sm:text-3xl">Frequently Asked
+                  Questions</h2>
+                <Spacer y={1} />
+                {faqs.map((faq, index) => (
+                  <div key={index} style={{ marginTop: '10px' }}>
+                    <h4 className="text-xs font-semibold text-white sm:text-3xl">{faq.question}</h4>
+                    <p style={{ marginTop: '10px', textAlign: 'justify' }}>{faq.answer}</p>
+                    <hr style={{ marginTop: '10px' }} />
+                    <Spacer y={1} />
+                  </div>
+                ))}
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <div className="grid grid-cols-2" style={{alignContent:'center', justifyContent:'center',verticalAlign:'middle'}}>
+                  <div>
+                    <h3 className="text-2xl font-semibold text-white sm:text-3xl">Boost Your Workflow with AGI OS</h3>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <p style={{textAlign:'justify',marginRight:'20px'}}>
+                      Embrace the future of productivity with AGI OS—your ultimate autonomous assistant.
+
+                      AGI OS revolutionizes your workday, automating complex tasks from data analysis to project management with intuitive expertise. With AGI OS, boost your productivity, streamline your tasks, and unleash your business's potential.
+                    </p>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <button className="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 px-6 min-w-24 h-12 text-medium gap-3 rounded-full [&>svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none bg-primary text-primary-foreground data-[hover=true]:opacity-hover w-full md:h-11 md:w-auto">Get your digital companion</button>
+                  </div>
+                  <div className="">
+                    <img src="https://via.placeholder.com/500" alt="Placeholder" style={{ width: '100%' }} /></div>
+                </div>
+
                 {/*<div className="overflow-x-auto">*/}
                 {/*  <table className="w-full table-auto border-collapse">*/}
                 {/*    <thead>*/}
