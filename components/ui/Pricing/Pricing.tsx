@@ -354,17 +354,15 @@ export default function Pricing({ user, products, subscription, features, featur
           <h2 style={{ fontSize: '2rem', fontWeight: '800', color: 'white', textAlign: 'center', marginBottom: '2rem' }}>Frequently Asked Questions</h2>
           <div style={{ marginBottom: '4rem' }}>
             {faqs.map((faq, index) => (
-              <div key={index} style={{ marginTop: '20px', marginBottom: '20px' }}>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: '600', color: 'white' }}>{faq.question}</h3>
-                <p style={{ marginTop: '10px', textAlign: 'justify', color: '#d0d0d0' }}>{faq.answer}</p>
-                <hr style={{ marginTop: '10px', borderColor: '#666' }} />
-                <Spacer y={1} />
+              <div key={index} style={{ marginTop: '40px', marginBottom: '40px' }}>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: '600', color: 'white', marginBottom: '10px' }}>{faq.question}</h3>
+                <p style={{ marginTop: '10px', textAlign: 'justify', color: '#d0d0d0', marginBottom: '10px' }}>{faq.answer}</p>
               </div>
             ))}
           </div>
-          <div className="grid grid-cols-2" style={{ alignContent: 'center', justifyContent: 'center', verticalAlign: 'middle', marginBottom: '4rem', padding: '0 1rem' }}>
-            <div style={{ padding: '1rem' }}>
-              <h1 style={{ fontSize: '2rem', fontWeight: '600', color: 'white', textAlign: 'center' }}>Boost Your Workflow with AGI OS</h1>
+          <div className="grid grid-cols-2 rounded-lg" style={{ alignContent: 'center', justifyContent: 'center', verticalAlign: 'middle', marginBottom: '4rem', padding: '0 1rem', background: 'linear-gradient(90deg, rgba(41,38,64,1) 0%, rgba(126,113,245,1) 100%)' }}>
+            <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+              <h1 style={{ fontSize: '2rem', fontWeight: '600', color: 'white' }}>Boost Your Workflow with AGI OS</h1>
               <p style={{ textAlign: 'justify', margin: '1.25rem 0' }}>
                 Embrace the future of productivity with AGI OS—your ultimate autonomous assistant. AGI OS revolutionizes your workday, automating complex tasks from data analysis to project management with intuitive expertise. With AGI OS, boost your productivity, streamline your tasks, and unleash your business's potential.
               </p>
@@ -373,7 +371,7 @@ export default function Pricing({ user, products, subscription, features, featur
               </button>
             </div>
             <div style={{ padding: '1rem' }}>
-              <img src="https://4kwallpapers.com/images/walls/thumbs_3t/2218.png" alt="Windows logo" style={{ width: '100%', height: 'auto', objectFit: 'cover' }} />
+              <img src="https://4kwallpapers.com/images/walls/thumbs_3t/2218.png" alt="Windows logo" style={{ width: '100%', height: 'auto', objectFit: 'cover', borderRadius: '0.375rem' }} />
             </div>
           </div>
           <LogoCloud />
