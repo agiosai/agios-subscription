@@ -42,6 +42,8 @@ export default async function Account() {
     .from('subscriptions')
     .select('*, prices(*, products(*))')
     .in('status', ['trialing', 'active'])
+    // @ts-ignore
+    .eq('user_id', user?.id)
     .maybeSingle();
 // @ts-ignore
   const paddlesubscription = subscription? await paddle.subscriptions.get(subscription?.id):null;
