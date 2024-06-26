@@ -47,6 +47,8 @@ export default async function Account() {
     .maybeSingle();
 // @ts-ignore
   const paddlesubscription = subscription? await paddle.subscriptions.get(subscription?.id):null;
+  console.log("Paddle Subscription");
+  console.log(paddlesubscription);
 
   // @ts-ignore
   const { data: products,productError } = await supabase
@@ -82,7 +84,7 @@ export default async function Account() {
         {/*{JSON.stringify(paddlesubscription)}*/}
         <CustomerPortalForm subscription={subscription} points={userDetails? userDetails.points:null} paddlesubscription={JSON.parse(JSON.stringify(paddlesubscription))}/>
         {
-          subscription?
+          subscription && paddlesubscription?.status === 'active'?
             <Download/>
           :<></>
         }

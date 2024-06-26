@@ -84,20 +84,23 @@ export default function CustomerPortalForm({ subscription,points,paddlesubscript
 
   return (
     <Card
-      title={subscription?"Your Plan: "+capitalizeFirstLetter(subscription?.prices?.products?.type):""}
+      title={subscription && paddlesubscription?.status === 'active'?"Your Plan: "+capitalizeFirstLetter(subscription?.prices?.products?.type):""}
       description={
-        subscription
+        subscription && paddlesubscription?.status === 'active'
           ? `You are currently on the ${subscription?.prices?.products?.name} plan.`
           : 'You are not currently subscribed to any plan.'
       }
       footer={
         <>
-          <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
-            <p className="pb-4 sm:pb-0">{billingPeriod}</p>
-            <div>Available  Points: {points == -1 ? 'Unlimited' : points}</div>
-          </div>
           {
-            subscription &&
+            subscription && paddlesubscription?.status === 'active' &&
+            <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
+              <p className="pb-4 sm:pb-0">{billingPeriod}</p>
+              <div>Available Points: {points == -1 ? 'Unlimited' : points}</div>
+            </div>
+          }
+          {
+            subscription && paddlesubscription?.status === 'active' &&
             <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
               <p className="pb-4 sm:pb-0">{nextBillingDate} </p>
               <div><a href="javascript:void(0)" onClick={onOpen}>Update Your Payment Method</a></div>
@@ -109,7 +112,7 @@ export default function CustomerPortalForm({ subscription,points,paddlesubscript
       }
     >
       <div className="mt-8 mb-4 text-xl font-semibold">
-        {subscription ? (
+        {subscription && paddlesubscription?.status === 'active' ? (
           `${subscriptionPrice}/${subscription?.prices?.interval}`
         ) : (
           <Link href="/">Click here to choose your plan</Link>
