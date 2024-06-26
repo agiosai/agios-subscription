@@ -5,7 +5,7 @@ import process from 'process';
 export async function POST(req: Request) {
   const body = await req.json();
   let base_url = "https://api.paddle.com";
-  if (process.env.PADDLE_ENV){
+  if (process.env.PADDLE_ENV != 'production'){
     base_url = "https://sandbox-api.paddle.com";
   }
   let data = JSON.stringify({
