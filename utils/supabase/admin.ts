@@ -362,7 +362,10 @@ const manageSubscriptionStatusChange = async (
     points = priceData.points;
   }else {
     // @ts-ignore
-    points = userData.points + priceData.points;
+    points = priceData.points;
+  }
+  if (status === 'canceled'){
+    points = 0;
   }
   console.log("Niro points",points)
   const { error } = await supabaseAdmin
