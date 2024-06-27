@@ -15,8 +15,8 @@ export async function POST(req: Request) {
         "quantity": 1
       }
     ],
-    "proration_billing_mode": "full_next_billing_period"
-    // "proration_billing_mode": "prorated_immediately"
+    // "proration_billing_mode": "full_next_billing_period"
+    "proration_billing_mode": "prorated_immediately"
   });
   let config = {
     method: 'patch',
