@@ -359,7 +359,8 @@ const manageSubscriptionStatusChange = async (
   if (priceData.points == 0){
     points = -1;
   }else if (priceData?.points == -1){
-    points = priceData.points;
+    // @ts-ignore
+    points = userData.points +priceData.points;
   }else {
     // @ts-ignore
     points = priceData.points;
