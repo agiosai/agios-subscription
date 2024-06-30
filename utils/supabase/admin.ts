@@ -360,10 +360,10 @@ const manageSubscriptionStatusChange = async (
     points = -1;
   }else if (priceData?.points == -1){
     // @ts-ignore
-    points = userData.points +priceData.points;
+    points = priceData.points;
   }else {
     // @ts-ignore
-    points = priceData.points;
+    points = userData.points +priceData.points;
   }
   if (status === 'canceled'){
     points = 0;
