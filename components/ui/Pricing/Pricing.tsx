@@ -29,7 +29,7 @@ type FeatureHeader = Tables<'featureheaders'>
 // @ts-ignore
 interface ProductWithPrices extends Product {
   prices: Price[];
-  type: String;
+  type:String;
 }
 interface PriceWithProduct extends Price {
   products: Product | null;
@@ -318,32 +318,7 @@ export default function Pricing({ user, products, subscription, features, featur
                           <h2 style={{ fontSize: '2rem', fontWeight: '600', color: 'white' }}>{product.name}</h2>
                           <p style={{ marginTop: '1rem', color: '#b0b0b0' }}>{product.description}</p>
                           <p style={{ marginTop: '2rem', fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{price.interval}</span></p>
-                          {subscription && subscription.prices?.products?.id === product.id ? (
-                            <button
-                              disabled
-                              style={{
-                                backgroundColor: 'gray',
-                                color: 'white',
-                                cursor: 'not-allowed',
-                                padding: '0.5rem 1rem',
-                                borderRadius: '0.375rem',
-                                fontSize: '1rem',
-                                fontWeight: '500',
-                              }}
-                            >
-                              Active
-                            </button>
-                          ) : (
-                            <CheckoutButton
-                              priceId={price.id}
-                              subscription={subscription}
-                              user={user}
-                              isTopup={false}
-                              upackage={product.name}
-                              amount={priceString}
-                              cycle={price.interval}
-                            />
-                          )}
+                          <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name} amount={priceString} cycle={price.interval} />
                         </div>
                       );
                     })}
@@ -367,32 +342,7 @@ export default function Pricing({ user, products, subscription, features, featur
                           <h2 style={{ fontSize: '2rem', fontWeight: '600', color: 'white' }}>{product.name}</h2>
                           <p style={{ marginTop: '1rem', color: '#b0b0b0' }}>{product.description}</p>
                           <p style={{ marginTop: '2rem', fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{price.interval}</span></p>
-                          {subscription && subscription.prices?.products?.id === product.id ? (
-                            <button
-                              disabled
-                              style={{
-                                backgroundColor: 'gray',
-                                color: 'white',
-                                cursor: 'not-allowed',
-                                padding: '0.5rem 1rem',
-                                borderRadius: '0.375rem',
-                                fontSize: '1rem',
-                                fontWeight: '500',
-                              }}
-                            >
-                              Active
-                            </button>
-                          ) : (
-                            <CheckoutButton
-                              priceId={price.id}
-                              subscription={subscription}
-                              user={user}
-                              isTopup={false}
-                              upackage={product.name}
-                              amount={priceString}
-                              cycle={price.interval}
-                            />
-                          )}
+                          <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name} amount={priceString} cycle={price.interval} />
                         </div>
                       );
                     })}
