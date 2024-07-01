@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
 import Button from '@/components/ui/Button';
 
 // @ts-ignore
-export default function CheckoutButton({priceId,subscription,user,isTopup,upackage,amount,cycle}){
+export default function CheckoutButton({priceId, subscription, user, isTopup, upackage, amount, cycle, currentPlanAmount}){
   const paddle = usePaddle();
   const [priceIdLoading, setPriceIdLoading] = useState<string>();
   const [selectedPackage, setSelectedPackage] = useState<string>();
@@ -33,10 +33,11 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
       setSelectedPackage(upackage);
       setSelectedAmount(amount);
       setSelectedCycle(cycle);
-      if (subscription?.id && subscription?.status === 'active'){
-        Swal.fire({
-          // title: 'Please confirm!',
-          html: '<h2 class="text-1xl font-semibold leading-6 text-white">You have selected the '+upackage+' plan. This plan will cost '+amount+' per '+cycle+'. Confirm to proceed.</h2>',
+      //if (subscription?.id && subscription?.status === 'active'){
+        if (false){
+          Swal.fire({
+            // title: 'Please confirm!',
+            html: '<h2 class="text-1xl font-semibold leading-6 text-white">You have selected the '+upackage+' plan. This plan will cost '+amount+' per '+cycle+'. Confirm to proceed.</h2>',
           // icon: "warning",
           confirmButtonText: 'Confirm',
           showCancelButton: true,
@@ -113,7 +114,7 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
       onClick={openCheckout}
       style={{paddingLeft:'0',paddingRight:'0'}}
       className="block w-full py-2 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900 mt-4"
-      disabled={subscription?.price_id === priceId}
+      disabled={subscription?.price_id === priceId || (parseFloat(amount) < parseFloat(currentPlanAmount))}
     >
       {
         isTopup ? "Topup" : <>{subscription?.price_id === priceId ? 'Current Plan' : 'Subscribe'}</>
