@@ -148,7 +148,7 @@ export default function Pricing({ user, products, subscription, features, featur
   const faqs = [
     {
       question: "What is AGI OS?",
-      answer: "AGI OS is an advanced Artificial General Intelligence software designed to enhance efficiency and automate a vast range of tasks. Our technology supports professionals across various sectors, helping increase efficiency and productivity. AGI OS integrates seamlessly with your existing systems to act as your personal digital assistant."
+      answer: "AGI OS is an advanced Artificial General Intelligence OS software designed to enhance efficiency and automate a vast range of tasks. Our technology supports professionals across various sectors, helping increase efficiency and productivity. AGI OS integrates seamlessly with your existing systems to act as your personal digital assistant."
     },
     {
       question: "What operating systems is AGI OS compatible with?",
