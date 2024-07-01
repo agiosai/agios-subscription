@@ -318,7 +318,9 @@ export default function Pricing({ user, products, subscription, features, featur
                           <h2 style={{ fontSize: '2rem', fontWeight: '600', color: 'white' }}>{product.name}</h2>
                           <p style={{ marginTop: '1rem', color: '#b0b0b0' }}>{product.description}</p>
                           <p style={{ marginTop: '2rem', fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{price.interval}</span></p>
-                          <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name} amount={priceString} cycle={price.interval} />
+                          <Button disabled style={{ backgroundColor: 'gray', color: 'white', cursor: 'not-allowed' }}>
+                            Active
+                          </Button>
                         </div>
                       );
                     })}
@@ -342,7 +344,9 @@ export default function Pricing({ user, products, subscription, features, featur
                           <h2 style={{ fontSize: '2rem', fontWeight: '600', color: 'white' }}>{product.name}</h2>
                           <p style={{ marginTop: '1rem', color: '#b0b0b0' }}>{product.description}</p>
                           <p style={{ marginTop: '2rem', fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{price.interval}</span></p>
-                          <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name} amount={priceString} cycle={price.interval} />
+                          <Button disabled style={{ backgroundColor: 'gray', color: 'white', cursor: 'not-allowed' }}>
+                            Active
+                          </Button>
                         </div>
                       );
                     })}
