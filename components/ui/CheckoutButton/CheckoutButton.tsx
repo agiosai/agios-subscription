@@ -112,13 +112,18 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
       type="button"
       loading={priceIdLoading === priceId}
       onClick={openCheckout}
-      style={{paddingLeft:'0',paddingRight:'0', backgroundColor: subscription?.price_id === priceId ? 'gray' : 'initial', cursor: subscription?.price_id === priceId ? 'not-allowed' : 'pointer'}}
-      className={`block w-full py-2 text-sm font-semibold text-center text-white rounded-md ${subscription?.price_id === priceId ? '' : 'hover:bg-zinc-900'} mt-4`}
+      style={{
+        paddingLeft: '0',
+        paddingRight: '0',
+        backgroundColor: subscription?.price_id === priceId ? '#6c757d' : '#1d4ed8', // Using a color from the provided site for "Subscribe"
+        cursor: subscription?.price_id === priceId ? 'not-allowed' : 'pointer'
+      }}
+      className={`block w-full py-2 text-sm font-semibold text-center text-white rounded-md ${
+        subscription?.price_id === priceId ? '' : 'hover:bg-blue-600'
+      } mt-4`}
       disabled={subscription?.price_id === priceId}
     >
-      {
-        isTopup ? "Topup" : <>{subscription?.price_id === priceId ? 'Active' : 'Subscribe'}</>
-      }
+      {isTopup ? "Topup" : <>{subscription?.price_id === priceId ? 'Active' : 'Subscribe'}</>}
     </Button>
   );
 }
