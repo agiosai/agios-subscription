@@ -33,7 +33,8 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
       setSelectedPackage(upackage);
       setSelectedAmount(amount);
       setSelectedCycle(cycle);
-      if (subscription?.id && subscription?.status === 'active'){
+      // if (subscription?.id && subscription?.status === 'active'){
+      if (false){
         Swal.fire({
           // title: 'Please confirm!',
           html: '<h2 class="text-1xl font-semibold leading-6 text-white">You have selected the '+upackage+' plan. This plan will cost '+amount+' per '+cycle+'. Confirm to proceed.</h2>',
