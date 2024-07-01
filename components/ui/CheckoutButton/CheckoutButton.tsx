@@ -33,8 +33,7 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
       setSelectedPackage(upackage);
       setSelectedAmount(amount);
       setSelectedCycle(cycle);
-      // if (subscription?.id && subscription?.status === 'active'){
-      if (false){
+      if (subscription?.id && subscription?.status === 'active'){
         Swal.fire({
           // title: 'Please confirm!',
           html: '<h2 class="text-1xl font-semibold leading-6 text-white">You have selected the '+upackage+' plan. This plan will cost '+amount+' per '+cycle+'. Confirm to proceed.</h2>',
@@ -107,24 +106,23 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
   };
 
   return (
-    <Button
-      variant="slim"
-      type="button"
-      loading={priceIdLoading === priceId}
-      onClick={openCheckout}
-      style={{
-        paddingLeft: '0',
-        paddingRight: '0',
-        backgroundColor: subscription?.price_id === priceId ? '#18181b' : '#ffffff',
-        color: subscription?.price_id === priceId ? 'initial' : '#18181b',
-        cursor: subscription?.price_id === priceId ? 'not-allowed' : 'pointer'
-      }}
-      className={`block w-full py-2 text-sm font-semibold text-center rounded-md ${
-        subscription?.price_id === priceId ? '' : 'hover:bg-gray-800 hover:text-white'
-      } mt-4`}
-      disabled={subscription?.price_id === priceId}
-    >
-      {isTopup ? "Topup" : <>{subscription?.price_id === priceId ? 'Current Plan' : 'Subscribe'}</>}
-    </Button>
+    // <button
+    //   onClick={openCheckout}
+    // >
+    //   Checkout
+    // </button>
+  <Button
+    variant="slim"
+    type="button"
+    loading={priceIdLoading === priceId}
+    onClick={openCheckout}
+    style={{paddingLeft:'0',paddingRight:'0'}}
+    className="block w-full py-2 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900 mt-4"
+  >
+    {
+      isTopup ? "Topup" : <>{subscription?.price_id === priceId ? 'Current Plan' : 'Subscribe'}</>
+    }
+
+  </Button>
   );
 }
