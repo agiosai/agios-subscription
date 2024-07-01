@@ -111,15 +111,18 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
     // >
     //   Checkout
     // </button>
-<Button
-  variant="slim"
-  type="button"
-  loading={priceIdLoading === priceId}
-  onClick={openCheckout}
-  style={{ paddingLeft: '0', paddingRight: '0' }}
-  className="block w-full py-2 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900 mt-4"
->
-  {isTopup ? "Topup" : <>{subscription?.price_id === priceId ? 'Active' : 'Subscribe'}</>}
-</Button>
+  <Button
+    variant="slim"
+    type="button"
+    loading={priceIdLoading === priceId}
+    onClick={openCheckout}
+    style={{paddingLeft:'0',paddingRight:'0'}}
+    className="block w-full py-2 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900 mt-4"
+  >
+    {
+      isTopup ? "Topup" : <>{subscription?.price_id === priceId ? 'Current' : 'Subscribe'}</>
+    }
+
+  </Button>
   );
 }
