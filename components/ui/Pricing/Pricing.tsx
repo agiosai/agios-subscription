@@ -29,7 +29,7 @@ type FeatureHeader = Tables<'featureheaders'>
 // @ts-ignore
 interface ProductWithPrices extends Product {
   prices: Price[];
-  type:String;
+  type: String;
 }
 interface PriceWithProduct extends Price {
   products: Product | null;
