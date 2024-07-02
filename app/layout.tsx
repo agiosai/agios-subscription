@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: meta.title,
     description: meta.description,
     referrer: 'origin-when-cross-origin',
-    keywords: ['AI', 'AGI', 'AGIOS', 'Online Business', 'Make Money Online', 'Employee', 'Employee Management', 'Employee Management Software', 'Employee Management Software for Businesses'],
+    keywords: ['AI', 'AGI', 'AGIOS', 'Online Business', 'Make Money Online', 'Employee', 'Employee Management', 'Employee Management Software', 'Employee Management Software for Businesses', 'ChatGPT'],
     authors: [{ name: 'AGIOS', url: 'https://agios.live/' }],
     creator: 'Chingu PTE',
     publisher: 'Chingu PTE',
