@@ -306,6 +306,21 @@ const manageSubscriptionStatusChange = async (
     .eq('id',priceData.product_id)
     .single();
 
+  const {data:userSubscriptions} = await supabaseAdmin
+    .from('subscriptions')
+    .select('*')
+    .eq('user_id',uuid);
+
+  if (userSubscriptions){
+    for (var i = 0; i < userSubscriptions.length; i++) {
+      const subscription = userSubscriptions[i];
+      await paddle.subscriptions.cancel(subscription?.id,{
+        effectiveFrom:"immediately"
+      });
+    }
+  }
+
+
   const { error:subUpdateErr} = await supabaseAdmin
     .from('subscriptions')
     //@ts-ignore
