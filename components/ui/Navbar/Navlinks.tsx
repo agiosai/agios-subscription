@@ -18,7 +18,7 @@ export default function Navlinks({ user }: NavlinksProps) {
   return (
     <div className="relative flex flex-col md:flex-row items-center justify-between py-4 md:py-6 px-4 md:px-8" style={{ fontSize: "15px" }}>
       <div className="flex items-center mb-4 md:mb-0">
-        <Link href="/" className={s.logo} aria-label="Logo">
+        <Link href="https://agios.live" className={s.logo} aria-label="Logo">
           <Logo />
         </Link>
       </div>
