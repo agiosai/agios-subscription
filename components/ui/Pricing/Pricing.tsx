@@ -227,7 +227,7 @@ export default function Pricing({ user, products, subscription, features, featur
         <div style={{ maxWidth: '96rem', padding: '2rem 1rem', margin: '0 auto', marginTop: '4rem' }}>
           <div className="sm:flex sm:flex-col sm:align-center" style={{ marginBottom: '4rem' }}>
             <h1 style={{ fontSize: '3rem', fontWeight: '800', color: 'white', textAlign: 'center' }}>
-              Meet Your New Hire: An Autonomous Workforce This is a test haha!
+              Meet Your New Hire: An Autonomous Workforce
             </h1>
             <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: 'white', textAlign: 'center' }}>
               Tailored Plans for Every Ambition
