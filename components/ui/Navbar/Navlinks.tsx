@@ -16,29 +16,32 @@ export default function Navlinks({ user }: NavlinksProps) {
   const router = getRedirectMethod() === 'client' ? useRouter() : null;
 
   return (
-    <div className="relative flex flex-row justify-between py-4 align-center md:py-6">
-      <div className="flex items-center flex-1">
+    <div
+      className="flex flex-col md:flex-row justify-between items-center py-4 md:py-6 max-w-6xl mx-auto px-6"
+      style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', padding: '10px', borderRadius: '8px' }}
+    >
+      <div className="flex justify-center md:justify-start items-center w-full md:w-auto">
         <Link href="/" className={s.logo} aria-label="Logo">
           <Logo />
         </Link>
-        <nav className="ml-6 space-x-2 lg:block">
-          <Link href="/" className={s.link}>
-            Home
-          </Link>
-          <Link href="/" className={s.link}>
-            Pricing
-          </Link>
-          <Link href="/" className={s.link}>
-            Blog
-          </Link>
-          {user && (
-            <Link href="/account" className={s.link}>
-              Account
-            </Link>
-          )}
-        </nav>
       </div>
-      <div className="flex justify-end space-x-8">
+      <nav className="flex space-x-2 mt-4 md:mt-0">
+        <Link href="/" className={s.link}>
+          Home
+        </Link>
+        <Link href="/pricing" className={s.link}>
+          Pricing
+        </Link>
+        <Link href="/blog" className={s.link}>
+          Blog
+        </Link>
+        {user && (
+          <Link href="/account" className={s.link}>
+            Account
+          </Link>
+        )}
+      </nav>
+      <div className="flex items-center justify-center md:justify-end w-full md:w-auto space-x-8 mt-4 md:mt-0">
         {user ? (
           <form onSubmit={(e) => handleRequest(e, SignOut, router)}>
             <input type="hidden" name="pathName" value={usePathname()} />
