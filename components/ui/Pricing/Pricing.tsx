@@ -227,13 +227,14 @@ export default function Pricing({ user, products, subscription, features, featur
         <div style={{ maxWidth: '96rem', padding: '2rem 1rem', margin: '0 auto', marginTop: '4rem' }}>
           <div className="sm:flex sm:flex-col sm:align-center" style={{ marginBottom: '4rem' }}>
             <h1 style={{ fontSize: '3rem', fontWeight: '800', color: 'white', textAlign: 'center' }}>
-              Meet Your New Hire: An Autonomous Workforce
+              Meet Your New Hire: An All-Purpose AI Employee
             </h1>
             <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: 'white', textAlign: 'center' }}>
-              Tailored Plans for Every Ambition
+              Making Every Day a Little Less 'Do It Yourself'
             </h2>
             <p style={{ maxWidth: '40rem', margin: '1.25rem auto', fontSize: '1.25rem', color: '#b0b0b0', textAlign: 'center', lineHeight: '1.5' }}>
-              Designed to integrate seamlessly with your existing systems, AGI OS serves as a dynamic personal digital assistant. Ideal for professionals across all sectors, this tool allows you to automate a broad spectrum of tasks, enhancing efficiency and accelerating business growth.
+            AGI OS serves as the first non-human multi-purpose digital agent that actually performs tasks on your behalf. Ideal for professionals across all sectors, start automating a broad spectrum of tasks, enhancing efficiency and accelerating business growth. 
+
             </p>
           </div>
           <div style={{ container: 'mx-auto', padding: '0 1.5rem', marginBottom: '4rem' }}>
