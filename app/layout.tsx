@@ -8,7 +8,7 @@ import 'styles/main.css';
 
 const meta = {
   title: 'AGI OS',
-  description: 'Next Gen Autonomous AGI for Businesses.',
+  description: 'Next Gen AI employee for Businesses.',
   cardImage: '/og.png',
   robots: 'follow, index',
   favicon: '/favicon.ico',
