@@ -50,6 +50,8 @@ type BillingInterval = 'lifetime' | 'year' | 'month';
 type BillingTypes = 'basic' | 'pro';
 
 export default function Pricing({ user, products, subscription, features, feature_headers }: Props) {
+  console.log("Pricing");
+  console.log(subscription);
 
   const intervals = Array.from(
     new Set(
