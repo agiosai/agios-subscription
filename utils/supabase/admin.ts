@@ -313,11 +313,13 @@ const manageSubscriptionStatusChange = async (
 
   if (userSubscriptions){
     for (var i = 0; i < userSubscriptions.length; i++) {
-      const subscription = userSubscriptions[i];
+      const usubscription = userSubscriptions[i];
       try {
-        await paddle.subscriptions.cancel(subscription?.id,{
-          effectiveFrom:"immediately"
-        });
+        if (usubscription?.id !== subscription?.id){
+          await paddle.subscriptions.cancel(usubscription?.id,{
+            effectiveFrom:"immediately"
+          });
+        }
       }catch (e) {
 
       }
