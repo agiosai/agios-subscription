@@ -21,18 +21,18 @@ export default function Navlinks({ user }: NavlinksProps) {
       style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', padding: '10px', borderRadius: '8px' }}
     >
       <div className="flex justify-center md:justify-start items-center w-full md:w-auto">
-        <Link href="/" className={s.logo} aria-label="Logo">
+        <Link href="https://www.agios.live/" className={s.logo} aria-label="Logo">
           <Logo />
         </Link>
       </div>
       <nav className="flex space-x-2 mt-4 md:mt-0">
-        <Link href="/" className={s.link}>
+        <Link href="https://www.agios.live/" className={s.link}>
           Home
         </Link>
-        <Link href="/pricing" className={s.link}>
+        <Link href="/" className={s.link}>
           Pricing
         </Link>
-        <Link href="/blog" className={s.link}>
+        <Link href="https://blog.agios.live/" className={s.link}>
           Blog
         </Link>
         {user && (
