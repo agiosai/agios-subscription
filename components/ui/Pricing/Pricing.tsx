@@ -29,7 +29,7 @@ type FeatureHeader = Tables<'featureheaders'>
 // @ts-ignore
 interface ProductWithPrices extends Product {
   prices: Price[];
-  type:String;
+  type: String;
 }
 interface PriceWithProduct extends Price {
   products: Product | null;
@@ -203,6 +203,12 @@ export default function Pricing({ user, products, subscription, features, featur
     countPackages(billingInterval);
   });
 
+  const sortedProducts = [...products].sort((a, b) => {
+    const aPrice = a.prices.find((price) => price.interval === 'month')?.unit_amount || 0;
+    const bPrice = b.prices.find((price) => price.interval === 'month')?.unit_amount || 0;
+    return aPrice - bPrice;
+  });
+
   if (!products.length) {
     return (
       <section style={{ backgroundColor: 'black' }}>
@@ -235,7 +241,7 @@ export default function Pricing({ user, products, subscription, features, featur
               Making Every Day a Little Less 'Do It Yourself'
             </h2>
             <p style={{ maxWidth: '40rem', margin: '1.25rem auto', fontSize: '1.25rem', color: '#b0b0b0', textAlign: 'center', lineHeight: '1.5' }}>
-            AGI OS serves as the first non-human multi-purpose digital agent that actually performs tasks on your behalf. Ideal for professionals across all sectors, start automating a broad spectrum of tasks, enhancing efficiency and accelerating business growth. 
+              AGI OS serves as the first non-human multi-purpose digital agent that actually performs tasks on your behalf. Ideal for professionals across all sectors, start automating a broad spectrum of tasks, enhancing efficiency and accelerating business growth.
 
             </p>
           </div>
@@ -294,65 +300,55 @@ export default function Pricing({ user, products, subscription, features, featur
               </button>
             )}
           </div>
-          <div style={{ container: 'mx-auto', padding: '0 1.5rem', marginBottom: '4rem' }}>
-            <Table id="react-aria8234834984-:r2:" aria-label="Feature Comparison Table">
-              <TableHeader>
-                <TableColumn width="50%" align="center" style={{ textAlign: 'center', fontSize: '1.25rem', fontWeight: '600', color: '#fff' }}>Basic</TableColumn>
-                <TableColumn width="50%" align="center" style={{ textAlign: 'center', fontSize: '1.25rem', fontWeight: '600', color: '#fff' }}>Pro</TableColumn>
-              </TableHeader>
-              <TableBody>
-                <TableRow>
-                  <TableCell style={{ verticalAlign: 'baseline' }}>
-                    {products.map((product) => {
-                      const price = product?.prices?.find(
-                        (price) => price.interval === billingInterval
-                      );
-                      if (!price || product.type !== 'basic') return null;
-                      const priceString = new Intl.NumberFormat('en-US', {
-                        style: 'currency',
-                        currency: price.currency!,
-                        minimumFractionDigits: 0
-                      }).format((price?.unit_amount || 0));
-                      return (
-                        <div
-                          key={product.id}
-                          style={{ marginTop: '10px', backgroundColor: '#1a1a1a', borderRadius: '0.375rem', padding: '1.5rem', textAlign: 'center', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}
-                        >
-                          <h2 style={{ fontSize: '2rem', fontWeight: '600', color: 'white' }}>{product.name}</h2>
-                          <p style={{ marginTop: '1rem', color: '#b0b0b0' }}>{product.description}</p>
-                          <p style={{ marginTop: '2rem', fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{price.interval}</span></p>
-                          <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name} amount={priceString} cycle={price.interval} />
-                        </div>
-                      );
-                    })}
-                  </TableCell>
-                  <TableCell style={{ verticalAlign: 'baseline' }}>
-                    {products.map((product) => {
-                      const price = product?.prices?.find(
-                        (price) => price.interval === billingInterval
-                      );
-                      if (!price || product.type !== 'pro') return null;
-                      const priceString = new Intl.NumberFormat('en-US', {
-                        style: 'currency',
-                        currency: price.currency!,
-                        minimumFractionDigits: 0
-                      }).format((price?.unit_amount || 0));
-                      return (
-                        <div
-                          key={product.id}
-                          style={{ marginTop: '10px', backgroundColor: '#1a1a1a', borderRadius: '0.375rem', padding: '1.5rem', textAlign: 'center', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}
-                        >
-                          <h2 style={{ fontSize: '2rem', fontWeight: '600', color: 'white' }}>{product.name}</h2>
-                          <p style={{ marginTop: '1rem', color: '#b0b0b0' }}>{product.description}</p>
-                          <p style={{ marginTop: '2rem', fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{price.interval}</span></p>
-                          <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name} amount={priceString} cycle={price.interval} />
-                        </div>
-                      );
-                    })}
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ container: 'mx-auto', padding: '0 1.5rem', marginBottom: '4rem' }}>
+            <div style={{ verticalAlign: 'baseline' }}>
+              {sortedProducts.map((product) => {
+                const price = product?.prices?.find(
+                  (price) => price.interval === billingInterval
+                );
+                if (!price || product.type !== 'basic') return null;
+                const priceString = new Intl.NumberFormat('en-US', {
+                  style: 'currency',
+                  currency: price.currency!,
+                  minimumFractionDigits: 0
+                }).format((price?.unit_amount || 0));
+                return (
+                  <div
+                    key={product.id}
+                    style={{ marginTop: '10px', backgroundColor: '#1a1a1a', borderRadius: '0.375rem', padding: '1.5rem', textAlign: 'center', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}
+                  >
+                    <h2 style={{ fontSize: '2rem', fontWeight: '600', color: 'white' }}>{product.name}</h2>
+                    <p style={{ marginTop: '1rem', color: '#b0b0b0' }}>{product.description}</p>
+                    <p style={{ marginTop: '2rem', fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{price.interval}</span></p>
+                    <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name} amount={priceString} cycle={price.interval} />
+                  </div>
+                );
+              })}
+            </div>
+            <div style={{ verticalAlign: 'baseline' }}>
+              {sortedProducts.map((product) => {
+                const price = product?.prices?.find(
+                  (price) => price.interval === billingInterval
+                );
+                if (!price || product.type !== 'pro') return null;
+                const priceString = new Intl.NumberFormat('en-US', {
+                  style: 'currency',
+                  currency: price.currency!,
+                  minimumFractionDigits: 0
+                }).format((price?.unit_amount || 0));
+                return (
+                  <div
+                    key={product.id}
+                    style={{ marginTop: '10px', backgroundColor: '#1a1a1a', borderRadius: '0.375rem', padding: '1.5rem', textAlign: 'center', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}
+                  >
+                    <h2 style={{ fontSize: '2rem', fontWeight: '600', color: 'white' }}>{product.name}</h2>
+                    <p style={{ marginTop: '1rem', color: '#b0b0b0' }}>{product.description}</p>
+                    <p style={{ marginTop: '2rem', fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{price.interval}</span></p>
+                    <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name} amount={priceString} cycle={price.interval} />
+                  </div>
+                );
+              })}
+            </div>
           </div>
           <h2 style={{ fontSize: '2rem', fontWeight: '800', color: 'white', textAlign: 'center', marginBottom: '2rem' }}>Frequently Asked Questions</h2>
           <div style={{ marginBottom: '4rem' }}>
@@ -363,13 +359,17 @@ export default function Pricing({ user, products, subscription, features, featur
               </div>
             ))}
           </div>
-          <div className="grid grid-cols-2 rounded-lg" style={{ alignContent: 'center', justifyContent: 'center', verticalAlign: 'middle', marginBottom: '4rem', padding: '0 1rem', background: 'linear-gradient(90deg, rgba(41,38,64,1) 0%, rgba(126,113,245,1) 100%)' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 rounded-lg" style={{ alignContent: 'center', justifyContent: 'center', verticalAlign: 'middle', marginBottom: '4rem', padding: '0 1rem', background: 'linear-gradient(90deg, rgba(41,38,64,1) 0%, rgba(126,113,245,1) 100%)' }}>
             <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
               <h1 style={{ fontSize: '2rem', fontWeight: '600', color: 'white' }}>Boost Your Workflow with AGI OS</h1>
               <p style={{ textAlign: 'justify', margin: '1.25rem 0' }}>
                 Embrace the future of productivity with AGI OS—your ultimate autonomous assistant. AGI OS revolutionizes your workday, automating complex tasks from data analysis to project management with intuitive expertise. With AGI OS, boost your productivity, streamline your tasks, and unleash your business's potential.
               </p>
-              <button className="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 px-6 min-w-24 h-12 text-medium gap-3 rounded-full [&>svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none bg-primary text-primary-foreground data-[hover=true]:opacity-hover w-full md:h-11 md:w-auto" style={{ backgroundColor: '#ff4785', color: '#fff', transition: 'transform 0.2s' }}>
+              <button
+                className="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 px-6 min-w-24 h-12 text-medium gap-3 rounded-full [&>svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none bg-primary text-primary-foreground data-[hover=true]:opacity-hover w-full md:h-11 md:w-auto"
+                style={{ backgroundColor: '#ff4785', color: '#fff', transition: 'transform 0.2s' }}
+                onClick={() => window.location.href = 'https://subscription.agios.live/signin/signup'}
+              >
                 Get your digital companion
               </button>
             </div>
