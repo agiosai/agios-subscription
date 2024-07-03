@@ -20,7 +20,6 @@ export default function Download() {
     setOS(userOS);
   }, []);
 
-
   return (
     <Card
       title="Download AGI OS"
@@ -39,53 +38,34 @@ export default function Download() {
         </div>
       }
     >
-      <div className="mt-8 mb-4 text-xl font-semibold">
+      <div className="mt-6 mb-4 text-xl font-semibold">
         <div
-          className="mt-12 space-y-4 sm:mt-16 sm:space-y-0 flex flex-wrap justify-center gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0">
+          className="mt-8 space-y-4 sm:mt-12 sm:space-y-0 flex flex-wrap justify-center gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0">
           <div className={cn(
-            'flex flex-col rounded-lg shadow-sm divide-y divide-zinc-600 bg-zinc-900',
-            'flex-1', // This makes the flex item grow to fill the space
-            'max-w-xs' // Sets a maximum width to the cards to prevent them from getting too large
+            'flex flex-col items-center rounded-lg shadow-lg bg-white p-4',
+            'flex-1',
+            'max-w-xs'
           )}>
-            <div className="p-3">
-              <p className="mt-4 text-zinc-300"><Image src="/windows.png" width={0} height={0} sizes="100vw" alt="Windows Logo"
-                                                       style={{ width: '100%', height: '100%' }} /></p>
-              <p className="mt-4">
-                      <span className=" font-bold white">
-                        Windows
-                      </span>
-              </p>
-            </div>
+            <a href="https://download.agios.live" target="_blank" rel="noopener noreferrer">
+              <div className="w-24 h-24">
+                <Image src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Windows_logo_-_2021_%28Black%29.svg" width={96} height={96} alt="Windows Logo" />
+              </div>
+            </a>
+            <p className="mt-2 text-lg font-bold text-gray-800">
+              Windows
+            </p>
           </div>
           <div className={cn(
-            'flex flex-col rounded-lg shadow-sm divide-y divide-zinc-600 bg-zinc-900',
-            'flex-1', // This makes the flex item grow to fill the space
-            'max-w-xs' // Sets a maximum width to the cards to prevent them from getting too large
+            'flex flex-col items-center rounded-lg shadow-lg bg-white p-4',
+            'flex-1',
+            'max-w-xs'
           )}>
-            <div className="p-3">
-              <p className="mt-4 text-zinc-300"><Image src="/macos.png" width={0} height={0} sizes="100vw" alt="Windows Logo"
-                                                       style={{ width: '100%', height: '100%' }} /></p>
-              <p className="mt-4">
-                      <span className="font-bold white">
-                        Apple (Coming Soon)
-                      </span>
-              </p>
+            <div className="w-24 h-24">
+              <Image src="https://upload.wikimedia.org/wikipedia/commons/3/30/MacOS_logo.svg" width={96} height={96} alt="macOS Logo" />
             </div>
-          </div>
-          <div className={cn(
-            'flex flex-col rounded-lg shadow-sm divide-y divide-zinc-600 bg-zinc-900',
-            'flex-1', // This makes the flex item grow to fill the space
-            'max-w-xs' // Sets a maximum width to the cards to prevent them from getting too large
-          )}>
-            <div className="p-3">
-              <p className="mt-4 text-zinc-300"><Image src="/linux.png" width={0} height={0} sizes="100vw" alt="Windows Logo"
-                                                       style={{ width: '100%', height: '100%' }} /></p>
-              <p className="mt-4">
-                      <span className="font-bold white">
-                        Linux (Coming Soon)
-                      </span>
-              </p>
-            </div>
+            <p className="mt-2 text-lg font-bold text-gray-800">
+              macOS (Coming Soon)
+            </p>
           </div>
         </div>
       </div>
