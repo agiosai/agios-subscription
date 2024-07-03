@@ -100,15 +100,21 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
     <Button
       variant="slim"
       type="button"
-      loading={priceIdLoading === priceId}
+      loading={false}
       onClick={openCheckout}
-      style={{paddingLeft:'0',paddingRight:'0', backgroundColor: subscription?.price_id === priceId ? 'gray' : 'initial', cursor: subscription?.price_id === priceId ? 'not-allowed' : 'pointer'}}
-      className={`block w-full py-2 text-sm font-semibold text-center text-white rounded-md ${subscription?.price_id === priceId ? '' : 'hover:bg-zinc-900'} mt-4`}
+      style={{
+        paddingLeft: '0',
+        paddingRight: '0',
+        backgroundColor: subscription?.price_id === priceId ? '#1a1a1a' : '#e0e0e0',
+        color: subscription?.price_id === priceId ? '#fff' : '#333',
+        cursor: subscription?.price_id === priceId ? 'not-allowed' : 'pointer',
+        fontSize: subscription?.price_id === priceId ? '1.25rem' : '1rem', // 1.25rem for larger text
+        fontWeight: subscription?.price_id === priceId ? 'bold' : 'bold' // bold text for Subscribe
+      }}
+      className={`block w-full py-2 text-sm font-semibold text-center rounded-md mt-4 ${subscription?.price_id !== priceId ? 'hover:bg-white hover:text-black' : ''}`}
       disabled={subscription?.price_id === priceId}
     >
-      {
-        isTopup ? "Topup" : <>{subscription?.price_id === priceId ? 'Active' : 'Subscribe'}</>
-      }
+      {isTopup ? "Topup" : subscription?.price_id === priceId ? 'Current Plan' : 'Subscribe'}
     </Button>
   );
 }

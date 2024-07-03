@@ -25,7 +25,8 @@ export default function Navlinks({ user }: NavlinksProps) {
           <Logo />
         </Link>
       </div>
-      <nav className="flex space-x-2 mt-4 md:mt-0">
+      <nav className="flex space-x-2 mt-4 md:mt-0 w-full md:w-auto">
+        <div className="flex-grow"></div> {/* Spacer */}
         <Link href="https://www.agios.live/" className={s.link}>
           Home
         </Link>
@@ -40,6 +41,7 @@ export default function Navlinks({ user }: NavlinksProps) {
             Account
           </Link>
         )}
+        <div className="flex-grow"></div> {/* Spacer */}
       </nav>
       <div className="flex items-center justify-center md:justify-end w-full md:w-auto space-x-8 mt-4 md:mt-0">
         {user ? (

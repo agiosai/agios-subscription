@@ -69,7 +69,7 @@ export default function Pricing({ user, products, subscription, features, featur
   );
   const router = useRouter();
   const [billingInterval, setBillingInterval] =
-    useState<BillingInterval>('month');
+    useState<BillingInterval>('year');
   const [billingType, setBillingType] =
     useState<BillingTypes>('basic');
   const [basicPackCount, setBasicPackCount] = useState<number>(0);
@@ -272,32 +272,58 @@ export default function Pricing({ user, products, subscription, features, featur
               </TableBody>
             </Table>
           </div>
-          <div className="relative self-center mt-6 bg-zinc-900 rounded-lg p-0.5 flex sm:mt-8 border border-zinc-800" style={{ marginBottom: '4rem' }}>
+          <div className="relative self-center mt-6 rounded-lg flex sm:mt-8" style={{ marginBottom: '4rem', background: '#433D8150' }}>
             {intervals.includes('month') && (
               <button
                 onClick={() => {
                   setBillingInterval('month');
-                  countPackages(billingInterval);
+                  countPackages('month');
                 }}
                 type="button"
-                className={`${billingInterval === 'month' ? 'bg-gray-700 border-gray-800 text-white' : 'text-gray-400'}`}
-                style={{ width: '50%', padding: '0.5rem 1rem', margin: '0.25rem', borderRadius: '0.375rem', fontSize: '1rem', fontWeight: '500' }}
+                className={`${billingInterval === 'month' ? 'text-white bg-[#433D81]' : 'text-gray-400'}`}
+                style={{ width: '50%', padding: '0.5rem 1rem', margin: '0.25rem', fontSize: '1.5rem', fontWeight: '700', border: 'none', borderRadius: '0.375rem' }}
               >
                 Monthly Billing
               </button>
             )}
             {intervals.includes('year') && (
+              
               <button
-                onClick={() => {
-                  setBillingInterval('year');
-                  countPackages(billingInterval);
-                }}
-                type="button"
-                className={`${billingInterval === 'year' ? 'bg-gray-700 border-gray-800 text-white' : 'text-gray-400'}`}
-                style={{ width: '50%', padding: '0.5rem 1rem', margin: '0.25rem', borderRadius: '0.375rem', fontSize: '1rem', fontWeight: '500' }}
-              >
-                Yearly Billing
-              </button>
+  onClick={() => {
+    setBillingInterval('year');
+    countPackages('year');
+  }}
+  type="button"
+  className={`${billingInterval === 'year' ? 'text-white bg-[#433D81]' : 'text-gray-400'}`}
+  style={{
+    width: '50%',
+    padding: '0.5rem 1rem',
+    margin: '0.25rem',
+    fontSize: '1.5rem',
+    fontWeight: '700',
+    border: 'none',
+    borderRadius: '0.375rem',
+    position: 'relative'
+  }}
+>
+  Yearly Billing
+  <span
+    style={{
+      position: 'absolute',
+      top: '-10px',
+      right: '-10px',
+      backgroundColor: '#ff4785',
+      color: 'white',
+      borderRadius: '5%',
+      padding: '0.25rem 0.5rem',
+      fontSize: '0.75rem',
+      fontWeight: '700'
+    }}
+  >
+    Save 20% for a limited time only
+  </span>
+</button>
+
             )}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ container: 'mx-auto', padding: '0 1.5rem', marginBottom: '4rem' }}>
