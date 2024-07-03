@@ -18,14 +18,14 @@ export default function Navlinks({ user }: NavlinksProps) {
   return (
     <div
       className="flex flex-col md:flex-row justify-between items-center py-4 md:py-6 max-w-6xl mx-auto px-6"
-      style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', padding: '10px', borderRadius: '8px' }}
+      style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', padding: '20px', borderRadius: '8px' }}
     >
       <div className="flex justify-center md:justify-start items-center w-full md:w-auto">
         <Link href="https://www.agios.live/" className={s.logo} aria-label="Logo">
           <Logo />
         </Link>
       </div>
-      <nav className="flex space-x-2 mt-4 md:mt-0 w-full md:w-auto">
+      <nav className="flex space-x-6 mt-4 md:mt-0 w-full md:w-auto">
         <div className="flex-grow"></div> {/* Spacer */}
         <Link href="https://www.agios.live/" className={s.link}>
           Home

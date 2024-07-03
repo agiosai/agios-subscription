@@ -7,7 +7,7 @@ import SingleLogo from '@/components/icons/SingleLogo';
 export default function Footer() {
   return (
     <footer className="mx-auto max-w-[1920px] px-6" style={{ fontSize: '14px', backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '20px', borderRadius: '8px' }}>
-      <div className="max-w-6xl px-6 mx-auto flex flex-col md:flex-row justify-between items-start text-white transition-colors">
+      <div className="max-w-6xl px-6 mx-auto flex flex-col md:flex-row justify-between items-center md:items-start text-white transition-colors">
         
         {/* Left Area - Logo */}
         <div className="flex items-center mt-10">
@@ -19,7 +19,7 @@ export default function Footer() {
         </div>
 
         {/* Right Area */}
-        <div className="flex flex-col items-start md:items-end space-y-4 mt-10 md:mt-0">
+        <div className="flex flex-col items-center md:items-end space-y-4 mt-10 md:mt-0">
 
           {/* Row 1 - Social Media Links */}
           <div className="flex space-x-6">
@@ -57,8 +57,8 @@ export default function Footer() {
           </div>
 
           {/* Row 3 - Copyright Text */}
-          <div className="text-white">
-            &copy; {new Date().getFullYear()} © 2024 CHINGU AI PTE. LTD. All rights reserved.
+          <div className="text-white text-center md:text-right">
+            &copy; {new Date().getFullYear()} CHINGU AI PTE. LTD. All rights reserved.
           </div>
         </div>
 

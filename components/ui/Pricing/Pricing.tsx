@@ -112,8 +112,8 @@ export default function Pricing({ user, products, subscription, features, featur
     {
       feature: 'Vision Intelligence Quality',
       description: 'Interprets and solves problems within visual contexts, ensuring precise and insightful visual data analysis.',
-      basic: false,
-      pro: false,
+      basic: 'Low',
+      pro: 'High',
     },
     {
       feature: 'Interactive Conversation Mode',
@@ -401,11 +401,23 @@ export default function Pricing({ user, products, subscription, features, featur
                         <span key={i} style={{ color: '#b0b0b0' }}>{line}<br /></span>
                       ))}</div>
                     </TableCell>
-                    <TableCell style={{ textAlign: 'center' }}>
-                      {item.basic ? <Image src="/true.png" width={55} height={55} alt="True Icon" style={{ width: 'auto', height: 'auto', marginLeft: 'auto', marginRight: 'auto' }} /> : <Image src="/false.png" width={55} height={55} alt="False Icon" style={{ width: 'auto', height: 'auto', marginLeft: 'auto', marginRight: 'auto' }} />}
+                    <TableCell style={{ textAlign: 'center', fontSize: '1.25rem', color: 'white' }}>
+                      {item.feature === 'Vision Intelligence Quality' ? (
+                        'Low'
+                      ) : item.basic ? (
+                        <CheckIcon width={24} height={24} color="green" style={{ display: 'inline-block', verticalAlign: 'middle' }} />
+                      ) : (
+                        <XIcon width={24} height={24} color="red" style={{ display: 'inline-block', verticalAlign: 'middle' }} />
+                      )}
                     </TableCell>
-                    <TableCell style={{ textAlign: 'center' }}>
-                      {item.pro ? <Image src="/true.png" width={55} height={55} alt="True Icon" style={{ width: 'auto', height: 'auto', marginLeft: 'auto', marginRight: 'auto' }} /> : <Image src="/false.png" width={55} height={55} alt="False Icon" style={{ width: 'auto', height: 'auto', marginLeft: 'auto', marginRight: 'auto' }} />}
+                    <TableCell style={{ textAlign: 'center', fontSize: '1.25rem', color: 'white' }}>
+                      {item.feature === 'Vision Intelligence Quality' ? (
+                        'High'
+                      ) : item.pro ? (
+                        <CheckIcon width={24} height={24} color="green" style={{ display: 'inline-block', verticalAlign: 'middle' }} />
+                      ) : (
+                        <XIcon width={24} height={24} color="red" style={{ display: 'inline-block', verticalAlign: 'middle' }} />
+                      )}
                     </TableCell>
                   </TableRow>
                 ))}
@@ -462,6 +474,7 @@ export default function Pricing({ user, products, subscription, features, featur
   >
     Save 20% for a limited time only
   </span>
+
 </button>
 
             )}
@@ -567,6 +580,7 @@ function CheckIcon(props) {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      style={{ display: 'inline-block', verticalAlign: 'middle' }}
     >
       <path d="M20 6 9 17l-5-5" />
     </svg>
@@ -587,6 +601,7 @@ function XIcon(props) {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      style={{ display: 'inline-block', verticalAlign: 'middle' }}
     >
       <path d="M18 6 6 18" />
       <path d="m6 6 12 12" />
