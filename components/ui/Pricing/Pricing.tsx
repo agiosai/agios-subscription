@@ -424,7 +424,7 @@ export default function Pricing({ user, products, subscription, features, featur
               </TableBody>
             </Table>
           </div>
-          <div className="relative self-center mt-6 rounded-lg flex sm:mt-8" style={{ marginBottom: '4rem', background: '#433D8150' }}>
+          <div className="relative self-center mt-6 rounded-lg flex sm:mt-8" style={{ marginBottom: '4rem', background: '#312D5E60' }}>
             {intervals.includes('month') && (
               <button
                 onClick={() => {
@@ -433,7 +433,7 @@ export default function Pricing({ user, products, subscription, features, featur
                 }}
                 type="button"
                 className={`${billingInterval === 'month' ? 'text-white bg-[#433D81]' : 'text-gray-400'}`}
-                style={{ width: '50%', padding: '0.5rem 1rem', margin: '0.25rem', fontSize: '1.5rem', fontWeight: '700', border: 'none', borderRadius: '0.375rem' }}
+                style={{ width: '50%', padding: '0.5rem 1rem', margin: '0.25rem', fontSize: '1.25rem', fontWeight: '600', border: 'none', borderRadius: '0.375rem' }}
               >
                 Monthly Billing
               </button>
@@ -451,8 +451,8 @@ export default function Pricing({ user, products, subscription, features, featur
     width: '50%',
     padding: '0.5rem 1rem',
     margin: '0.25rem',
-    fontSize: '1.5rem',
-    fontWeight: '700',
+    fontSize: '1.25rem',
+    fontWeight: '600',
     border: 'none',
     borderRadius: '0.375rem',
     position: 'relative'
