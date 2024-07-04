@@ -310,6 +310,7 @@ const manageSubscriptionStatusChange = async (
     .from('subscriptions')
     .select('*')
     .eq('user_id',uuid);
+  let isProration = false;
 
   if (userSubscriptions){
     for (var i = 0; i < userSubscriptions.length; i++) {
@@ -319,6 +320,8 @@ const manageSubscriptionStatusChange = async (
           await paddle.subscriptions.cancel(usubscription?.id,{
             effectiveFrom:"immediately"
           });
+        }else {
+          isProration = true;
         }
       }catch (e) {
 
@@ -389,11 +392,21 @@ const manageSubscriptionStatusChange = async (
   if (status === 'canceled'){
     points = 0;
   }
+
+if (isProration){
+  // @ts-ignore
+  const startingPoints = userData?.last_package_points+userData?.last_points;
+  // @ts-ignore
+  const consumedPoints = userData.points - startingPoints;
+  if (consumedPoints>0){
+    points = points - consumedPoints;
+  }
+}
   console.log("Niro points",points)
   const { error } = await supabaseAdmin
     .from('users')
     //@ts-ignore
-    .update({ points:  points,type:productData.type,subscription:status})
+    .update({ points:  points,type:productData.type,subscription:status,last_package_points:priceData.points,last_points:userData.points})
     .eq('id', uid)
   // For a new subscription copy the billing details to the customer object.
   // NOTE: This is a costly operation and should happen at the very end.
