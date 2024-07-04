@@ -67,11 +67,11 @@ export default function ForgotPassword({
         </Link>
       </p>
       {allowEmail && (
-        /*<p>
+        <p>
           <Link href="/signin/email_signin" className="font-light text-sm">
             Sign in via magic link
           </Link>
-        </p>*/
+        </p>
       )}
       <p>
         <Link href="/signin/signup" className="font-light text-sm">
