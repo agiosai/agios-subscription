@@ -1,7 +1,7 @@
 "use client"
 // import usePaddle from "../hooks/usePaddle";
 import usePaddle from '../../../hooks/usePaddle';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { getURL } from '../../../utils/helpers';
 import { router } from 'next/client';
@@ -9,14 +9,41 @@ import axios from 'axios';
 import Swal from 'sweetalert2'
 import Button from '@/components/ui/Button';
 // @ts-ignore
-export default function CheckoutButton({priceId,subscription,user,isTopup,upackage,amount,cycle}){
+export default function CheckoutButton({priceId,subscription,user,isTopup,upackage,amount,cycle,priceObj,product}){
   const paddle = usePaddle();
   const [priceIdLoading, setPriceIdLoading] = useState<string>();
   const [selectedPackage, setSelectedPackage] = useState<string>();
   const [selectedAmount, setSelectedAmount] = useState<string>();
   const [selectedCycle, setSelectedCycle] = useState<string>();
+  const [shouldDisable,setShouldDisable] = useState<boolean>(false);
   const currentPath = usePathname();
   const router = useRouter();
+
+  useEffect(() => {
+    if (subscription?.price_id === priceId) {
+      setShouldDisable(true);
+    } else {
+      setShouldDisable(false);
+    }
+    console.log("PRICE");
+    console.log(priceObj);
+    console.log("PRODUCT");
+    console.log(product);
+    // check for pro
+    if (subscription?.prices?.products?.type === 'pro' && product?.type === 'basic'){
+      setShouldDisable(true);
+    }
+
+    //check yearly
+    if (subscription?.prices?.interval === 'year' && cycle === 'month'){
+      setShouldDisable(true);
+    }
+
+    // check points
+    if (subscription?.prices?.points > priceObj?.points){
+      setShouldDisable(true);
+    }
+  }, [subscription?.price_id, priceId]);
   const openCheckout = () => {
       if (!user) {
         setPriceIdLoading(undefined);
@@ -96,6 +123,11 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
         });
       }
   };
+  //
+  // // check for pro and basic
+  // if (subscription){
+  //
+  // }
   return (
     <Button
       variant="slim"
@@ -105,16 +137,16 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
       style={{
         paddingLeft: '0',
         paddingRight: '0',
-        backgroundColor: subscription?.price_id === priceId ? '#1a1a1a' : '#e0e0e0',
-        color: subscription?.price_id === priceId ? '#fff' : '#333',
-        cursor: subscription?.price_id === priceId ? 'not-allowed' : 'pointer',
-        fontSize: subscription?.price_id === priceId ? '1.25rem' : '1rem', // 1.25rem for larger text
-        fontWeight: subscription?.price_id === priceId ? 'bold' : 'bold' // bold text for Subscribe
+        backgroundColor: shouldDisable ? '#1a1a1a' : '#e0e0e0',
+        color: shouldDisable ? '#fff' : '#333',
+        cursor: shouldDisable ? 'not-allowed' : 'pointer',
+        fontSize: shouldDisable ? '1.25rem' : '1rem', // 1.25rem for larger text
+        fontWeight: shouldDisable ? 'bold' : 'bold' // bold text for Subscribe
       }}
       className={`block w-full py-2 text-sm font-semibold text-center rounded-md mt-4 ${subscription?.price_id !== priceId ? 'hover:bg-white hover:text-black' : ''}`}
-      disabled={subscription?.price_id === priceId}
+      disabled={shouldDisable}
     >
-      {isTopup ? "Topup" : subscription?.price_id === priceId ? 'Current Plan' : 'Subscribe'}
+      {!shouldDisable ? "Subscribe" : subscription?.price_id === priceId ? 'Current Plan' : 'Already Included'}
     </Button>
   );
 }
