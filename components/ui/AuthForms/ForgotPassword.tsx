@@ -1,6 +1,5 @@
 'use client';
 
-
 import Link from 'next/link';
 import { requestPasswordUpdate } from '../../../utils/auth-helpers/server';
 import { handleRequest } from '../../../utils/auth-helpers/client';
@@ -66,13 +65,6 @@ export default function ForgotPassword({
           Sign in with email and password
         </Link>
       </p>
-      {allowEmail && (
-        <p>
-          <Link href="/signin/email_signin" className="font-light text-sm">
-            Sign in via magic link
-          </Link>
-        </p>
-      )}
       <p>
         <Link href="/signin/signup" className="font-light text-sm">
           Don't have an account? Sign up
