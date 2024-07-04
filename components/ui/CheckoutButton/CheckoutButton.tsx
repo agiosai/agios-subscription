@@ -40,8 +40,16 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
     }
 
     // check points
-    if (subscription?.prices?.points > priceObj?.points){
+    if (subscription?.prices?.interval === 'year' && subscription?.prices?.points >= priceObj?.points){
       setShouldDisable(true);
+    }
+    // check points
+    if (subscription?.prices?.interval === 'month' && subscription?.prices?.points >= priceObj?.points){
+      setShouldDisable(true);
+    }
+
+    if (priceObj?.points == 0 && priceObj?.points != subscription?.prices?.points){
+      setShouldDisable(false);
     }
   }, [subscription?.price_id, priceId]);
   const openCheckout = () => {
