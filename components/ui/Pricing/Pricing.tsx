@@ -193,42 +193,42 @@ export default function Pricing({ user, products, subscription, features, featur
     {
       question: "What are the limitations of AGI OS?",
       answer: 
-      "It might occasionally produce inaccurate responses. However, the accuracy of task performance is constantly being enhanced with frequent updates."
+      "• It might occasionally produce inaccurate responses. However, the accuracy of task performance is constantly being enhanced with frequent updates."
     },
     {
       question:"",
       answer: 
-      "Because automated web browsing is an experimental technology, execution of tasks may encounter failures due to existing technological constraints."
+      "• Because automated web browsing is an experimental technology, execution of tasks may encounter failures due to existing technological constraints."
     },
     {
       question:"",
       answer: 
-      "Currently, AGI OS cannot access local files on your computer. This capability is expected to be added in our next update."
+      "• Currently, AGI OS cannot access local files on your computer. This capability is expected to be added in our next update."
     },
     {
       question: "What are the differences between AGI OS and Human Workers?",
-      answer: "Speed and Efficiency: AGI OS can process information and execute tasks much faster than a human, especially for data-intensive jobs. This speed translates to quicker turnaround times for projects."
+      answer: "• Speed and Efficiency: AGI OS can process information and execute tasks much faster than a human, especially for data-intensive jobs. This speed translates to quicker turnaround times for projects."
     },
     {
       question: "",
-      answer: "Precision: With the ability to analyze vast amounts of data without fatigue, AGI OS reduces the likelihood of errors that are more common with human handling, particularly in data-intensive fields like analytics."
+      answer: "• Precision: With the ability to analyze vast amounts of data without fatigue, AGI OS reduces the likelihood of errors that are more common with human handling, particularly in data-intensive fields like analytics."
     },
     {
       question: "",
-      answer: "Cost-Effectiveness: Once implemented, AGI OS can perform multiple roles that would otherwise require several employees, thus significantly reducing staffing expenses related to wages, benefits, and insurance. This allows your business to allocate resources more efficiently and increase profitability."
+      answer: "• Cost-Effectiveness: Once implemented, AGI OS can perform multiple roles that would otherwise require several employees, thus significantly reducing staffing expenses related to wages, benefits, and insurance. This allows your business to allocate resources more efficiently and increase profitability."
     },
     {
       question: "",
-      answer: "Emotional Economy Advantage: AGI OS eliminates the need to navigate the common workplace challenges associated with human teams, such as motivational issues, dishonesty, slacking, complaints, and potential lawsuits. This stress-free operation allows for a more consistent and reliable workflow. Scalability: Unlike human workers, AGI OS can scale its operations up or down instantly, depending on the demand, without the need for recruitment or training." 
+      answer: "• Emotional Economy Advantage: AGI OS eliminates the need to navigate the common workplace challenges associated with human teams, such as motivational issues, dishonesty, slacking, complaints, and potential lawsuits. This stress-free operation allows for a more consistent and reliable workflow. Scalability: Unlike human workers, AGI OS can scale its operations up or down instantly, depending on the demand, without the need for recruitment or training." 
   
     },
       {
       question: "",
-      answer: "Scalability: Unlike human workers, AGI OS can scale its operations up or down instantly, depending on the demand, without the need for recruitment or training."
+      answer: "• Scalability: Unlike human workers, AGI OS can scale its operations up or down instantly, depending on the demand, without the need for recruitment or training."
     },
     {
       question: "",
-      answer: "Availability: AGI OS operates 24/7 without breaks, vacations, or downtime, providing constant productivity that's unmatched by human counterparts."
+      answer: "• Availability: AGI OS operates 24/7 without breaks, vacations, or downtime, providing constant productivity that's unmatched by human counterparts."
     },
     {
       question: "What work can AGI OS take over?",
@@ -236,43 +236,43 @@ export default function Pricing({ user, products, subscription, features, featur
     },
     {
       question: "",
-      answer: "Marketing Department Work: Continuously promotes products online, optimizing campaigns in real time to maximize reach and engagement."
+      answer: "• Marketing Department Work: Continuously promotes products online, optimizing campaigns in real time to maximize reach and engagement."
     },
     {
       question: "",
-      answer: "Creative Content Generation Work: Utilizes advanced AI to produce innovative and engaging content across various media, supporting creative projects with endless possibilities."
+      answer: "• Creative Content Generation Work: Utilizes advanced AI to produce innovative and engaging content across various media, supporting creative projects with endless possibilities."
     },
     {
       question: "",
-      answer: "Research and Development Work: Streamlines the collection and analysis of extensive data sets, speeding up research processes and delivering insights faster than conventional methods."
+      answer: "• Research and Development Work: Streamlines the collection and analysis of extensive data sets, speeding up research processes and delivering insights faster than conventional methods."
     },
     {
       question: "",
-      answer: "Problem Solving Work: Provides immediate, intelligent solutions for challenges encountered during tasks, enhancing decision-making processes across all levels of operation."
+      answer: "• Problem Solving Work: Provides immediate, intelligent solutions for challenges encountered during tasks, enhancing decision-making processes across all levels of operation."
     },
     {
       question: "",
-      answer: "Secretarial Services Work: Simplifies tasks such as booking, purchasing, and making reservations through automation."
+      answer: "• Secretarial Services Work: Simplifies tasks such as booking, purchasing, and making reservations through automation."
     },
     {
       question: "What tasks can I accomplish with AGI OS?",
-      answer: "Marketing Automation: AGI OS can automate your entire digital marketing workflow, from scheduling and posting content on social media to engaging with customers through comments. It can also create diverse marketing content, including articles, blogs, and ad copy, tailored to your audience's preferences with its permanent private memory, enhancing your brand's reach and engagement."
+      answer: "• Marketing Automation: AGI OS can automate your entire digital marketing workflow, from scheduling and posting content on social media to engaging with customers through comments. It can also create diverse marketing content, including articles, blogs, and ad copy, tailored to your audience's preferences with its permanent private memory, enhancing your brand's reach and engagement."
     },
     {
       question: "",
-      answer: "Bulk Data Processing: For tasks that require handling large volumes of data, AGI OS can process and analyze information quickly and efficiently. Whether it's sorting through customer data, analyzing market trends, or preparing reports, AGI OS manages these tasks with precision, saving hours of manual labor."
+      answer: "• Bulk Data Processing: For tasks that require handling large volumes of data, AGI OS can process and analyze information quickly and efficiently. Whether it's sorting through customer data, analyzing market trends, or preparing reports, AGI OS manages these tasks with precision, saving hours of manual labor."
     },
     {
       question: "",
-      answer: "Continuous Information Processing: AGI OS is ideal for jobs that require continuous data monitoring and processing. From real-time analytics to ongoing project management updates, it ensures that your business leverages the most current data without delay."
+      answer: "• Continuous Information Processing: AGI OS is ideal for jobs that require continuous data monitoring and processing. From real-time analytics to ongoing project management updates, it ensures that your business leverages the most current data without delay."
     },
     {
       question: "",
-      answer: "Autonomous Research and Analysis task: AGI OS can autonomously analyze complex data displayed on your screen. For example, you could instruct it to: 'Analyze the data on the screen, research the success factors of the top three brands, and summarize the findings in Notepad.' This capability makes AGI OS particularly useful for detailed and continuous research tasks."
+      answer: "• Autonomous Research and Analysis task: AGI OS can autonomously analyze complex data displayed on your screen. For example, you could instruct it to: 'Analyze the data on the screen, research the success factors of the top three brands, and summarize the findings in Notepad.' This capability makes AGI OS particularly useful for detailed and continuous research tasks."
     },
     {
       question: "",
-      answer: "The full suite of AGI OS services is continually evolving, with new features being regularly introduced. Stay updated on release dates and access information by signing up for notifications on our blog."
+      answer: "• The full suite of AGI OS services is continually evolving, with new features being regularly introduced. Stay updated on release dates and access information by signing up for notifications on our blog."
     },
     {
       question: "How does AGI OS work?",
@@ -376,7 +376,7 @@ export default function Pricing({ user, products, subscription, features, featur
             <h1 style={{ fontSize: '2rem', fontWeight: '800', color: 'white', textAlign: 'center' }}>
               Meet Your New Hire: An All-Purpose AI Employee
             </h1>
-            <h2 style={{ fontSize: '4rem', fontWeight: '800', color: 'white', textAlign: 'center' }}>
+            <h2 style={{ fontSize: '3rem', fontWeight: '800', color: 'white', textAlign: 'center' }}>
               Making Every Day a Little Less 'Do It Yourself'
             </h2>
             <p style={{ maxWidth: '40rem', margin: '1.25rem auto', fontSize: '1.25rem', color: '#b0b0b0', textAlign: 'center', lineHeight: '1.5' }}>
@@ -390,7 +390,7 @@ export default function Pricing({ user, products, subscription, features, featur
               <TableHeader>
                 <TableColumn width="33%" align="center" style={{ textAlign: 'center', fontSize: '1.25rem', fontWeight: '600', color: '#fff', background: '#312D5E' }}>Feature</TableColumn>
                 <TableColumn width="33%" align="center" style={{ textAlign: 'center', fontSize: '1.25rem', fontWeight: '600', color: '#fff', background: '#312D5E' }}>Basic</TableColumn>
-                <TableColumn width="33%" align="center" style={{ textAlign: 'center', fontSize: '1.25rem', fontWeight: '600', color: '#fff', background: '#312D5E' }}>Premium</TableColumn>
+                <TableColumn width="33%" align="center" style={{ textAlign: 'center', fontSize: '1.25rem', fontWeight: '600', color: '#fff', background: '#312D5E' }}>Pro</TableColumn>
               </TableHeader>
               <TableBody>
                 {data.map((item, index) => (

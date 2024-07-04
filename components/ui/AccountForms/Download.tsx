@@ -39,32 +39,23 @@ export default function Download() {
       }
     >
       <div className="mt-6 mb-4 text-xl font-semibold">
-        <div
-          className="mt-8 space-y-4 sm:mt-12 sm:space-y-0 flex flex-wrap justify-center gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0">
-          <div className={cn(
-            'flex flex-col items-center rounded-lg shadow-lg bg-white p-4',
-            'flex-1',
-            'max-w-xs'
-          )}>
+        <div className="mt-8 space-y-4 sm:mt-12 sm:space-y-0 flex flex-wrap justify-center gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0">
+          <div className={cn('flex flex-col items-center p-4', 'flex-1', 'max-w-xs')}>
             <a href="https://download.agios.live" target="_blank" rel="noopener noreferrer">
-              <div className="w-24 h-24">
-                <Image src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Windows_logo_-_2021_%28Black%29.svg" width={96} height={96} alt="Windows Logo" />
+              <div className="w-24 h-24 flex flex-col items-center">
+                <Image src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Windows_logo_-_2021_%28White%29.svg" width={62.4} height={62.4} alt="Windows Logo" />
               </div>
+              <p className="mt-4 text-lg font-bold text-white text-center">
+                Windows
+              </p>
             </a>
-            <p className="mt-2 text-lg font-bold text-gray-800">
-              Windows
-            </p>
           </div>
-          <div className={cn(
-            'flex flex-col items-center rounded-lg shadow-lg bg-white p-4',
-            'flex-1',
-            'max-w-xs'
-          )}>
-            <div className="w-24 h-24">
-              <Image src="https://upload.wikimedia.org/wikipedia/commons/3/30/MacOS_logo.svg" width={96} height={96} alt="macOS Logo" />
+          <div className={cn('flex flex-col items-center p-4', 'flex-1', 'max-w-xs')}>
+            <div className="w-24 h-24 flex flex-col items-center">
+              <Image src="https://upload.wikimedia.org/wikipedia/commons/archive/2/22/20170705052044%21MacOS_logo_%282017%29.svg" width={76.8} height={76.8} alt="macOS Logo" />
             </div>
-            <p className="mt-2 text-lg font-bold text-gray-800">
-              macOS (Coming Soon)
+            <p className="mt-4 text-lg font-bold text-white text-center">
+              macOS<br />(Coming Soon)
             </p>
           </div>
         </div>

@@ -25,17 +25,16 @@ type SubscriptionWithPriceAndProduct = Subscription & {
 interface Props {
   subscription: SubscriptionWithPriceAndProduct | null;
   points: number | null;
-  paddlesubscription:any
+  paddlesubscription: any
 }
 
-export default function CustomerPortalForm({ subscription,points,paddlesubscription }: Props) {
+export default function CustomerPortalForm({ subscription, points, paddlesubscription }: Props) {
   const router = useRouter();
   const currentPath = usePathname();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const subscriptionPrice =
     subscription &&
     new Intl.NumberFormat('en-US', {
@@ -50,6 +49,7 @@ export default function CustomerPortalForm({ subscription,points,paddlesubscript
     setIsSubmitting(false);
     return router.push(redirectUrl);
   };
+
   function capitalizeFirstLetter(str: any) {
     return str[0].toUpperCase() + str.slice(1);
   }
@@ -57,57 +57,50 @@ export default function CustomerPortalForm({ subscription,points,paddlesubscript
   const handleModalClose = () => {
     setShowModal(false);
   };
+
   const handleModalOpen = () => {
     setShowModal(true);
   };
 
-
-  function formatBillingPeriod(start: string, end: string) {
-    const startDate = parseISO(start);
+  function formatNextBillingDate(end: string) {
     const endDate = parseISO(end);
-
-    const startMonth = format(startDate, 'MMMM');
-    const startDay = format(startDate, 'd');
-    const endMonth = format(endDate, 'MMMM');
-    const endDay = format(endDate, 'd');
-    const year = format(startDate, 'yyyy');
-
     const nextBillingDate = addDays(endDate, 1);
-    const nextBillingDateFormatted = format(nextBillingDate, 'MMMM d, yyyy');
-
-    return {
-      billingPeriod: `Billing Period: ${startMonth} ${startDay} - ${endMonth} ${endDay}, ${year}`,
-      nextBillingDate: `Next Billing Date: ${nextBillingDateFormatted}`
-    };
+    return format(nextBillingDate, 'MMMM d, yyyy');
   }
-  const { billingPeriod, nextBillingDate } = subscription ? formatBillingPeriod(subscription?subscription.current_period_start:"", subscription?subscription.current_period_end:""):{billingPeriod:"",nextBillingDate:""};
+
+  const nextBillingDate = subscription ? formatNextBillingDate(subscription?.current_period_end || '') : '';
 
   return (
     <Card
-      title={subscription && paddlesubscription?.status === 'active'?"Your Plan: "+capitalizeFirstLetter(subscription?.prices?.products?.type):""}
+      title={subscription && paddlesubscription?.status === 'active' ? "Your Plan: " + capitalizeFirstLetter(subscription?.prices?.products?.type) : ""}
       description={
         subscription && paddlesubscription?.status === 'active'
-          ? `You are currently on the ${subscription?.prices?.products?.name} plan.`
-          : 'You are not currently subscribed to any plan.'
+          ? `You are currently on ${subscription?.prices?.products?.name} plan.`
+          : 'You are not subscribed to any plan.'
       }
       footer={
         <>
-          {
-            subscription && paddlesubscription?.status === 'active' &&
-            <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
-              <p className="pb-4 sm:pb-0">{billingPeriod}</p>
-              <div>Available Points: {points == -1 ? 'Unlimited' : points}</div>
+          {subscription && paddlesubscription?.status === 'active' && (
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between w-full">
+              <div className="flex flex-col sm:w-1/2">
+                <p className="pb-4 sm:pb-0">{`Available Points: ${points == null ? 'N/A' : points == -1 ? 'Unlimited' : points.toLocaleString()}`}</p>
+                <p className="pb-4 sm:pb-0">{`Next Billing Date: ${nextBillingDate}`}</p>
+              </div>
+              <div className="flex sm:w-1/2 sm:justify-end">
+                <a href="javascript:void(0)" onClick={onOpen} style={{ color: 'white' }}>
+                  Update Your Payment Method
+                </a>
+              </div>
             </div>
-          }
-          {
-            subscription && paddlesubscription?.status === 'active' &&
-            <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
-              <p className="pb-4 sm:pb-0">{nextBillingDate} </p>
-              <div><a href="javascript:void(0)" onClick={onOpen}>Update Your Payment Method</a></div>
-            </div>
-          }
-            <UpdatePayment handleModalClose={handleModalClose} cancelLink={paddlesubscription?.managementUrls?.cancel}
-                           UpdateLink={paddlesubscription?.managementUrls?.updatePaymentMethod} onOpen={onOpen} isOpen={isOpen} onOpenChange={onOpenChange} />
+          )}
+          <UpdatePayment
+            handleModalClose={handleModalClose}
+            cancelLink={paddlesubscription?.managementUrls?.cancel}
+            UpdateLink={paddlesubscription?.managementUrls?.updatePaymentMethod}
+            onOpen={onOpen}
+            isOpen={isOpen}
+            onOpenChange={onOpenChange}
+          />
         </>
       }
     >
@@ -115,7 +108,7 @@ export default function CustomerPortalForm({ subscription,points,paddlesubscript
         {subscription && paddlesubscription?.status === 'active' ? (
           `${subscriptionPrice}/${subscription?.prices?.interval}`
         ) : (
-          <Link href="/">Click here to choose your plan</Link>
+          <Link href="/">Click here to choose your plan.</Link>
         )}
       </div>
     </Card>

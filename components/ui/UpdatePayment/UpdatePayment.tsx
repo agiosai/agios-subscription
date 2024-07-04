@@ -10,7 +10,7 @@ function UpdatePayment({handleModalClose,cancelLink,UpdateLink,onOpen,isOpen,onO
   const paddle = usePaddle();
 
   const router = useRouter();
-  const openCheckout = (link:string) => {
+  const openCheckout = (link: string) => {
     return router.push(link);
   };
 
@@ -20,36 +20,36 @@ function UpdatePayment({handleModalClose,cancelLink,UpdateLink,onOpen,isOpen,onO
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         placement="center"
+        className="bg-white rounded-lg shadow-lg p-6"
       >
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Are You Sure</ModalHeader>
-              <ModalBody>
-                This action cannot be undone. This will permanently delete your account and remove your data from our servers.
-                <Button
-                  variant="slim"
-                  type="button"
-                  className="block w-full py-2 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900 mt-4"
-                  onClick={()=>openCheckout(UpdateLink)}
+              <ModalHeader className="flex flex-col items-center gap-2 text-lg font-bold text-gray-800">
+                Update Payment Information
+              </ModalHeader>
+              <ModalBody className="text-center text-gray-600">
+                Please choose an option below to update your payment information or contact support for further assistance.
+                <button
+                  className="w-full py-2 mt-4 text-sm font-semibold text-center text-white bg-gray-700 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-75"
+                  onClick={() => openCheckout(UpdateLink)}
                 >
                   Update Payment Method
-
-                </Button>
-                <Button
-                  variant="slim"
-                  type="button"
-                  className="block w-full py-2 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900 mt-4"
-                  onClick={()=>openCheckout("https://form.typeform.com/to/ySp6JjYY")}
+                </button>
+                <button
+                  className="w-full py-2 mt-4 text-sm font-semibold text-center text-white bg-gray-700 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-75"
+                  onClick={() => openCheckout("https://form.typeform.com/to/vnkH7IsK?typeform-source=subscription.agios.live")}
                 >
-                  Cancel Subscription
-
-                </Button>
+                  Contact Support
+                </button>
               </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="flat" onClick={onClose}>
+              <ModalFooter className="flex justify-center">
+                <button 
+                  onClick={onClose} 
+                  className="px-4 py-2 text-sm font-semibold text-white bg-gray-500 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-75"
+                >
                   Close
-                </Button>
+                </button>
               </ModalFooter>
             </>
           )}
@@ -60,28 +60,21 @@ function UpdatePayment({handleModalClose,cancelLink,UpdateLink,onOpen,isOpen,onO
       {/*  <div className="bg-white m-auto p-8">*/}
       {/*    <div className="flex flex-col items-center">*/}
       {/*      <br/>*/}
-      {/*      <Button*/}
-      {/*        variant="slim"*/}
-      {/*        type="button"*/}
+      {/*      <button*/}
       {/*        className="block w-full py-2 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900 mt-4"*/}
-      {/*        onClick={()=>openCheckout(UpdateLink)}*/}
+      {/*        onClick={() => openCheckout(UpdateLink)}*/}
       {/*      >*/}
       {/*        Update Payment Method*/}
-
-      {/*      </Button>*/}
-      {/*      <Button*/}
-      {/*        variant="slim"*/}
-      {/*        type="button"*/}
+      {/*      </button>*/}
+      {/*      <button*/}
       {/*        className="block w-full py-2 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900 mt-4"*/}
-      {/*        onClick={()=>openCheckout("https://form.typeform.com/to/ySp6JjYY")}*/}
+      {/*        onClick={() => openCheckout("https://form.typeform.com/to/vnkH7IsK?typeform-source=subscription.agios.live")}*/}
       {/*      >*/}
-      {/*        Cancel Subscription*/}
-
-      {/*      </Button>*/}
+      {/*        Contact Support*/}
+      {/*      </button>*/}
       {/*      <br/>*/}
       {/*      <button type="button" className="bg-red-500 text-white p-2 " onClick={handleModalClose}>Close</button>*/}
       {/*    </div>*/}
-
       {/*  </div>*/}
       {/*</dialog>*/}
     </>

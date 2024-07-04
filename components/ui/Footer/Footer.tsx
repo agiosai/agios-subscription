@@ -23,35 +23,35 @@ export default function Footer() {
 
           {/* Row 1 - Social Media Links */}
           <div className="flex space-x-6">
-            <Link href="https://twitter.com/AGIOS_live" aria-label="Twitter" className="text-white hover:text-zinc-200">
+            <Link href="https://twitter.com/AGIOS_live" aria-label="Twitter" className="text-white hover:text-zinc-200" target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={faX} />
             </Link>
-            <Link href="https://www.facebook.com/agios.live" aria-label="Facebook" className="text-white hover:text-zinc-200">
+            <Link href="https://www.facebook.com/agios.live" aria-label="Facebook" className="text-white hover:text-zinc-200" target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={faFacebookF} />
             </Link>
-            <Link href="https://www.instagram.com/agios.live" aria-label="Instagram" className="text-white hover:text-zinc-200">
+            <Link href="https://www.instagram.com/agios.live" aria-label="Instagram" className="text-white hover:text-zinc-200" target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={faInstagram} />
             </Link>
-            <Link href="https://www.youtube.com/@AGIOS_live" aria-label="YouTube" className="text-white hover:text-zinc-200">
+            <Link href="https://www.youtube.com/@AGIOS_live" aria-label="YouTube" className="text-white hover:text-zinc-200" target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={faYoutube} />
             </Link>
-            <Link href="https://www.tiktok.com/@agios.live" aria-label="TikTok" className="text-white hover:text-zinc-200">
+            <Link href="https://www.tiktok.com/@agios.live" aria-label="TikTok" className="text-white hover:text-zinc-200" target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={faTiktok} />
             </Link>
           </div>
 
           {/* Row 2 - Policy Links */}
           <div className="flex space-x-6">
-            <Link href="https://blog.agios.live/privacy-policy/" className="text-white transition duration-150 ease-in-out hover:text-zinc-200">
+            <Link href="https://blog.agios.live/privacy-policy/" className="text-white transition duration-150 ease-in-out hover:text-zinc-200" target="_blank" rel="noopener noreferrer">
               Privacy Policy
             </Link>
-            <Link href="https://blog.agios.live/terms-of-service/" className="text-white transition duration-150 ease-in-out hover:text-zinc-200">
+            <Link href="https://blog.agios.live/terms-of-service/" className="text-white transition duration-150 ease-in-out hover:text-zinc-200" target="_blank" rel="noopener noreferrer">
               Terms of Service
             </Link>
-            <Link href="https://form.typeform.com/to/vnkH7IsK" className="text-white transition duration-150 ease-in-out hover:text-zinc-200">
+            <Link href="https://form.typeform.com/to/vnkH7IsK" className="text-white transition duration-150 ease-in-out hover:text-zinc-200" target="_blank" rel="noopener noreferrer">
               Support
             </Link>
-            <Link href="https://form.typeform.com/to/cYhFHVPa" className="text-white transition duration-150 ease-in-out hover:text-zinc-200">
+            <Link href="https://form.typeform.com/to/cYhFHVPa" className="text-white transition duration-150 ease-in-out hover:text-zinc-200" target="_blank" rel="noopener noreferrer">
               Feedback
             </Link>
           </div>
