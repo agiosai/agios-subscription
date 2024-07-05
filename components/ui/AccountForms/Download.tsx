@@ -41,7 +41,7 @@ export default function Download() {
       <div className="mt-6 mb-4 text-xl font-semibold">
         <div className="mt-8 space-y-4 sm:mt-12 sm:space-y-0 flex flex-wrap justify-center gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0">
           <div className={cn('flex flex-col items-center p-4', 'flex-1', 'max-w-xs')}>
-            <a href="https://agios-live.s3.ap-northeast-21.amazonaws.com/AgiOS+Beta_Installer_Prod.exe" target="_blank" rel="noopener noreferrer">
+            <a href="https://agios-live.s3.ap-northeast-2.amazonaws.com/AgiOS+Beta_Installer_Prod.exe" target="_blank" rel="noopener noreferrer">
               <div className="w-24 h-24 flex flex-col items-center">
                 <Image src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Windows_logo_-_2021_%28White%29.svg" width={62.4} height={62.4} alt="Windows Logo" />
               </div>
