@@ -10,8 +10,12 @@ function UpdatePayment({handleModalClose,cancelLink,UpdateLink,onOpen,isOpen,onO
   const paddle = usePaddle();
 
   const router = useRouter();
-  const openCheckout = (link: string) => {
-    return router.push(link);
+  const openCheckout = (link: string, newTab = false) => {
+    if (newTab) {
+      window.open(link, '_blank');
+    } else {
+      return router.push(link);
+    }
   };
 
   return (
@@ -31,14 +35,14 @@ function UpdatePayment({handleModalClose,cancelLink,UpdateLink,onOpen,isOpen,onO
               <ModalBody className="text-center text-gray-600">
                 Please choose an option below to update your payment information or contact support for further assistance.
                 <button
-                  className="w-full py-2 mt-4 text-sm font-semibold text-center text-white bg-gray-700 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-75"
+                  className="w-full py-2 mt-4 text-sm font-semibold text-center text-white bg-blue-600 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75"
                   onClick={() => openCheckout(UpdateLink)}
                 >
                   Update Payment Method
                 </button>
                 <button
-                  className="w-full py-2 mt-4 text-sm font-semibold text-center text-white bg-gray-700 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-75"
-                  onClick={() => openCheckout("https://form.typeform.com/to/vnkH7IsK?typeform-source=subscription.agios.live")}
+                  className="w-full py-2 mt-4 text-sm font-semibold text-center text-white bg-green-600 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-75"
+                  onClick={() => openCheckout("https://form.typeform.com/to/vnkH7IsK?typeform-source=subscription.agios.live", true)}
                 >
                   Contact Support
                 </button>
@@ -46,7 +50,7 @@ function UpdatePayment({handleModalClose,cancelLink,UpdateLink,onOpen,isOpen,onO
               <ModalFooter className="flex justify-center">
                 <button 
                   onClick={onClose} 
-                  className="px-4 py-2 text-sm font-semibold text-white bg-gray-500 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-75"
+                  className="px-4 py-2 text-sm font-semibold text-white bg-red-500 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75"
                 >
                   Close
                 </button>

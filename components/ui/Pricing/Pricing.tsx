@@ -192,87 +192,51 @@ export default function Pricing({ user, products, subscription, features, featur
     },
     {
       question: "What are the limitations of AGI OS?",
-      answer: 
-      "• It might occasionally produce inaccurate responses. However, the accuracy of task performance is constantly being enhanced with frequent updates."
-    },
-    {
-      question:"",
-      answer: 
-      "• Because automated web browsing is an experimental technology, execution of tasks may encounter failures due to existing technological constraints."
-    },
-    {
-      question:"",
-      answer: 
-      "• Currently, AGI OS cannot access local files on your computer. This capability is expected to be added in our next update."
+      answer: `
+        <ul>
+          <li>• It might occasionally produce inaccurate responses. However, the accuracy of task performance is constantly being enhanced with frequent updates.</li>
+          <li>• Because automated web browsing is an experimental technology, execution of tasks may encounter failures due to existing technological constraints.</li>
+          <li>• Currently, AGI OS cannot access local files on your computer. This capability is expected to be added in our next update.</li>
+        </ul>
+      `
     },
     {
       question: "What are the differences between AGI OS and Human Workers?",
-      answer: "• Speed and Efficiency: AGI OS can process information and execute tasks much faster than a human, especially for data-intensive jobs. This speed translates to quicker turnaround times for projects."
-    },
-    {
-      question: "",
-      answer: "• Precision: With the ability to analyze vast amounts of data without fatigue, AGI OS reduces the likelihood of errors that are more common with human handling, particularly in data-intensive fields like analytics."
-    },
-    {
-      question: "",
-      answer: "• Cost-Effectiveness: Once implemented, AGI OS can perform multiple roles that would otherwise require several employees, thus significantly reducing staffing expenses related to wages, benefits, and insurance. This allows your business to allocate resources more efficiently and increase profitability."
-    },
-    {
-      question: "",
-      answer: "• Emotional Economy Advantage: AGI OS eliminates the need to navigate the common workplace challenges associated with human teams, such as motivational issues, dishonesty, slacking, complaints, and potential lawsuits. This stress-free operation allows for a more consistent and reliable workflow. Scalability: Unlike human workers, AGI OS can scale its operations up or down instantly, depending on the demand, without the need for recruitment or training." 
-  
-    },
-      {
-      question: "",
-      answer: "• Scalability: Unlike human workers, AGI OS can scale its operations up or down instantly, depending on the demand, without the need for recruitment or training."
-    },
-    {
-      question: "",
-      answer: "• Availability: AGI OS operates 24/7 without breaks, vacations, or downtime, providing constant productivity that's unmatched by human counterparts."
+      answer: `
+        <ul>
+          <li>• Speed and Efficiency: AGI OS can process information and execute tasks much faster than a human, especially for data-intensive jobs. This speed translates to quicker turnaround times for projects.</li>
+          <li>• Precision: With the ability to analyze vast amounts of data without fatigue, AGI OS reduces the likelihood of errors that are more common with human handling, particularly in data-intensive fields like analytics.</li>
+          <li>• Cost-Effectiveness: Once implemented, AGI OS can perform multiple roles that would otherwise require several employees, thus significantly reducing staffing expenses related to wages, benefits, and insurance. This allows your business to allocate resources more efficiently and increase profitability.</li>
+          <li>• Emotional Economy Advantage: AGI OS eliminates the need to navigate the common workplace challenges associated with human teams, such as motivational issues, dishonesty, slacking, complaints, and potential lawsuits. This stress-free operation allows for a more consistent and reliable workflow.</li>
+          <li>• Scalability: Unlike human workers, AGI OS can scale its operations up or down instantly, depending on the demand, without the need for recruitment or training.</li>
+          <li>• Availability: AGI OS operates 24/7 without breaks, vacations, or downtime, providing constant productivity that's unmatched by human counterparts.</li>
+        </ul>
+      `
     },
     {
       question: "What work can AGI OS take over?",
-      answer: "Capable of taking over various roles traditionally filled by human employees such as:"
-    },
-    {
-      question: "",
-      answer: "• Marketing Department Work: Continuously promotes products online, optimizing campaigns in real time to maximize reach and engagement."
-    },
-    {
-      question: "",
-      answer: "• Creative Content Generation Work: Utilizes advanced AI to produce innovative and engaging content across various media, supporting creative projects with endless possibilities."
-    },
-    {
-      question: "",
-      answer: "• Research and Development Work: Streamlines the collection and analysis of extensive data sets, speeding up research processes and delivering insights faster than conventional methods."
-    },
-    {
-      question: "",
-      answer: "• Problem Solving Work: Provides immediate, intelligent solutions for challenges encountered during tasks, enhancing decision-making processes across all levels of operation."
-    },
-    {
-      question: "",
-      answer: "• Secretarial Services Work: Simplifies tasks such as booking, purchasing, and making reservations through automation."
+      answer: `
+        Capable of taking over various roles traditionally filled by human employees such as:
+        <ul>
+          <li>• Marketing Department Work: Continuously promotes products online, optimizing campaigns in real time to maximize reach and engagement.</li>
+          <li>• Creative Content Generation Work: Utilizes advanced AI to produce innovative and engaging content across various media, supporting creative projects with endless possibilities.</li>
+          <li>• Research and Development Work: Streamlines the collection and analysis of extensive data sets, speeding up research processes and delivering insights faster than conventional methods.</li>
+          <li>• Problem Solving Work: Provides immediate, intelligent solutions for challenges encountered during tasks, enhancing decision-making processes across all levels of operation.</li>
+          <li>• Secretarial Services Work: Simplifies tasks such as booking, purchasing, and making reservations through automation.</li>
+        </ul>
+      `
     },
     {
       question: "What tasks can I accomplish with AGI OS?",
-      answer: "• Marketing Automation: AGI OS can automate your entire digital marketing workflow, from scheduling and posting content on social media to engaging with customers through comments. It can also create diverse marketing content, including articles, blogs, and ad copy, tailored to your audience's preferences with its permanent private memory, enhancing your brand's reach and engagement."
-    },
-    {
-      question: "",
-      answer: "• Bulk Data Processing: For tasks that require handling large volumes of data, AGI OS can process and analyze information quickly and efficiently. Whether it's sorting through customer data, analyzing market trends, or preparing reports, AGI OS manages these tasks with precision, saving hours of manual labor."
-    },
-    {
-      question: "",
-      answer: "• Continuous Information Processing: AGI OS is ideal for jobs that require continuous data monitoring and processing. From real-time analytics to ongoing project management updates, it ensures that your business leverages the most current data without delay."
-    },
-    {
-      question: "",
-      answer: "• Autonomous Research and Analysis task: AGI OS can autonomously analyze complex data displayed on your screen. For example, you could instruct it to: 'Analyze the data on the screen, research the success factors of the top three brands, and summarize the findings in Notepad.' This capability makes AGI OS particularly useful for detailed and continuous research tasks."
-    },
-    {
-      question: "",
-      answer: "• The full suite of AGI OS services is continually evolving, with new features being regularly introduced. Stay updated on release dates and access information by signing up for notifications on our <a href=\"https://blog.agios.live/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: underline;\"> blog</a>."
+      answer: `
+        <ul>
+          <li>• Marketing Automation: AGI OS can automate your entire digital marketing workflow, from scheduling and posting content on social media to engaging with customers through comments. It can also create diverse marketing content, including articles, blogs, and ad copy, tailored to your audience's preferences with its permanent private memory, enhancing your brand's reach and engagement.</li>
+          <li>• Bulk Data Processing: For tasks that require handling large volumes of data, AGI OS can process and analyze information quickly and efficiently. Whether it's sorting through customer data, analyzing market trends, or preparing reports, AGI OS manages these tasks with precision, saving hours of manual labor.</li>
+          <li>• Continuous Information Processing: AGI OS is ideal for jobs that require continuous data monitoring and processing. From real-time analytics to ongoing project management updates, it ensures that your business leverages the most current data without delay.</li>
+          <li>• Autonomous Research and Analysis task: AGI OS can autonomously analyze complex data displayed on your screen. For example, you could instruct it to: 'Analyze the data on the screen, research the success factors of the top three brands, and summarize the findings in Notepad.' This capability makes AGI OS particularly useful for detailed and continuous research tasks.</li>
+        </ul>
+        The full suite of AGI OS services is continually evolving, with new features being regularly introduced. Stay updated on release dates and access information by signing up for notifications on our <a href="https://blog.agios.live/" target="_blank" rel="noopener noreferrer" style="color: #EC4899; text-decoration: none; position: relative; transition: color 0.3s ease;">blog</a>.
+      `
     },
     {
       question: "How does AGI OS work?",
@@ -284,11 +248,11 @@ export default function Pricing({ user, products, subscription, features, featur
     },
     {
       question: "Does AGI OS require a specific browser to operate?",
-      answer: "Yes, AGI OS is currently compatible only with <a href=\"https://www.google.com/intl/en_ph/chrome/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: underline;\"> Google Chrome</a>. To ensure full functionality, please install and use Google Chrome as your browser when working with AGI OS."
+      answer: "Yes, AGI OS is currently compatible only with <a href=\"https://www.google.com/intl/en_ph/chrome/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #EC4899; text-decoration: none; position: relative; transition: color 0.3s ease;\"> Google Chrome</a>. To ensure full functionality, please install and use Google Chrome as your browser when working with AGI OS."
     },
     {
       question: "Is AGI OS currently in beta version?",
-      answer: "Yes, the current version of AGI OS software is a beta release. This early version is available for users to test and provide feedback on its functionalities and performance. During this beta phase, we are actively refining features and addressing any issues to improve the software before its final release. Your <a href=\"https://form.typeform.com/to/cYhFHVPa\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: underline;\"> feedback and insights</a> are valuable to us and can significantly contribute to the development process."
+      answer: "Yes, the current version of AGI OS software is a beta release. This early version is available for users to test and provide feedback on its functionalities and performance. During this beta phase, we are actively refining features and addressing any issues to improve the software before its final release. Your <a href=\"https://form.typeform.com/to/cYhFHVPa\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #EC4899; text-decoration: none; position: relative; transition: color 0.3s ease;\"> feedback and insights</a> are valuable to us and can significantly contribute to the development process."
     },
     {
       question: "What languages does AGI OS support?",
@@ -300,19 +264,19 @@ export default function Pricing({ user, products, subscription, features, featur
     },
     {
       question: "How much does AGI OS cost?",
-      answer: "AGI OS offers flexible pricing plans to suit the needs of both individual users and businesses. For more details on pricing and licensing options, please visit the <a href=\"https://subscription.agios.live/pricing\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: underline;\"> pricing page</a>. If you have additional questions about billing or account management, refer to the <a href=\"https://blog.agios.live/faqs/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: underline;\"> FAQs on our blog</a>."
+      answer: "AGI OS offers flexible pricing plans to suit the needs of both individual users and businesses. For more details on pricing and licensing options, please visit the <a href=\"https://subscription.agios.live/pricing\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #EC4899; text-decoration: none; position: relative; transition: color 0.3s ease;\"> pricing page</a>. If you have additional questions about billing or account management, refer to the <a href=\"https://blog.agios.live/faqs/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #EC4899; text-decoration: none; position: relative; transition: color 0.3s ease;\"> FAQs on our blog</a>."
     },
     {
       question: "How does AGI OS use my data?",
-      answer: "AGI OS operates with a commitment to ensuring the privacy and security of your data. Unlike other AI systems that might store information on cloud servers, AGI OS keeps all user data localized on your own device. This approach means your data is never collected by our servers, providing an added layer of privacy and security. However, it's important to note that the permanent memory stored by AGI OS, powered by Fractal Permanent Memory, resides solely on your computer. This memory develops a personalized user experience by adapting to your preferences and usage patterns over time, effectively giving AGI OS a unique 'personality'. While this enhances your interaction with AGI OS, it also means that data loss could occur if your device is compromised. We strongly recommend regular backups to safeguard your data. To learn more, read our <a href=\"https://blog.agios.live/privacy-policy/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: underline;\"> Privacy Policy</a>."
+      answer: "AGI OS operates with a commitment to ensuring the privacy and security of your data. Unlike other AI systems that might store information on cloud servers, AGI OS keeps all user data localized on your own device. This approach means your data is never collected by our servers, providing an added layer of privacy and security. However, it's important to note that the permanent memory stored by AGI OS, powered by Fractal Permanent Memory, resides solely on your computer. This memory develops a personalized user experience by adapting to your preferences and usage patterns over time, effectively giving AGI OS a unique 'personality'. While this enhances your interaction with AGI OS, it also means that data loss could occur if your device is compromised. We strongly recommend regular backups to safeguard your data. To learn more, read our <a href=\"https://blog.agios.live/privacy-policy/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #EC4899; text-decoration: none; position: relative; transition: color 0.3s ease;\"> Privacy Policy</a>."
     },
     {
       question: "How can I learn more about AGI OS?",
-      answer: "To delve more into AGI OS and its functions, please visit our <a href=\"https://blog.agios.live/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: underline;\"> blog</a>. If you have specific questions or require additional support, feel free to contact us via our <a href=\"https://form.typeform.com/to/vnkH7IsK?typeform-source=blog.agios.live\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: underline;\"> Technical Support Form</a> at any time. We’re excited to show you how AGI OS can transform your daily operations and workflow."
+      answer: "To delve more into AGI OS and its functions, please visit our <a href=\"https://blog.agios.live/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #EC4899; text-decoration: none; position: relative; transition: color 0.3s ease;\"> blog</a>. If you have specific questions or require additional support, feel free to contact us via our <a href=\"https://form.typeform.com/to/vnkH7IsK?typeform-source=blog.agios.live\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #EC4899; text-decoration: none; position: relative; transition: color 0.3s ease;\"> Technical Support Form</a> at any time. We’re excited to show you how AGI OS can transform your daily operations and workflow."
     },
     {
       question: "How do I get started with AGI OS?",
-      answer: "To begin using AGI OS, simply visit <a href=\"https://agios.live\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: underline;\">agios.live</a> and create an account. If you encounter configuration issues or need additional support, our team is available to assist you via email at <a href=\"support@agios.live\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: underline;\"> support@agios.live</a>."
+      answer: "To begin using AGI OS, simply visit <a href=\"https://agios.live\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #EC4899; text-decoration: none; position: relative; transition: color 0.3s ease;\">agios.live</a> and create an account. If you encounter configuration issues or need additional support, our team is available to assist you via email at <a href=\"mailto:support@agios.live\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #EC4899; text-decoration: none; position: relative; transition: color 0.3s ease;\">support@agios.live</a>."
     }
   ];
 
