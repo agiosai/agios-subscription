@@ -272,7 +272,7 @@ export default function Pricing({ user, products, subscription, features, featur
     },
     {
       question: "",
-      answer: "• The full suite of AGI OS services is continually evolving, with new features being regularly introduced. Stay updated on release dates and access information by signing up for notifications on our blog."
+      answer: "• The full suite of AGI OS services is continually evolving, with new features being regularly introduced. Stay updated on release dates and access information by signing up for notifications on our <a href=\"https://blog.agios.live/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: underline;\"> blog</a>."
     },
     {
       question: "How does AGI OS work?",
@@ -284,11 +284,11 @@ export default function Pricing({ user, products, subscription, features, featur
     },
     {
       question: "Does AGI OS require a specific browser to operate?",
-      answer: "Yes, AGI OS is currently compatible only with Google Chrome. To ensure full functionality, please install and use Google Chrome as your browser when working with AGI OS."
+      answer: "Yes, AGI OS is currently compatible only with <a href=\"https://www.google.com/intl/en_ph/chrome/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: underline;\"> Google Chrome</a>. To ensure full functionality, please install and use Google Chrome as your browser when working with AGI OS."
     },
     {
       question: "Is AGI OS currently in beta version?",
-      answer: "Yes, the current version of AGI OS software is a beta release. This early version is available for users to test and provide feedback on its functionalities and performance. During this beta phase, we are actively refining features and addressing any issues to improve the software before its final release. Your feedback and insights are valuable to us and can significantly contribute to the development process."
+      answer: "Yes, the current version of AGI OS software is a beta release. This early version is available for users to test and provide feedback on its functionalities and performance. During this beta phase, we are actively refining features and addressing any issues to improve the software before its final release. Your <a href=\"https://form.typeform.com/to/cYhFHVPa\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: underline;\"> feedback and insights</a> are valuable to us and can significantly contribute to the development process."
     },
     {
       question: "What languages does AGI OS support?",
@@ -300,19 +300,19 @@ export default function Pricing({ user, products, subscription, features, featur
     },
     {
       question: "How much does AGI OS cost?",
-      answer: "AGI OS offers flexible pricing plans to suit the needs of both individual users and businesses. For more details on pricing and licensing options, please visit the pricing page."
+      answer: "AGI OS offers flexible pricing plans to suit the needs of both individual users and businesses. For more details on pricing and licensing options, please visit the <a href=\"https://subscription.agios.live/pricing\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: underline;\"> pricing page</a>. If you have additional questions about billing or account management, refer to the <a href=\"https://blog.agios.live/faqs/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: underline;\"> FAQs on our blog</a>."
     },
     {
       question: "How does AGI OS use my data?",
-      answer: "AGI OS operates with a commitment to ensuring the privacy and security of your data. Unlike other AI systems that might store information on cloud servers, AGI OS keeps all user data localized on your own device. This approach means your data is never collected by our servers, providing an added layer of privacy and security. However, it's important to note that the permanent memory stored by AGI OS, powered by Fractal Permanent Memory, resides solely on your computer. This memory develops a personalized user experience by adapting to your preferences and usage patterns over time, effectively giving AGI OS a unique 'personality'. While this enhances your interaction with AGI OS, it also means that data loss could occur if your device is compromised. We strongly recommend regular backups to safeguard your data. To learn more, read our Privacy Policy."
+      answer: "AGI OS operates with a commitment to ensuring the privacy and security of your data. Unlike other AI systems that might store information on cloud servers, AGI OS keeps all user data localized on your own device. This approach means your data is never collected by our servers, providing an added layer of privacy and security. However, it's important to note that the permanent memory stored by AGI OS, powered by Fractal Permanent Memory, resides solely on your computer. This memory develops a personalized user experience by adapting to your preferences and usage patterns over time, effectively giving AGI OS a unique 'personality'. While this enhances your interaction with AGI OS, it also means that data loss could occur if your device is compromised. We strongly recommend regular backups to safeguard your data. To learn more, read our <a href=\"https://blog.agios.live/privacy-policy/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: underline;\"> Privacy Policy</a>."
     },
     {
       question: "How can I learn more about AGI OS?",
-      answer: "To delve more into AGI OS and its functions, please visit our blog. If you have specific questions or require additional support, feel free to contact us via our Technical Support Form at any time. We’re excited to show you how AGI OS can transform your daily operations and workflow."
+      answer: "To delve more into AGI OS and its functions, please visit our <a href=\"https://blog.agios.live/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: underline;\"> blog</a>. If you have specific questions or require additional support, feel free to contact us via our <a href=\"https://form.typeform.com/to/vnkH7IsK?typeform-source=blog.agios.live\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: underline;\"> Technical Support Form</a> at any time. We’re excited to show you how AGI OS can transform your daily operations and workflow."
     },
     {
       question: "How do I get started with AGI OS?",
-      answer: "To begin using AGI OS, simply visit agios.live and create an account. If you encounter configuration issues or need additional support, our team is available to assist you via email at support@agios.live."
+      answer: "To begin using AGI OS, simply visit <a href=\"https://agios.live\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: underline;\">agios.live</a> and create an account. If you encounter configuration issues or need additional support, our team is available to assist you via email at <a href=\"support@agios.live\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: underline;\"> support@agios.live</a>."
     }
   ];
 
@@ -376,7 +376,7 @@ export default function Pricing({ user, products, subscription, features, featur
             <h1 style={{ fontSize: '2rem', fontWeight: '800', color: 'white', textAlign: 'center' }}>
               Meet Your New Hire: An All-Purpose AI Employee
             </h1>
-            <h2 style={{ fontSize: '3rem', fontWeight: '800', color: 'white', textAlign: 'center' }}>
+            <h2 style={{ fontSize: '2rem', fontWeight: '800', color: 'white', textAlign: 'center' }}>
               Making Every Day a Little Less 'Do It Yourself'
             </h2>
             <p style={{ maxWidth: '40rem', margin: '1.25rem auto', fontSize: '1.25rem', color: '#b0b0b0', textAlign: 'center', lineHeight: '1.5' }}>
@@ -534,7 +534,7 @@ export default function Pricing({ user, products, subscription, features, featur
             {faqs.map((faq, index) => (
               <div key={index} style={{ marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: '600', color: 'white', marginBottom: '10px' }}>{faq.question}</h3>
-                <p style={{ marginTop: '10px', textAlign: 'justify', color: '#d0d0d0', marginBottom: '10px' }}>{faq.answer}</p>
+                <p style={{ marginTop: '10px', textAlign: 'justify', color: '#d0d0d0', marginBottom: '10px' }} dangerouslySetInnerHTML={{__html: faq.answer}}></p>
               </div>
             ))}
           </div>
