@@ -51,6 +51,10 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
     if (priceObj?.points == 0 && priceObj?.points != subscription?.prices?.points){
       setShouldDisable(false);
     }
+    // check for pro
+    if (subscription?.prices?.products?.type === 'basic' && product?.type === 'pro'){
+      setShouldDisable(false);
+    }
   }, [subscription?.price_id, priceId]);
   const openCheckout = () => {
       if (!user) {
