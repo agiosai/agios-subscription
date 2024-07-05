@@ -472,7 +472,7 @@ export default function Pricing({ user, products, subscription, features, featur
       fontWeight: '700'
     }}
   >
-    Save 20% for a limited time only
+    Save 30% for a limited time only
   </span>
 
 </button>
