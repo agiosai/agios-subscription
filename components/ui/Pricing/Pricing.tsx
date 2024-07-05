@@ -337,10 +337,10 @@ export default function Pricing({ user, products, subscription, features, featur
       <section style={{ backgroundColor: 'black' }}>
         <div style={{ maxWidth: '96rem', padding: '2rem 1rem', margin: '0 auto', marginTop: '4rem' }}>
           <div className="sm:flex sm:flex-col sm:align-center" style={{ marginBottom: '4rem' }}>
-            <h1 style={{ fontSize: '2rem', fontWeight: '800', color: 'white', textAlign: 'center' }}>
+            <h1 style={{ fontSize: '3rem', fontWeight: '800', color: 'white', textAlign: 'center' }}>
               Meet Your New Hire: An All-Purpose AI Employee
             </h1>
-            <h2 style={{ fontSize: '2rem', fontWeight: '800', color: 'white', textAlign: 'center' }}>
+            <h2 style={{ fontSize: '3rem', fontWeight: '800', color: 'white', textAlign: 'center' }}>
               Making Every Day a Little Less 'Do It Yourself'
             </h2>
             <p style={{ maxWidth: '40rem', margin: '1.25rem auto', fontSize: '1.25rem', color: '#b0b0b0', textAlign: 'center', lineHeight: '1.5' }}>
