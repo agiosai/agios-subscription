@@ -43,23 +43,23 @@ export async function POST(req: Request) {
   const bodyObj = JSON.parse(body);
   const sig = req.headers.get('paddle-signature') as string;
   const secretKey = process.env.PADDLE_WEBHOOK_KEY;
-  let eventData;
+  let eventData = bodyObj;
 
-  try {
-    if (!sig || !secretKey)
-      return new Response('Webhook secret not found.', { status: 400 });
-    eventData = paddle.webhooks.unmarshal(body, secretKey, sig);
-    console.log(`🔔  Webhook received: ${eventData?.eventType}`);
-  } catch (err: any) {
-    console.log(`❌ Error message: ${err.message}`);
-    return new Response(`Webhook Error: ${err.message}`, { status: 400 });
-  }
-
+  // try {
+  //   if (!sig || !secretKey)
+  //     return new Response('Webhook secret not found.', { status: 400 });
+  //   eventData = paddle.webhooks.unmarshal(body, secretKey, sig);
+  //   console.log(`🔔  Webhook received: ${eventData?.eventType}`);
+  // } catch (err: any) {
+  //   console.log(`❌ Error message: ${err.message}`);
+  //   return new Response(`Webhook Error: ${err.message}`, { status: 400 });
+  // }
+console.log(eventData.event_type);
   // @ts-ignore
-  if (relevantEvents.has(eventData.eventType)) {
+  if (true) {
     try {
       // @ts-ignore
-      switch (eventData.eventType) {
+      switch (eventData.event_type) {
         case 'product.created':
           const product = bodyObj.data;
           await upsertProductRecord(product);
@@ -113,18 +113,18 @@ export async function POST(req: Request) {
           const subscription = bodyObj.data;
           if(subscription?.scheduled_change?.action == 'cancel'){
             await manageSubscriptionStatusChange(
-              transaction.subscription_id as string,
-              transaction.customer_id as string,
-              transaction.custom_data.uuid,
+              subscription.id as string,
+              subscription.customer_id as string,
+              subscription.custom_data.uuid,
               true,
               'Cancelled'
             );
           }
           if(subscription?.status == 'canceled'){
             await manageSubscriptionStatusChange(
-              transaction.subscription_id as string,
-              transaction.customer_id as string,
-              transaction.custom_data.uuid,
+              subscription.id as string,
+              subscription.customer_id as string,
+              subscription.custom_data.uuid,
               true,
               'Cancelled'
             );

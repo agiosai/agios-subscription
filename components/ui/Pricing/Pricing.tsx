@@ -498,7 +498,7 @@ export default function Pricing({ user, products, subscription, features, featur
             {faqs.map((faq, index) => (
               <div key={index} style={{ marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: '600', color: 'white', marginBottom: '10px' }}>{faq.question}</h3>
-                <p style={{ marginTop: '10px', textAlign: 'justify', color: '#d0d0d0', marginBottom: '10px' }} dangerouslySetInnerHTML={{__html: faq.answer}}></p>
+                <div style={{ marginTop: '10px', textAlign: 'justify', color: '#d0d0d0', marginBottom: '10px' }} dangerouslySetInnerHTML={{__html: faq.answer}}></div>
               </div>
             ))}
           </div>

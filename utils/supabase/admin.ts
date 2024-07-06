@@ -357,7 +357,7 @@ const manageSubscriptionStatusChange = async (
     //   ? toDateTime(subscription.canceledAt).toISOString()
     //   : null,
     current_period_start: subscription.startedAt??undefined,
-    current_period_end: subscription.nextBilledAt??undefined,
+    current_period_end: subscription.nextBilledAt??new Date().toDateString(),
     created: subscription.startedAt??undefined,
     ended_at: subscription.canceledAt
       ? subscription.canceledAt
@@ -390,6 +390,9 @@ const manageSubscriptionStatusChange = async (
     points = userData.points +priceData.points;
   }
   if (status === 'canceled'){
+    points = 0;
+  }
+  if (status === 'Cancelled'){
     points = 0;
   }
 
