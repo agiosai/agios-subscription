@@ -62,6 +62,7 @@ export async function POST(req: Request) {
     try {
       // @ts-ignore
       switch (eventData.eventType) {
+      // switch (eventData.event_type) {
         case 'product.created':
           const product = bodyObj.data;
           await upsertProductRecord(product);

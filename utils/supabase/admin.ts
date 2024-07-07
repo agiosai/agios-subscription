@@ -315,6 +315,7 @@ const manageSubscriptionStatusChange = async (
   if (userSubscriptions){
     for (var i = 0; i < userSubscriptions.length; i++) {
       const usubscription = userSubscriptions[i];
+      console.log(usubscription?.id);
       try {
         if (usubscription?.id !== subscription?.id){
           await paddle.subscriptions.cancel(usubscription?.id,{
@@ -329,6 +330,9 @@ const manageSubscriptionStatusChange = async (
     }
   }
 
+  if (isProration){
+    console.log("Is Proration");
+  }
 
   const { error:subUpdateErr} = await supabaseAdmin
     .from('subscriptions')
@@ -336,7 +340,7 @@ const manageSubscriptionStatusChange = async (
     .update({ status:  'canceled'})
     .eq('user_id', uid)
   if (subUpdateErr)
-    throw new Error(`Subscription insert/update failed: ${subUpdateErr.message}`);
+    throw new Error(`Subscription insert/update failed: ${subUpdateErr?.message}`);
 
   // Upsert the latest status of the subscription object.
   const subscriptionData: TablesInsert<'subscriptions'> = {
@@ -374,7 +378,7 @@ const manageSubscriptionStatusChange = async (
     .from('subscriptions')
     .upsert([subscriptionData]);
   if (upsertError)
-    throw new Error(`Subscription insert/update failed: ${upsertError.message}`);
+    throw new Error(`Subscription insert/update failed: ${upsertError?.message}`);
   console.log(
     `Inserted/updated subscription [${subscription.id}] for user [${uuid}]`
   );
@@ -396,16 +400,23 @@ const manageSubscriptionStatusChange = async (
     points = 0;
   }
 
-if (isProration){
+// @ts-ignore
+  if (isProration && priceData?.points>0){
   // @ts-ignore
   const startingPoints = userData?.last_package_points+userData?.last_points;
   // @ts-ignore
-  const consumedPoints = userData.points - startingPoints;
+  const consumedPoints = priceData.points - userData?.last_package_points;
+  console.log("Consumed points",consumedPoints);
   if (consumedPoints>0){
-    points = points - consumedPoints;
+    // @ts-ignore
+    points = userData?.points + consumedPoints;
   }
 }
+console.log("Current points",userData?.points);
+// @ts-ignore
+  console.log("Starting points",userData?.last_package_points+userData?.last_points);
   console.log("Niro points",points)
+  // throw new Error('Proration Test!');
   const { error } = await supabaseAdmin
     .from('users')
     //@ts-ignore
