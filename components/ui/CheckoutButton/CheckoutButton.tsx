@@ -34,10 +34,6 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
       setShouldDisable(true);
     }
 
-    //check yearly
-    if (subscription?.prices?.interval === 'year' && cycle === 'month'){
-      setShouldDisable(true);
-    }
 
     // check points
     if (subscription?.prices?.interval === 'year' && subscription?.prices?.points >= priceObj?.points){
@@ -54,6 +50,10 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
     // check for pro
     if (subscription?.prices?.products?.type === 'basic' && product?.type === 'pro'){
       setShouldDisable(false);
+    }
+    //check yearly
+    if (subscription?.prices?.interval === 'year' && cycle === 'month'){
+      setShouldDisable(true);
     }
   }, [subscription?.price_id, priceId]);
   const openCheckout = () => {

@@ -43,23 +43,25 @@ export async function POST(req: Request) {
   const bodyObj = JSON.parse(body);
   const sig = req.headers.get('paddle-signature') as string;
   const secretKey = process.env.PADDLE_WEBHOOK_KEY;
-  let eventData = bodyObj;
+  // let eventData = bodyObj;
+  let eventData;
 
-  // try {
-  //   if (!sig || !secretKey)
-  //     return new Response('Webhook secret not found.', { status: 400 });
-  //   eventData = paddle.webhooks.unmarshal(body, secretKey, sig);
-  //   console.log(`🔔  Webhook received: ${eventData?.eventType}`);
-  // } catch (err: any) {
-  //   console.log(`❌ Error message: ${err.message}`);
-  //   return new Response(`Webhook Error: ${err.message}`, { status: 400 });
-  // }
-console.log(eventData.event_type);
+  try {
+    if (!sig || !secretKey)
+      return new Response('Webhook secret not found.', { status: 400 });
+    eventData = paddle.webhooks.unmarshal(body, secretKey, sig);
+    console.log(`🔔  Webhook received: ${eventData?.eventType}`);
+  } catch (err: any) {
+    console.log(`❌ Error message: ${err.message}`);
+    return new Response(`Webhook Error: ${err.message}`, { status: 400 });
+  }
+// console.log(eventData.event_type);
   // @ts-ignore
-  if (true) {
+  // if (true) {
+  if (relevantEvents.has(eventData.eventType)) {
     try {
       // @ts-ignore
-      switch (eventData.event_type) {
+      switch (eventData.eventType) {
         case 'product.created':
           const product = bodyObj.data;
           await upsertProductRecord(product);
