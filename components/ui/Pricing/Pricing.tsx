@@ -44,12 +44,13 @@ interface Props {
   subscription: SubscriptionWithProduct | null;
   features: Feature[];
   feature_headers: FeatureHeader[];
+  paddlesubscription: any;
 }
 
 type BillingInterval = 'lifetime' | 'year' | 'month';
 type BillingTypes = 'basic' | 'pro';
 
-export default function Pricing({ user, products, subscription, features, feature_headers }: Props) {
+export default function Pricing({ user, products, subscription, features, feature_headers,paddlesubscription }: Props) {
   console.log("Pricing");
   console.log(subscription);
 
@@ -463,7 +464,7 @@ export default function Pricing({ user, products, subscription, features, featur
                     <h2 style={{ fontSize: '2rem', fontWeight: '600', color: 'white' }}>{product.name}</h2>
                     <p style={{ marginTop: '1rem', color: '#b0b0b0' }}>{product.description}</p>
                     <p style={{ marginTop: '2rem', fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{price.interval}</span></p>
-                    <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name} amount={priceString} cycle={price.interval} priceObj={price} product={product} />
+                    <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name??""} amount={priceString} cycle={price.interval??""} priceObj={price} product={product} paddlesubscriptionLink={paddlesubscription} />
                   </div>
                 );
               })}
@@ -487,7 +488,7 @@ export default function Pricing({ user, products, subscription, features, featur
                     <h2 style={{ fontSize: '2rem', fontWeight: '600', color: 'white' }}>{product.name}</h2>
                     <p style={{ marginTop: '1rem', color: '#b0b0b0' }}>{product.description}</p>
                     <p style={{ marginTop: '2rem', fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{price.interval}</span></p>
-                    <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name} amount={priceString} cycle={price.interval}  priceObj={price} product={product}/>
+                    <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name??""} amount={priceString} cycle={price.interval??""}  priceObj={price} product={product} paddlesubscriptionLink={paddlesubscription}/>
                   </div>
                 );
               })}

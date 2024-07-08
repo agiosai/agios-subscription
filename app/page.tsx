@@ -5,14 +5,27 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { NextUIProvider } from '@nextui-org/react';
 import {ThemeProvider as NextThemesProvider} from "next-themes";
+import { Environment, Paddle } from '@paddle/paddle-node-sdk';
+import process from 'process';
 config.autoAddCss = false;
 
 export default async function PricingPage() {
   const supabase = createClient();
+  let paddleEnv = {
+    environment: Environment.production
+  }
 
+  if (process.env.PADDLE_ENV === 'sandbox'){
+    paddleEnv = {
+      environment: Environment.sandbox
+    }
+  }
   const {
     data: { user }
   } = await supabase.auth.getUser();
+
+// @ts-ignore
+  const paddle = new Paddle(process.env.PADDLE_API_KEY,paddleEnv);
 
   const { data: subscription } = await supabase
     .from('subscriptions')
@@ -40,6 +53,9 @@ export default async function PricingPage() {
     console.log(error);
   }
   console.log(products);
+  const paddlesubscription = subscription? await paddle.subscriptions.get(subscription?.id):null;
+  console.log("Paddle Subscription");
+  console.log(paddlesubscription);
   // @ts-ignore
   return (
     // <NextUIProvider>
@@ -53,6 +69,7 @@ export default async function PricingPage() {
       feature_headers={feature_headers}
       // @ts-ignore
       features={features}
+      paddlesubscription={paddlesubscription?.managementUrls?.updatePaymentMethod}
       />
       </NextThemesProvider>
     // </NextUIProvider>

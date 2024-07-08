@@ -9,17 +9,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2'
 import Button from '@/components/ui/Button';
 // @ts-ignore
-export default function CheckoutButton({priceId,subscription,user,isTopup,upackage,amount,cycle,priceObj,product}: {
-  priceId: string,
-  subscription: any,
-  user: any,
-  isTopup: boolean,
-  upackage: string,
-  amount: string,
-  cycle: string,
-  priceObj: any,
-  product: any
-}){
+export default function CheckoutButton({priceId,subscription,user,isTopup,upackage,amount,cycle,priceObj,product,paddlesubscriptionLink}){
   const paddle = usePaddle();
   const [priceIdLoading, setPriceIdLoading] = useState<string>();
   const [selectedPackage, setSelectedPackage] = useState<string>();
@@ -50,30 +40,25 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
       setShouldDisable(true);
     }
     // check points
-    if (subscription?.prices?.interval === 'month' && subscription?.prices?.points >= priceObj?.points){
+    if (subscription?.prices?.points > priceObj?.points){
       setShouldDisable(true);
+    }
+    if (product?.type === 'pro' && subscription?.price_id !== priceId && subscription?.prices?.points == priceObj?.points){
+      setShouldDisable(false);
     }
 
     if (priceObj?.points == 0 && priceObj?.points != subscription?.prices?.points){
       setShouldDisable(false);
     }
     // check for pro
-    if (subscription?.prices?.products?.type === 'basic' && product?.type === 'pro'){
-      setShouldDisable(false);
-    }
+    // if (subscription?.prices?.products?.type === 'basic' && product?.type === 'pro'){
+    //   setShouldDisable(false);
+    // }
     //check yearly
     if (subscription?.prices?.interval === 'year' && cycle === 'month'){
       setShouldDisable(true);
     }
   }, [subscription?.price_id, priceId]);
-  
-  const openCheckout = (link: string, newTab: boolean = false) => {
-    if (newTab) {
-      window.open(link, '_blank');
-    } else {
-      return router.push(link);
-    }
-  };
 
   const handleOpenCheckout = () => {
     if (!user) {
@@ -96,7 +81,7 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
           <p class="mt-2 text-sm">If you want to change your credit card before proceeding, please click on the update payment button.</p>
           <button
             class="w-full py-2 mt-4 text-sm font-semibold text-center text-white bg-blue-600 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75"
-            onClick="openCheckout('/update-payment')"
+            onClick="window.location.href = '${paddlesubscriptionLink}'"
           >
             Update Payment Method
           </button>
