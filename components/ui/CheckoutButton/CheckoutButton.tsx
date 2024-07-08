@@ -76,27 +76,55 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
     if (subscription?.id && subscription?.status === 'active' && cycle === 'year' && subscription?.prices?.interval === 'year'){
       Swal.fire({
         html: `
-          <div class="bg-white rounded-lg shadow-lg p-6">
-            <h2 class="text-lg font-bold text-gray-800">You have selected the ${upackage} plan. This plan will cost ${amount} per ${cycle}.</h2>
-            <p class="mt-4 text-sm text-gray-600">If you subscribe to this plan, your current recorded credit card will be used to pay.</p>
-            <button
-              class="w-full py-2 mt-4 text-sm font-semibold text-center text-white bg-blue-600 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75"
-              onClick="Swal.close(); window.location.href = '${paddlesubscriptionLink}'"
-            >
-              Proceed
-            </button>
-            <button
-              class="w-full py-2 mt-4 text-sm font-semibold text-center text-white bg-red-500 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75"
-              onClick="Swal.close()"
-            >
-              Close
-            </button>
+          <div style="color: #ffffff; background-color: #333333; padding: 20px; border-radius: 10px;">
+            <h2 class="text-1xl font-semibold leading-6 text-white">You have selected the ${upackage} plan. This plan will cost ${amount} per ${cycle}.</h2>
+            <p class="mt-4 text-sm">If you subscribe to this plan, your current recorded credit card will be used to pay.</p>
           </div>
         `,
-        background: 'transparent',
-        showConfirmButton: false
+        confirmButtonText: 'Proceed',
+        showCancelButton: true,
+        cancelButtonText: 'Cancel',
+        background: '#333333',
+        color: '#ffffff',
+        confirmButtonColor: '#433d81',
+        cancelButtonColor: '#555555',
+        customClass: {
+          popup: 'custom-modal-border',
+          confirmButton: 'order-1',
+          cancelButton: 'order-2'
+        }
+      }).then(function(isConfirm) {
+        if (isConfirm.isConfirmed) {
+          let data = JSON.stringify({
+            price_id: priceId,
+            uuid: user?.id,
+            subscription_id: subscription?.id
+          });
+          let config = {
+            method: 'post',
+            maxBodyLength: Infinity,
+            url: '/api/upgrade',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            data : data
+          };
+          axios.request(config)
+            .then((response) => {
+              if (response.data.success){
+                router.push(getURL("switchsuccess"));
+              } else {
+                alert('Something went wrong');
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        } else {
+          setPriceIdLoading('0');
+        }
       });
-    }else {
+    } else {
       paddle?.Checkout.open({
         items: [
           {
@@ -122,24 +150,46 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
   };
 
   return (
-    <Button
-      variant="slim"
-      type="button"
-      loading={false}
-      onClick={handleOpenCheckout}
-      style={{
-        paddingLeft: '0',
-        paddingRight: '0',
-        backgroundColor: shouldDisable ? '#1a1a1a' : '#e0e0e0',
-        color: shouldDisable ? '#fff' : '#333',
-        cursor: shouldDisable ? 'not-allowed' : 'pointer',
-        fontSize: shouldDisable ? '1.25rem' : '1rem', // 1.25rem for larger text
-        fontWeight: shouldDisable ? 'bold' : 'bold' // bold text for Subscribe
-      }}
-      className={`block w-full py-2 text-sm font-semibold text-center rounded-md mt-4 ${subscription?.price_id !== priceId ? 'hover:bg-white hover:text-black' : ''}`}
-      disabled={shouldDisable}
-    >
-      {!shouldDisable ? "Subscribe" : subscription?.price_id === priceId ? 'Current Plan' : 'Already Included'}
-    </Button>
+    <>
+      <Button
+        variant="slim"
+        type="button"
+        loading={false}
+        onClick={handleOpenCheckout}
+        style={{
+          paddingLeft: '0',
+          paddingRight: '0',
+          backgroundColor: shouldDisable ? '#1a1a1a' : '#e0e0e0',
+          color: shouldDisable ? '#fff' : '#333',
+          cursor: shouldDisable ? 'not-allowed' : 'pointer',
+          fontSize: shouldDisable ? '1.25rem' : '1rem', // 1.25rem for larger text
+          fontWeight: shouldDisable ? 'bold' : 'bold' // bold text for Subscribe
+        }}
+        className={`block w-full py-2 text-sm font-semibold text-center rounded-md mt-4 ${subscription?.price_id !== priceId ? 'hover:bg-white hover:text-black' : ''}`}
+        disabled={shouldDisable}
+      >
+        {!shouldDisable ? "Subscribe" : subscription?.price_id === priceId ? 'Current Plan' : 'Already Included'}
+      </Button>
+      <style jsx global>{`
+        .custom-modal-border {
+          border: 1px solid #444444;
+        }
+        .swal2-actions {
+          display: flex;
+          flex-direction: column;
+        }
+        .swal2-confirm, .swal2-cancel {
+          width: 100%;
+          margin: 5px 0;
+          padding: 10px 0;
+        }
+        .swal2-confirm {
+          order: 1;
+        }
+        .swal2-cancel {
+          order: 2;
+        }
+      `}</style>
+    </>
   );
 }
