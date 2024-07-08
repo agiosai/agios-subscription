@@ -76,52 +76,25 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
     if (subscription?.id && subscription?.status === 'active' && cycle === 'year' && subscription?.prices?.interval === 'year'){
       Swal.fire({
         html: `
-          <h2 class="text-1xl font-semibold leading-6 text-white">You have selected the ${upackage} plan. This plan will cost ${amount} per ${cycle}.</h2>
-          <p class="mt-4 text-sm">If you subscribe to this plan, your current recorded credit card will be used to pay.</p>
-          <p class="mt-2 text-sm">If you want to change your credit card before proceeding, please click on the update payment button.</p>
-          <button
-            class="w-full py-2 mt-4 text-sm font-semibold text-center text-white bg-blue-600 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75"
-            onClick="window.location.href = '${paddlesubscriptionLink}'"
-          >
-            Update Payment Method
-          </button>
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-lg font-bold text-gray-800">You have selected the ${upackage} plan. This plan will cost ${amount} per ${cycle}.</h2>
+            <p class="mt-4 text-sm text-gray-600">If you subscribe to this plan, your current recorded credit card will be used to pay.</p>
+            <button
+              class="w-full py-2 mt-4 text-sm font-semibold text-center text-white bg-blue-600 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75"
+              onClick="Swal.close(); window.location.href = '${paddlesubscriptionLink}'"
+            >
+              Proceed
+            </button>
+            <button
+              class="w-full py-2 mt-4 text-sm font-semibold text-center text-white bg-red-500 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75"
+              onClick="Swal.close()"
+            >
+              Close
+            </button>
+          </div>
         `,
-        confirmButtonText: 'Proceed',
-        showCancelButton: true,
-        cancelButtonText: 'Cancel'
-      }).then(function(isConfirm) {
-        console.log(isConfirm);
-        console.log(subscription);
-        if (isConfirm.isConfirmed) {
-          let data = JSON.stringify({
-            price_id: priceId,
-            uuid: user?.id,
-            subscription_id: subscription?.id
-          });
-          let config = {
-            method: 'post',
-            maxBodyLength: Infinity,
-            url: '/api/upgrade',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            data : data
-          };
-          axios.request(config)
-            .then((response) => {
-              console.log(JSON.stringify(response.data));
-              if (response.data.success){
-                router.push(getURL("switchsuccess"));
-              }else {
-                alert('Something went wrong');
-              }
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        }else {
-          setPriceIdLoading('0');
-        }
+        background: 'transparent',
+        showConfirmButton: false
       });
     }else {
       paddle?.Checkout.open({
