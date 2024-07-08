@@ -71,10 +71,18 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
       setSelectedCycle(cycle);
       if (subscription?.id && subscription?.status === 'active' && cycle === 'year' && subscription?.prices?.interval === 'year'){
         Swal.fire({
-          // title: 'Please confirm!',
-          html: '<h2 class="text-1xl font-semibold leading-6 text-white">You have selected the '+upackage+' plan. This plan will cost '+amount+' per '+cycle+'. Confirm to proceed.</h2>',
-          // icon: "warning",
-          confirmButtonText: 'Confirm',
+          html: `
+            <h2 class="text-1xl font-semibold leading-6 text-white">You have selected the ${upackage} plan. This plan will cost ${amount} per ${cycle}.</h2>
+            <p class="mt-4 text-sm">If you subscribe to this plan, your current recorded credit card will be used to pay.</p>
+            <p class="mt-2 text-sm">If you want to change your credit card before proceeding, please click on the update payment button.</p>
+            <button
+              className="w-full py-2 mt-4 text-sm font-semibold text-center text-white bg-blue-600 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75"
+              onClick={() => openCheckout('/update-payment')}
+            >
+              Update Payment Method
+            </button>
+          `,
+          confirmButtonText: 'Proceed',
           showCancelButton: true,
           cancelButtonText: 'Cancel'
         }).then(function(isConfirm) {
