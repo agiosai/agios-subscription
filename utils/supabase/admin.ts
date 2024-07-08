@@ -407,7 +407,7 @@ const manageSubscriptionStatusChange = async (
   // @ts-ignore
   const consumedPoints = priceData.points - userData?.last_package_points;
   console.log("Consumed points",consumedPoints);
-  if (consumedPoints>0){
+  if (consumedPoints >= 0){
     // @ts-ignore
     points = userData?.points + consumedPoints;
   }
