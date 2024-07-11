@@ -313,6 +313,17 @@ export default function Pricing({ user, products, subscription, features, featur
     return aPrice - bPrice;
   });
 
+  const calculateDiscount = (originalPrice: number, discountedPrice: number) => {
+    const discount = ((originalPrice - discountedPrice) / originalPrice) * 100;
+    return Math.round(discount);
+  };
+
+  const parsePrice = (description: string | null) => {
+    if (!description) return 0;
+    const priceMatch = description.match(/\$(\d+(\.\d+)?)/);
+    return priceMatch ? parseFloat(priceMatch[1]) : 0;
+  };
+
   if (!products.length) {
     return (
       <section style={{ backgroundColor: 'black' }}>
@@ -447,22 +458,30 @@ export default function Pricing({ user, products, subscription, features, featur
                 );
                 if (!price || product.type !== 'basic') return null;
                 const yearlyPrice = price.interval === 'year' ? (price?.unit_amount || 0) / 12 : price?.unit_amount || 0;
+                const originalPrice = parsePrice(product.description);
                 const priceString = new Intl.NumberFormat('en-US', {
                   style: 'currency',
                   currency: price.currency!,
                   minimumFractionDigits: 0
                 }).format(yearlyPrice);
+                const discount = calculateDiscount(originalPrice, yearlyPrice);
                 return (
                   <div
                     key={product.id}
                     style={{ marginTop: '10px', backgroundColor: '#1a1a1a', borderRadius: '0.375rem', padding: '1.5rem', textAlign: 'center', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}
                   >
-                    <h2 style={{ fontSize: '2rem', fontWeight: '600', color: 'white' }}>{product.name}</h2>
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem' }}>
-                      <p style={{ fontSize: '2.5rem', fontWeight: '800', color: 'white', textDecoration: 'line-through' }}>{product.description}</p>
-                      <p style={{ fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{billingInterval === 'year' ? 'month' : price.interval}</span></p>
+                    <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{product.name}</h2>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem', marginTop: '30px' }}>
+                      <p style={{ fontSize: '2.5rem', fontWeight: '600', color: '#b0b0b0', textDecoration: 'line-through' }}>{product.description}</p>
+                      <p style={{ fontSize: '2.5rem', fontWeight: '800', color: 'white', position: 'relative' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{billingInterval === 'year' ? 'month' : price.interval}</span>
+                        {discount > 0 && (
+                          <span style={{ position: 'absolute', top: '-10px', right: '-40px', backgroundColor: '#ff4785', color: 'white', borderRadius: '5%', padding: '0.25rem 0.5rem', fontSize: '0.75rem', fontWeight: '700' }}>
+                            {discount}% OFF
+                          </span>
+                        )}
+                      </p>
                     </div>
-                    <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name??""} amount={priceString} cycle={billingInterval === 'year' ? 'month' : price.interval} priceObj={price} product={product} paddlesubscriptionLink={paddlesubscription} />
+                    <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name ?? ""} amount={priceString} cycle={billingInterval} priceObj={price} product={product} paddlesubscriptionLink={paddlesubscription} />
                   </div>
                 );
               })}
@@ -474,22 +493,30 @@ export default function Pricing({ user, products, subscription, features, featur
                 );
                 if (!price || product.type !== 'pro') return null;
                 const yearlyPrice = price.interval === 'year' ? (price?.unit_amount || 0) / 12 : price?.unit_amount || 0;
+                const originalPrice = parsePrice(product.description);
                 const priceString = new Intl.NumberFormat('en-US', {
                   style: 'currency',
                   currency: price.currency!,
                   minimumFractionDigits: 0
                 }).format(yearlyPrice);
+                const discount = calculateDiscount(originalPrice, yearlyPrice);
                 return (
                   <div
                     key={product.id}
                     style={{ marginTop: '10px', backgroundColor: '#1a1a1a', borderRadius: '0.375rem', padding: '1.5rem', textAlign: 'center', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}
                   >
-                    <h2 style={{ fontSize: '2rem', fontWeight: '600', color: 'white' }}>{product.name}</h2>
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem' }}>
-                      <p style={{ fontSize: '2.5rem', fontWeight: '800', color: 'white', textDecoration: 'line-through' }}>{product.description}</p>
-                      <p style={{ fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{billingInterval === 'year' ? 'month' : price.interval}</span></p>
+                    <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{product.name}</h2>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem', marginTop: '30px' }}>
+                      <p style={{ fontSize: '2.5rem', fontWeight: '600', color: '#b0b0b0', textDecoration: 'line-through' }}>{product.description}</p>
+                      <p style={{ fontSize: '2.5rem', fontWeight: '800', color: 'white', position: 'relative' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{billingInterval === 'year' ? 'month' : price.interval}</span>
+                        {discount > 0 && (
+                          <span style={{ position: 'absolute', top: '-10px', right: '-40px', backgroundColor: '#ff4785', color: 'white', borderRadius: '5%', padding: '0.25rem 0.5rem', fontSize: '0.75rem', fontWeight: '700' }}>
+                            {discount}% OFF
+                          </span>
+                        )}
+                      </p>
                     </div>
-                    <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name??""} amount={priceString} cycle={billingInterval === 'year' ? 'month' : price.interval} priceObj={price} product={product} paddlesubscriptionLink={paddlesubscription}/>
+                    <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name ?? ""} amount={priceString} cycle={billingInterval} priceObj={price} product={product} paddlesubscriptionLink={paddlesubscription} />
                   </div>
                 );
               })}
@@ -500,7 +527,7 @@ export default function Pricing({ user, products, subscription, features, featur
             {faqs.map((faq, index) => (
               <div key={index} style={{ marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: '600', color: 'white', marginBottom: '10px' }}>{faq.question}</h3>
-                <div style={{ marginTop: '10px', textAlign: 'justify', color: '#d0d0d0', marginBottom: '10px' }} dangerouslySetInnerHTML={{__html: faq.answer}}></div>
+                <div style={{ marginTop: '10px', textAlign: 'justify', color: '#d0d0d0', marginBottom: '10px' }} dangerouslySetInnerHTML={{ __html: faq.answer }}></div>
               </div>
             ))}
           </div>
@@ -508,7 +535,7 @@ export default function Pricing({ user, products, subscription, features, featur
             <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
               <h1 style={{ fontSize: '2rem', fontWeight: '600', color: 'white' }}>Boost Your Workflow with AGI OS</h1>
               <p style={{ textAlign: 'justify', margin: '1.25rem 0' }}>
-                Embrace the future of productivity with AGI OS—your ultimate autonomous assistant. 
+                Embrace the future of productivity with AGI OS—your ultimate autonomous assistant.
               </p>
               <p style={{ textAlign: 'justify', margin: '1.25rem 0' }}>
                 AGI OS revolutionizes your workday, automating complex tasks from data analysis to project management with intuitive expertise, significantly reducing time and costs compared to traditional human labor. With AGI OS, boost your productivity, streamline your operations, and unlock your project’s full potential.

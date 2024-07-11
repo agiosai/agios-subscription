@@ -58,6 +58,8 @@ export default function CheckoutButton({priceId,subscription,user,isTopup,upacka
     if (subscription?.prices?.interval === 'year' && cycle === 'month'){
       setShouldDisable(true);
     }
+    console.log("SHOULD");
+    console.log("SHOULD",shouldDisable);
   }, [subscription?.price_id, priceId]);
 
   const handleOpenCheckout = () => {
