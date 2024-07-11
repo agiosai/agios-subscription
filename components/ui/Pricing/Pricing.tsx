@@ -458,8 +458,10 @@ export default function Pricing({ user, products, subscription, features, featur
                     style={{ marginTop: '10px', backgroundColor: '#1a1a1a', borderRadius: '0.375rem', padding: '1.5rem', textAlign: 'center', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}
                   >
                     <h2 style={{ fontSize: '2rem', fontWeight: '600', color: 'white' }}>{product.name}</h2>
-                    <p style={{ marginTop: '1rem', color: '#b0b0b0' }}>{product.description}</p>
-                    <p style={{ marginTop: '2rem', fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{billingInterval === 'year' ? 'month' : price.interval}</span></p>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem' }}>
+                      <p style={{ fontSize: '2.5rem', fontWeight: '800', color: 'white', textDecoration: 'line-through' }}>{product.description}</p>
+                      <p style={{ fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{billingInterval === 'year' ? 'month' : price.interval}</span></p>
+                    </div>
                     <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name??""} amount={priceString} cycle={billingInterval === 'year' ? 'month' : price.interval} priceObj={price} product={product} paddlesubscriptionLink={paddlesubscription} />
                   </div>
                 );
@@ -483,8 +485,10 @@ export default function Pricing({ user, products, subscription, features, featur
                     style={{ marginTop: '10px', backgroundColor: '#1a1a1a', borderRadius: '0.375rem', padding: '1.5rem', textAlign: 'center', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}
                   >
                     <h2 style={{ fontSize: '2rem', fontWeight: '600', color: 'white' }}>{product.name}</h2>
-                    <p style={{ marginTop: '1rem', color: '#b0b0b0' }}>{product.description}</p>
-                    <p style={{ marginTop: '2rem', fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{billingInterval === 'year' ? 'month' : price.interval}</span></p>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem' }}>
+                      <p style={{ fontSize: '2.5rem', fontWeight: '800', color: 'white', textDecoration: 'line-through' }}>{product.description}</p>
+                      <p style={{ fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{billingInterval === 'year' ? 'month' : price.interval}</span></p>
+                    </div>
                     <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name??""} amount={priceString} cycle={billingInterval === 'year' ? 'month' : price.interval} priceObj={price} product={product} paddlesubscriptionLink={paddlesubscription}/>
                   </div>
                 );
@@ -505,8 +509,8 @@ export default function Pricing({ user, products, subscription, features, featur
               <h1 style={{ fontSize: '2rem', fontWeight: '600', color: 'white' }}>Boost Your Workflow with AGI OS</h1>
               <p style={{ textAlign: 'justify', margin: '1.25rem 0' }}>
                 Embrace the future of productivity with AGI OS—your ultimate autonomous assistant. 
-                </p>
-                <p style={{ textAlign: 'justify', margin: '1.25rem 0' }}>
+              </p>
+              <p style={{ textAlign: 'justify', margin: '1.25rem 0' }}>
                 AGI OS revolutionizes your workday, automating complex tasks from data analysis to project management with intuitive expertise, significantly reducing time and costs compared to traditional human labor. With AGI OS, boost your productivity, streamline your operations, and unlock your project’s full potential.
               </p>
               <button
