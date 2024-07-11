@@ -50,7 +50,7 @@ interface Props {
 type BillingInterval = 'lifetime' | 'year' | 'month';
 type BillingTypes = 'basic' | 'pro';
 
-export default function Pricing({ user, products, subscription, features, feature_headers,paddlesubscription }: Props) {
+export default function Pricing({ user, products, subscription, features, feature_headers, paddlesubscription }: Props) {
   console.log("Pricing");
   console.log(subscription);
 
@@ -345,9 +345,7 @@ export default function Pricing({ user, products, subscription, features, featur
               Making Every Day a Little Less 'Do It Yourself'
             </h2>
             <p style={{ maxWidth: '40rem', margin: '1.25rem auto', fontSize: '1.25rem', color: '#b0b0b0', textAlign: 'center', lineHeight: '1.5' }}>
-            AGI OS serves as the first non-human multi-purpose digital agent that actually performs tasks on your behalf. Ideal for professionals across all sectors, start automating a broad spectrum of tasks, enhancing efficiency and accelerating business growth. 
-
-
+              AGI OS serves as the first non-human multi-purpose digital agent that actually performs tasks on your behalf. Ideal for professionals across all sectors, start automating a broad spectrum of tasks, enhancing efficiency and accelerating business growth.
             </p>
           </div>
           <div style={{ container: 'mx-auto', padding: '0 1.5rem', marginBottom: '4rem' }}>
@@ -404,44 +402,41 @@ export default function Pricing({ user, products, subscription, features, featur
               </button>
             )}
             {intervals.includes('year') && (
-              
               <button
-  onClick={() => {
-    setBillingInterval('year');
-    countPackages('year');
-  }}
-  type="button"
-  className={`${billingInterval === 'year' ? 'text-white bg-[#433D81]' : 'text-gray-400'}`}
-  style={{
-    width: '50%',
-    padding: '0.5rem 1rem',
-    margin: '0.25rem',
-    fontSize: '1.25rem',
-    fontWeight: '600',
-    border: 'none',
-    borderRadius: '0.375rem',
-    position: 'relative'
-  }}
->
-  Yearly Billing
-  <span
-    style={{
-      position: 'absolute',
-      top: '-10px',
-      right: '-10px',
-      backgroundColor: '#ff4785',
-      color: 'white',
-      borderRadius: '5%',
-      padding: '0.25rem 0.5rem',
-      fontSize: '0.75rem',
-      fontWeight: '700'
-    }}
-  >
-    Save 30% for a limited time only
-  </span>
-
-</button>
-
+                onClick={() => {
+                  setBillingInterval('year');
+                  countPackages('year');
+                }}
+                type="button"
+                className={`${billingInterval === 'year' ? 'text-white bg-[#433D81]' : 'text-gray-400'}`}
+                style={{
+                  width: '50%',
+                  padding: '0.5rem 1rem',
+                  margin: '0.25rem',
+                  fontSize: '1.25rem',
+                  fontWeight: '600',
+                  border: 'none',
+                  borderRadius: '0.375rem',
+                  position: 'relative'
+                }}
+              >
+                Yearly Billing
+                <span
+                  style={{
+                    position: 'absolute',
+                    top: '-10px',
+                    right: '-10px',
+                    backgroundColor: '#ff4785',
+                    color: 'white',
+                    borderRadius: '5%',
+                    padding: '0.25rem 0.5rem',
+                    fontSize: '0.75rem',
+                    fontWeight: '700'
+                  }}
+                >
+                  Save 30% for a limited time only
+                </span>
+              </button>
             )}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ container: 'mx-auto', padding: '0 1.5rem', marginBottom: '4rem' }}>
@@ -451,11 +446,12 @@ export default function Pricing({ user, products, subscription, features, featur
                   (price) => price.interval === billingInterval
                 );
                 if (!price || product.type !== 'basic') return null;
+                const yearlyPrice = price.interval === 'year' ? (price?.unit_amount || 0) / 12 : price?.unit_amount || 0;
                 const priceString = new Intl.NumberFormat('en-US', {
                   style: 'currency',
                   currency: price.currency!,
                   minimumFractionDigits: 0
-                }).format((price?.unit_amount || 0));
+                }).format(yearlyPrice);
                 return (
                   <div
                     key={product.id}
@@ -463,8 +459,8 @@ export default function Pricing({ user, products, subscription, features, featur
                   >
                     <h2 style={{ fontSize: '2rem', fontWeight: '600', color: 'white' }}>{product.name}</h2>
                     <p style={{ marginTop: '1rem', color: '#b0b0b0' }}>{product.description}</p>
-                    <p style={{ marginTop: '2rem', fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{price.interval}</span></p>
-                    <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name??""} amount={priceString} cycle={price.interval??""} priceObj={price} product={product} paddlesubscriptionLink={paddlesubscription} />
+                    <p style={{ marginTop: '2rem', fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{billingInterval === 'year' ? 'month' : price.interval}</span></p>
+                    <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name??""} amount={priceString} cycle={billingInterval === 'year' ? 'month' : price.interval} priceObj={price} product={product} paddlesubscriptionLink={paddlesubscription} />
                   </div>
                 );
               })}
@@ -475,11 +471,12 @@ export default function Pricing({ user, products, subscription, features, featur
                   (price) => price.interval === billingInterval
                 );
                 if (!price || product.type !== 'pro') return null;
+                const yearlyPrice = price.interval === 'year' ? (price?.unit_amount || 0) / 12 : price?.unit_amount || 0;
                 const priceString = new Intl.NumberFormat('en-US', {
                   style: 'currency',
                   currency: price.currency!,
                   minimumFractionDigits: 0
-                }).format((price?.unit_amount || 0));
+                }).format(yearlyPrice);
                 return (
                   <div
                     key={product.id}
@@ -487,8 +484,8 @@ export default function Pricing({ user, products, subscription, features, featur
                   >
                     <h2 style={{ fontSize: '2rem', fontWeight: '600', color: 'white' }}>{product.name}</h2>
                     <p style={{ marginTop: '1rem', color: '#b0b0b0' }}>{product.description}</p>
-                    <p style={{ marginTop: '2rem', fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{price.interval}</span></p>
-                    <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name??""} amount={priceString} cycle={price.interval??""}  priceObj={price} product={product} paddlesubscriptionLink={paddlesubscription}/>
+                    <p style={{ marginTop: '2rem', fontSize: '2.5rem', fontWeight: '800', color: 'white' }}>{priceString}<span style={{ fontSize: '1rem', fontWeight: '500', color: '#d0d0d0' }}>/{billingInterval === 'year' ? 'month' : price.interval}</span></p>
+                    <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name??""} amount={priceString} cycle={billingInterval === 'year' ? 'month' : price.interval} priceObj={price} product={product} paddlesubscriptionLink={paddlesubscription}/>
                   </div>
                 );
               })}
