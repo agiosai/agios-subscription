@@ -6,13 +6,13 @@ import SingleLogo from '@/components/icons/SingleLogo';
 
 export default function Footer() {
   return (
-    <footer className="mx-auto max-w-[1920px] px-6" style={{ fontSize: '14px', backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '20px', borderRadius: '8px' }}>
+    <footer className="mx-auto max-w-[1920px] px-6" style={{ fontSize: '14px', backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '20px', borderRadius: '0px' }}>
       <div className="max-w-6xl px-6 mx-auto flex flex-col md:flex-row justify-between items-center md:items-start text-white transition-colors">
         
         {/* Left Area - Logo */}
         <div className="flex items-center mt-10">
           <Link href="https://www.agios.live" className="flex items-center font-bold">
-            <span className="mr-2 border rounded-full border-zinc-700">
+            <span className="mr-2 border rounded-full border-transparent">
               <SingleLogo />
             </span>
           </Link>

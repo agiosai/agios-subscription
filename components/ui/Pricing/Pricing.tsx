@@ -16,6 +16,8 @@ import {
   Spacer, Button
 } from '@nextui-org/react';
 import Image from 'next/image';
+import AGICTAImage from '../../../public/AGICTA2160.png';
+
 import { Container } from 'postcss';
 import { Grid } from 'lucide-react';
 import { Card, CardBody } from '@nextui-org/card';
@@ -324,6 +326,16 @@ export default function Pricing({ user, products, subscription, features, featur
     return priceMatch ? parseFloat(priceMatch[1]) : 0;
   };
 
+  const highestDiscount = Math.max(...products.map(product => {
+    const price = product?.prices?.find(
+      (price) => price.interval === 'year'
+    );
+    if (!price) return 0;
+    const yearlyPrice = (price?.unit_amount || 0) / 12;
+    const originalPrice = parsePrice(product.description);
+    return calculateDiscount(originalPrice, yearlyPrice);
+  }));
+
   if (!products.length) {
     return (
       <section style={{ backgroundColor: 'black' }}>
@@ -445,7 +457,7 @@ export default function Pricing({ user, products, subscription, features, featur
                     fontWeight: '700'
                   }}
                 >
-                  Save 30% for a limited time only
+                  Save up to {highestDiscount}% for a limited time only
                 </span>
               </button>
             )}
@@ -481,7 +493,7 @@ export default function Pricing({ user, products, subscription, features, featur
                         )}
                       </p>
                     </div>
-                    <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name ?? ""} amount={priceString} cycle={billingInterval} priceObj={price} product={product} paddlesubscriptionLink={paddlesubscription} />
+                    <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name ?? ""} amount={priceString} cycle={billingInterval === 'year' ? 'month' : price.interval} priceObj={price} product={product} paddlesubscriptionLink={paddlesubscription} />
                   </div>
                 );
               })}
@@ -516,7 +528,7 @@ export default function Pricing({ user, products, subscription, features, featur
                         )}
                       </p>
                     </div>
-                    <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name ?? ""} amount={priceString} cycle={billingInterval} priceObj={price} product={product} paddlesubscriptionLink={paddlesubscription} />
+                    <CheckoutButton priceId={price.id} subscription={subscription} user={user} isTopup={false} upackage={product.name ?? ""} amount={priceString} cycle={billingInterval === 'year' ? 'month' : price.interval} priceObj={price} product={product} paddlesubscriptionLink={paddlesubscription} />
                   </div>
                 );
               })}
@@ -549,7 +561,7 @@ export default function Pricing({ user, products, subscription, features, featur
               </button>
             </div>
             <div style={{ padding: '1rem' }}>
-              <img src="https://4kwallpapers.com/images/walls/thumbs_3t/2218.png" alt="Windows logo" style={{ width: '100%', height: 'auto', objectFit: 'cover', borderRadius: '0.375rem' }} />
+              <Image src={AGICTAImage} alt="AGI OS logo" style={{ width: '100%', height: 'auto', objectFit: 'cover', borderRadius: '0.375rem' }} />
             </div>
           </div>
           <LogoCloud />
