@@ -102,7 +102,7 @@ export default function Pricing({ user, products, subscription, features, featur
     },
     {
       feature: 'Pre-scheduled Unmanned Work Handler',
-      description: "Allow AGI to perform tasks when you are not around. Delegate tomorrow's tasks today. AGIOS operates autonomously, ensuring your projects continue advancing even while you sleep, optimizing productivity 24/7.",
+      description: "Delegate tomorrow's tasks today. Allow AGI OS to perform tasks when you are not around. AGI OS operates autonomously, ensuring your projects continue advancing even while you sleep, optimizing productivity 24/7.",
       basic: false,
       pro: true,
     },
@@ -132,7 +132,7 @@ export default function Pricing({ user, products, subscription, features, featur
     },
     {
       feature: 'Work Delegation',
-      description: 'AGI OS can operate autonomously to perform tasks such as content creation, posting, operations, and data analysis, optimizing productivity without constant user input on autopilot.',
+      description: 'AGI OS can operate autonomously to perform tasks such as content creation, posting, operations, and data analysis, optimizing productivity on autopilot, without needing constant user input.',
       basic: true,
       pro: true,
     },
@@ -145,7 +145,7 @@ export default function Pricing({ user, products, subscription, features, featur
     {
       feature: 'On-Screen Support Advisor',
       description: 'Provides real-time on-screen guidance, offering expert assistance with any content displayed on your screen.',
-      basic: false,
+      basic: true,
       pro: true,
     },
     {
@@ -156,7 +156,7 @@ export default function Pricing({ user, products, subscription, features, featur
     },
     {
       feature: 'Swarm Intelligence',
-      description: 'Utilize the collective power of multiple AI agents working together to streamline task execution.',
+      description: 'Utilizes the collective power of multiple AI agents working together to streamline task execution.',
       basic: true,
       pro: true,
     },
