@@ -15,6 +15,19 @@ export default function UpdatePassword({
 }: UpdatePasswordProps) {
   const router = redirectMethod === 'client' ? useRouter() : null;
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+    setIsButtonDisabled(e.target.value !== passwordConfirm);
+  };
+
+  const handlePasswordConfirmChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPasswordConfirm(e.target.value);
+    setIsButtonDisabled(e.target.value !== password);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsSubmitting(true); // Disable the button while the request is being handled
@@ -39,6 +52,8 @@ export default function UpdatePassword({
               name="password"
               autoComplete="current-password"
               className="w-full p-3 rounded-md bg-zinc-800"
+              value={password}
+              onChange={handlePasswordChange}
             />
             <label htmlFor="passwordConfirm">Confirm New Password</label>
             <input
@@ -48,6 +63,8 @@ export default function UpdatePassword({
               name="passwordConfirm"
               autoComplete="current-password"
               className="w-full p-3 rounded-md bg-zinc-800"
+              value={passwordConfirm}
+              onChange={handlePasswordConfirmChange}
             />
           </div>
           <Button
@@ -55,6 +72,7 @@ export default function UpdatePassword({
             type="submit"
             className="mt-1"
             loading={isSubmitting}
+            disabled={isButtonDisabled || isSubmitting}
           >
             Update Password
           </Button>
