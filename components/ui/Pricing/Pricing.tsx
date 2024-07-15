@@ -267,7 +267,7 @@ export default function Pricing({ user, products, subscription, features, featur
     },
     {
       question: "How much does AGI OS cost?",
-      answer: "AGI OS offers flexible pricing plans to suit the needs of both individual users and businesses. For more details on pricing and licensing options, please visit the <a href=\"https://subscription.agios.live/pricing\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #EC4899; text-decoration: none; position: relative; transition: color 0.3s ease;\"> pricing page</a>. If you have additional questions about billing or account management, refer to the <a href=\"https://blog.agios.live/faqs/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #EC4899; text-decoration: none; position: relative; transition: color 0.3s ease;\"> FAQs on our blog</a>."
+      answer: 'AGI OS offers flexible pricing plans to suit the needs of both individual users and businesses. For more details on pricing and licensing options, please visit the <a href="#" style="color: #EC4899; text-decoration: none; position: relative; transition: color 0.3s ease;">pricing page</a>. If you have additional questions about billing or account management, refer to the <a href="https://blog.agios.live/faqs/" target="_blank" rel="noopener noreferrer" style="color: #EC4899; text-decoration: none; position: relative; transition: color 0.3s ease;">FAQs on our blog</a>.'
     },
     {
       question: "How does AGI OS use my data?",
