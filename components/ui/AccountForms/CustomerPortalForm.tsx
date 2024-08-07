@@ -25,7 +25,7 @@ type SubscriptionWithPriceAndProduct = Subscription & {
 interface Props {
   subscription: SubscriptionWithPriceAndProduct | null;
   points: number | null;
-  paddlesubscription: any
+  paddlesubscription: any;
 }
 
 export default function CustomerPortalForm({ subscription, points, paddlesubscription }: Props) {
@@ -41,7 +41,7 @@ export default function CustomerPortalForm({ subscription, points, paddlesubscri
       style: 'currency',
       currency: subscription?.prices?.currency!,
       minimumFractionDigits: 0
-    }).format((subscription?.prices?.unit_amount || 0));
+    }).format(subscription?.prices?.unit_amount || 0);
 
   const handleStripePortalRequest = async () => {
     setIsSubmitting(true);
@@ -70,6 +70,7 @@ export default function CustomerPortalForm({ subscription, points, paddlesubscri
 
   const nextBillingDate = subscription ? formatNextBillingDate(subscription?.current_period_end || '') : '';
 
+  /*
   return (
     <Card
       title={subscription && paddlesubscription?.status === 'active' ? "Your Plan: " + capitalizeFirstLetter(subscription?.prices?.products?.type) : ""}
@@ -113,4 +114,6 @@ export default function CustomerPortalForm({ subscription, points, paddlesubscri
       </div>
     </Card>
   );
+  */
+  return null;
 }

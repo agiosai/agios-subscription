@@ -31,7 +31,7 @@ export default function Navlinks({ user }: NavlinksProps) {
           Home
         </Link>
         <Link href="/" className={s.link}>
-          Pricing
+          Features
         </Link>
         <Link href="https://blog.agios.live/" className={s.link}>
           Blog
