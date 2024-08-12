@@ -410,7 +410,7 @@ export default function Pricing({ user, products, subscription, features, featur
               </TableBody>
             </Table>
           </div>
-          {/*
+          {
           <div className="relative self-center mt-6 rounded-lg flex sm:mt-8" style={{ marginBottom: '4rem', background: '#312D5E60' }}>
             {intervals.includes('month') && (
               <button
@@ -463,8 +463,8 @@ export default function Pricing({ user, products, subscription, features, featur
               </button>
             )}
           </div>
-          */}
-          {/*
+          }
+          {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ container: 'mx-auto', padding: '0 1.5rem', marginBottom: '4rem' }}>
             <div style={{ verticalAlign: 'baseline' }}>
               {sortedProducts.map((product) => {
@@ -537,7 +537,7 @@ export default function Pricing({ user, products, subscription, features, featur
               })}
             </div>
           </div>
-          */}
+          }
           <h2 style={{ fontSize: '2rem', fontWeight: '800', color: 'white', textAlign: 'center', marginBottom: '2rem' }}>Frequently Asked Questions</h2>
           <div style={{ marginBottom: '4rem' }}>
             {faqs.map((faq, index) => (

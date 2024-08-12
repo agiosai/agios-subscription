@@ -68,12 +68,15 @@ export default function CustomerPortalForm({ subscription, points, paddlesubscri
     return format(nextBillingDate, 'MMMM d, yyyy');
   }
 
-  const nextBillingDate = subscription ? formatNextBillingDate(subscription?.current_period_end || '') : '';
+  const nextBillingDate = subscription ? formatNextBillingDate(subscription.current_period_end || '') : '';
 
-  /*
   return (
     <Card
-      title={subscription && paddlesubscription?.status === 'active' ? "Your Plan: " + capitalizeFirstLetter(subscription?.prices?.products?.type) : ""}
+      title={
+        subscription && paddlesubscription?.status === 'active'
+          ? 'Your Plan: ' + capitalizeFirstLetter(subscription?.prices?.products?.type)
+          : ''
+      }
       description={
         subscription && paddlesubscription?.status === 'active'
           ? `You are currently on ${subscription?.prices?.products?.name} plan.`
@@ -84,7 +87,9 @@ export default function CustomerPortalForm({ subscription, points, paddlesubscri
           {subscription && paddlesubscription?.status === 'active' && (
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between w-full">
               <div className="flex flex-col sm:w-1/2">
-                <p className="pb-4 sm:pb-0">{`Available Points: ${points == null ? 'N/A' : points == -1 ? 'Unlimited' : points.toLocaleString()}`}</p>
+                <p className="pb-4 sm:pb-0">{`Available Points: ${
+                  points == null ? 'N/A' : points == -1 ? 'Unlimited' : points.toLocaleString()
+                }`}</p>
                 <p className="pb-4 sm:pb-0">{`Next Billing Date: ${nextBillingDate}`}</p>
               </div>
               <div className="flex sm:w-1/2 sm:justify-end">
@@ -114,6 +119,4 @@ export default function CustomerPortalForm({ subscription, points, paddlesubscri
       </div>
     </Card>
   );
-  */
-  return null;
 }
